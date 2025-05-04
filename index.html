@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrimeLoan | Instant Loan Approval</title>
+    <title>Finova | Financial Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6c5ce7;
+            --primary: #4361ee;
             --secondary: #f8f9fa;
-            --dark: #2d3436;
+            --dark: #2b2d42;
             --light: #ffffff;
-            --success: #00b894;
-            --danger: #d63031;
-            --warning: #fdcb6e;
-            --info: #0984e3;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
+            --info: #4895ef;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
         
         body {
@@ -31,8 +31,8 @@
         }
         
         @font-face {
-            font-family: 'Poppins';
-            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+            font-family: 'Inter';
+            src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         }
         
         .container {
@@ -110,7 +110,7 @@
         /* Hero Section */
         .hero {
             padding: 100px 0;
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0.05) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -122,7 +122,7 @@
             right: -10%;
             width: 600px;
             height: 600px;
-            background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0) 70%);
+            background: radial-gradient(circle, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0) 70%);
             border-radius: 50%;
             z-index: 0;
         }
@@ -181,12 +181,12 @@
             cursor: pointer;
             transition: all 0.3s;
             text-decoration: none;
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.4);
         }
         
         .btn-outline {
@@ -202,8 +202,8 @@
             color: var(--light);
         }
         
-        /* Loan Calculator Section */
-        .loan-calculator {
+        /* Solutions Section */
+        .solutions {
             padding: 80px 0;
             background-color: var(--light);
         }
@@ -226,7 +226,7 @@
             font-size: 1.1rem;
         }
         
-        .calculator-container {
+        .solutions-container {
             display: flex;
             background-color: var(--light);
             border-radius: 15px;
@@ -234,16 +234,16 @@
             overflow: hidden;
         }
         
-        .calculator-form {
+        .solutions-form {
             flex: 1;
             padding: 40px;
             background-color: var(--light);
         }
         
-        .calculator-result {
+        .solutions-result {
             flex: 1;
             padding: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, #8c7ae6 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #5a7af0 100%);
             color: var(--light);
             display: flex;
             flex-direction: column;
@@ -274,7 +274,7 @@
         .form-control:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
         }
         
         .range-slider {
@@ -311,20 +311,20 @@
             text-align: center;
         }
         
-        /* Loan Types Section */
-        .loan-types {
+        /* Products Section */
+        .products {
             padding: 80px 0;
             background-color: #f9f9f9;
         }
         
-        .types-grid {
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-top: 50px;
         }
         
-        .type-card {
+        .product-card {
             background-color: var(--light);
             border-radius: 15px;
             overflow: hidden;
@@ -332,61 +332,61 @@
             transition: all 0.3s;
         }
         
-        .type-card:hover {
+        .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
-        .type-image {
+        .product-image {
             height: 200px;
             overflow: hidden;
         }
         
-        .type-image img {
+        .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
         
-        .type-card:hover .type-image img {
+        .product-card:hover .product-image img {
             transform: scale(1.1);
         }
         
-        .type-content {
+        .product-content {
             padding: 25px;
         }
         
-        .type-content h3 {
+        .product-content h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--dark);
         }
         
-        .type-content p {
+        .product-content p {
             color: #666;
             margin-bottom: 20px;
         }
         
-        .type-features {
+        .product-features {
             list-style: none;
             margin-bottom: 25px;
         }
         
-        .type-features li {
+        .product-features li {
             margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
         
-        .type-features li i {
+        .product-features li i {
             color: var(--primary);
             margin-right: 10px;
             font-size: 14px;
         }
         
-        /* Application Process Section */
-        .application-process {
+        /* Process Section */
+        .process {
             padding: 80px 0;
             background-color: var(--light);
         }
@@ -428,7 +428,7 @@
             margin: 0 auto 20px;
             color: var(--light);
             font-size: 30px;
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
         }
         
         .step h3 {
@@ -506,7 +506,7 @@
         /* CTA Section */
         .cta {
             padding: 100px 0;
-            background: linear-gradient(135deg, var(--primary) 0%, #8c7ae6 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #5a7af0 100%);
             color: var(--light);
             text-align: center;
         }
@@ -653,7 +653,7 @@
                 margin-right: auto;
             }
             
-            .calculator-container {
+            .solutions-container {
                 flex-direction: column;
             }
             
@@ -710,7 +710,7 @@
                 font-size: 2rem;
             }
             
-            .calculator-form, .calculator-result {
+            .solutions-form, .solutions-result {
                 padding: 30px;
             }
             
@@ -763,13 +763,13 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-hand-holding-usd"></i>
-                    PrimeLoan
+                    <i class="fas fa-chart-line"></i>
+                    Finova
                 </a>
                 <ul class="nav-links">
                     <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
-                    <li><a href="#types"><i class="fas fa-list"></i> Loan Types</a></li>
+                    <li><a href="#solutions"><i class="fas fa-calculator"></i> Solutions</a></li>
+                    <li><a href="#products"><i class="fas fa-list"></i> Products</a></li>
                     <li><a href="#process"><i class="fas fa-tasks"></i> Process</a></li>
                     <li><a href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a></li>
                     <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -786,34 +786,34 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Get <span>Instant Loan</span> Approval Within Minutes</h1>
-                    <p>PrimeLoan offers the fastest loan approval process with competitive interest rates and flexible repayment options tailored to your needs.</p>
+                    <h1>Flexible <span>Financial Solutions</span> Tailored For You</h1>
+                    <p>Finova provides customized financial assistance with competitive terms and a simple application process to meet your unique needs.</p>
                     <div class="btn-group">
-                        <a href="#calculator" class="btn">Apply Now</a>
-                        <a href="#types" class="btn btn-outline">Learn More</a>
+                        <a href="#solutions" class="btn">Get Started</a>
+                        <a href="#products" class="btn btn-outline">Learn More</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Happy customer with money">
+                    <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Financial planning">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Loan Calculator Section -->
-    <section class="loan-calculator" id="calculator">
+    <!-- Solutions Section -->
+    <section class="solutions" id="solutions">
         <div class="container">
             <div class="section-title">
-                <h2>Loan Calculator</h2>
-                <p>Calculate your monthly payments and find the perfect loan option for your needs</p>
+                <h2>Financial Solutions</h2>
+                <p>Find the perfect financial solution for your specific requirements</p>
             </div>
             
-            <div class="calculator-container">
-                <div class="calculator-form">
+            <div class="solutions-container">
+                <div class="solutions-form">
                     <div class="form-group">
-                        <label for="loan-amount">Loan Amount (₹)</label>
-                        <input type="number" id="loan-amount" class="form-control" placeholder="e.g. 50000" min="1000" max="10000000">
-                        <input type="range" id="loan-amount-range" class="range-slider" min="1000" max="10000000" step="1000" value="50000">
+                        <label for="amount">Amount Needed (₹)</label>
+                        <input type="number" id="amount" class="form-control" placeholder="e.g. 50000" min="1000" max="10000000">
+                        <input type="range" id="amount-range" class="range-slider" min="1000" max="10000000" step="1000" value="50000">
                         <div class="range-values">
                             <span>₹1,000</span>
                             <span>₹10,00,000</span>
@@ -821,9 +821,9 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="loan-tenure">Loan Tenure (Months)</label>
-                        <input type="number" id="loan-tenure" class="form-control" placeholder="e.g. 24" min="3" max="84">
-                        <input type="range" id="loan-tenure-range" class="range-slider" min="3" max="84" step="1" value="24">
+                        <label for="tenure">Repayment Period (Months)</label>
+                        <input type="number" id="tenure" class="form-control" placeholder="e.g. 24" min="3" max="84">
+                        <input type="range" id="tenure-range" class="range-slider" min="3" max="84" step="1" value="24">
                         <div class="range-values">
                             <span>3 Months</span>
                             <span>84 Months</span>
@@ -831,19 +831,19 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="interest-rate">Interest Rate (%)</label>
-                        <input type="number" id="interest-rate" class="form-control" placeholder="e.g. 10.5" min="5" max="25" step="0.1">
-                        <input type="range" id="interest-rate-range" class="range-slider" min="5" max="25" step="0.1" value="10.5">
+                        <label for="rate">Annual Rate (%)</label>
+                        <input type="number" id="rate" class="form-control" placeholder="e.g. 10.5" min="5" max="25" step="0.1">
+                        <input type="range" id="rate-range" class="range-slider" min="5" max="25" step="0.1" value="10.5">
                         <div class="range-values">
                             <span>5%</span>
                             <span>25%</span>
                         </div>
                     </div>
                     
-                    <button class="btn btn-block">Apply for Loan</button>
+                    <button class="btn btn-block">Apply Now</button>
                 </div>
                 
-                <div class="calculator-result">
+                <div class="solutions-result">
                     <div class="result-item">
                         <h3>Monthly Payment</h3>
                         <div class="result-value">₹2,500</div>
@@ -868,75 +868,75 @@
         </div>
     </section>
 
-    <!-- Loan Types Section -->
-    <section class="loan-types" id="types">
+    <!-- Products Section -->
+    <section class="products" id="products">
         <div class="container">
             <div class="section-title">
-                <h2>Our Loan Products</h2>
-                <p>We offer a variety of loan products to meet your financial needs</p>
+                <h2>Our Financial Products</h2>
+                <p>We offer a variety of financial products to meet your needs</p>
             </div>
             
-            <div class="types-grid">
-                <div class="type-card">
-                    <div class="type-image">
-                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Personal Loan">
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Personal Finance">
                     </div>
-                    <div class="type-content">
-                        <h3>Personal Loan</h3>
-                        <p>Get funds for any personal need with quick approval and flexible repayment options.</p>
-                        <ul class="type-features">
+                    <div class="product-content">
+                        <h3>Personal Finance</h3>
+                        <p>Flexible financial solutions for your personal needs with quick approval.</p>
+                        <ul class="product-features">
                             <li><i class="fas fa-check-circle"></i> Up to ₹20,00,000</li>
-                            <li><i class="fas fa-check-circle"></i> Interest from 10.5% p.a.</li>
-                            <li><i class="fas fa-check-circle"></i> 12 to 60 months tenure</li>
+                            <li><i class="fas fa-check-circle"></i> Rates from 10.5% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> 12 to 60 months term</li>
                             <li><i class="fas fa-check-circle"></i> Minimal documentation</li>
                         </ul>
-                        <a href="#" class="btn btn-block">Apply Now</a>
+                        <a href="#" class="btn btn-block">Learn More</a>
                     </div>
                 </div>
                 
-                <div class="type-card">
-                    <div class="type-image">
-                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Home Loan">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Property Finance">
                     </div>
-                    <div class="type-content">
-                        <h3>Home Loan</h3>
-                        <p>Realize your dream of owning a home with our competitive home loan rates.</p>
-                        <ul class="type-features">
+                    <div class="product-content">
+                        <h3>Property Finance</h3>
+                        <p>Solutions for your property needs with competitive terms.</p>
+                        <ul class="product-features">
                             <li><i class="fas fa-check-circle"></i> Up to ₹1,00,00,000</li>
-                            <li><i class="fas fa-check-circle"></i> Interest from 8.4% p.a.</li>
-                            <li><i class="fas fa-check-circle"></i> Up to 30 years tenure</li>
-                            <li><i class="fas fa-check-circle"></i> Balance transfer facility</li>
+                            <li><i class="fas fa-check-circle"></i> Rates from 8.4% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> Up to 30 years term</li>
+                            <li><i class="fas fa-check-circle"></i> Balance transfer option</li>
                         </ul>
-                        <a href="#" class="btn btn-block">Apply Now</a>
+                        <a href="#" class="btn btn-block">Learn More</a>
                     </div>
                 </div>
                 
-                <div class="type-card">
-                    <div class="type-image">
-                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Business Loan">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Business Finance">
                     </div>
-                    <div class="type-content">
-                        <h3>Business Loan</h3>
-                        <p>Fuel your business growth with customized financing solutions.</p>
-                        <ul class="type-features">
+                    <div class="product-content">
+                        <h3>Business Finance</h3>
+                        <p>Customized financial solutions for your business growth.</p>
+                        <ul class="product-features">
                             <li><i class="fas fa-check-circle"></i> Up to ₹50,00,000</li>
-                            <li><i class="fas fa-check-circle"></i> Interest from 12% p.a.</li>
-                            <li><i class="fas fa-check-circle"></i> 6 to 48 months tenure</li>
-                            <li><i class="fas fa-check-circle"></i> No collateral required</li>
+                            <li><i class="fas fa-check-circle"></i> Rates from 12% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> 6 to 48 months term</li>
+                            <li><i class="fas fa-check-circle"></i> No collateral needed</li>
                         </ul>
-                        <a href="#" class="btn btn-block">Apply Now</a>
+                        <a href="#" class="btn btn-block">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Application Process Section -->
-    <section class="application-process" id="process">
+    <!-- Process Section -->
+    <section class="process" id="process">
         <div class="container">
             <div class="section-title">
                 <h2>Simple Application Process</h2>
-                <p>Get your loan approved in just 4 easy steps</p>
+                <p>Get your financial solution approved in just 4 easy steps</p>
             </div>
             
             <div class="process-steps">
@@ -968,8 +968,8 @@
                     <div class="step-icon">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h3>Receive Money</h3>
-                    <p>Funds disbursed to your account</p>
+                    <h3>Receive Funds</h3>
+                    <p>Money disbursed to your account</p>
                 </div>
             </div>
         </div>
@@ -979,7 +979,7 @@
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Our Customers Say</h2>
+                <h2>What Our Clients Say</h2>
                 <p>Hear from people who have experienced our services</p>
             </div>
             
@@ -991,7 +991,7 @@
                         </div>
                         <div class="testimonial-info">
                             <h4>Riya Sharma</h4>
-                            <p>Home Loan Customer</p>
+                            <p>Property Finance Client</p>
                         </div>
                     </div>
                     <div class="testimonial-rating">
@@ -1002,7 +1002,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <p class="testimonial-text">
-                        "PrimeLoan made my dream of owning a home come true. The process was so smooth and the interest rates were the best I found. Highly recommended!"
+                        "Finova made my property purchase possible. The process was smooth and the terms were the best I found. Highly recommended!"
                     </p>
                 </div>
                 
@@ -1013,7 +1013,7 @@
                         </div>
                         <div class="testimonial-info">
                             <h4>Vikram Patel</h4>
-                            <p>Business Loan Customer</p>
+                            <p>Business Finance Client</p>
                         </div>
                     </div>
                     <div class="testimonial-rating">
@@ -1024,7 +1024,7 @@
                         <i class="fas fa-star-half-alt"></i>
                     </div>
                     <p class="testimonial-text">
-                        "I needed quick funds to expand my business. PrimeLoan approved my application within hours and the money was in my account the next day. Excellent service!"
+                        "I needed quick funds to expand my business. Finova approved my application within hours and the money was in my account the next day. Excellent service!"
                     </p>
                 </div>
                 
@@ -1035,7 +1035,7 @@
                         </div>
                         <div class="testimonial-info">
                             <h4>Priya Reddy</h4>
-                            <p>Personal Loan Customer</p>
+                            <p>Personal Finance Client</p>
                         </div>
                     </div>
                     <div class="testimonial-rating">
@@ -1046,7 +1046,7 @@
                         <i class="fas fa-star"></i>
                     </div>
                     <p class="testimonial-text">
-                        "The entire process was digital and hassle-free. I got a personal loan at a much lower interest rate than other banks. Will definitely use again!"
+                        "The entire process was digital and hassle-free. I got the funds I needed at much better terms than other options. Will definitely use again!"
                     </p>
                 </div>
             </div>
@@ -1057,8 +1057,8 @@
     <section class="cta">
         <div class="container">
             <h2>Ready to Get Started?</h2>
-            <p>Join thousands of satisfied customers who have achieved their financial goals with PrimeLoan</p>
-            <a href="#calculator" class="btn btn-light">Apply for Loan Now</a>
+            <p>Join thousands of satisfied clients who have achieved their financial goals with Finova</p>
+            <a href="#solutions" class="btn btn-light">Apply Now</a>
         </div>
     </section>
 
@@ -1067,8 +1067,8 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>PrimeLoan</h3>
-                    <p>Your trusted partner for all financial needs. We provide quick, transparent and affordable loan solutions.</p>
+                    <h3>Finova</h3>
+                    <p>Your trusted partner for all financial needs. We provide quick, transparent and affordable solutions.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1081,37 +1081,37 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
-                        <li><a href="#calculator"><i class="fas fa-chevron-right"></i> Loan Calculator</a></li>
-                        <li><a href="#types"><i class="fas fa-chevron-right"></i> Loan Types</a></li>
+                        <li><a href="#solutions"><i class="fas fa-chevron-right"></i> Solutions</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
                         <li><a href="#process"><i class="fas fa-chevron-right"></i> Application Process</a></li>
                         <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Loan Products</h3>
+                    <h3>Our Products</h3>
                     <ul class="footer-links">
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Personal Loans</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home Loans</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Business Loans</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Education Loans</a></li>
-                        <li><a href="#"><i class="fas fa-chevron-right"></i> Car Loans</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Personal Finance</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Property Finance</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Business Finance</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Education Finance</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Vehicle Finance</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contact Us</h3>
                     <div class="footer-contact">
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Financial Street, Mumbai, India</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Finance Street, Mumbai, India</p>
                         <p><i class="fas fa-phone-alt"></i> +91 9876543210</p>
-                        <p><i class="fas fa-envelope"></i> info@primeloan.com</p>
+                        <p><i class="fas fa-envelope"></i> info@finova.com</p>
                         <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 PrimeLoan. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
+                <p>&copy; 2023 Finova. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
             </div>
         </div>
     </footer>
@@ -1127,50 +1127,50 @@
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
         
-        // Loan Calculator Functionality
-        const loanAmountInput = document.getElementById('loan-amount');
-        const loanAmountRange = document.getElementById('loan-amount-range');
-        const tenureInput = document.getElementById('loan-tenure');
-        const tenureRange = document.getElementById('loan-tenure-range');
-        const interestInput = document.getElementById('interest-rate');
-        const interestRange = document.getElementById('interest-rate-range');
+        // Calculator Functionality
+        const amountInput = document.getElementById('amount');
+        const amountRange = document.getElementById('amount-range');
+        const tenureInput = document.getElementById('tenure');
+        const tenureRange = document.getElementById('tenure-range');
+        const rateInput = document.getElementById('rate');
+        const rateRange = document.getElementById('rate-range');
         
         // Sync range sliders with input fields
-        loanAmountInput.addEventListener('input', () => {
-            loanAmountRange.value = loanAmountInput.value;
-            calculateLoan();
+        amountInput.addEventListener('input', () => {
+            amountRange.value = amountInput.value;
+            calculatePayment();
         });
         
-        loanAmountRange.addEventListener('input', () => {
-            loanAmountInput.value = loanAmountRange.value;
-            calculateLoan();
+        amountRange.addEventListener('input', () => {
+            amountInput.value = amountRange.value;
+            calculatePayment();
         });
         
         tenureInput.addEventListener('input', () => {
             tenureRange.value = tenureInput.value;
-            calculateLoan();
+            calculatePayment();
         });
         
         tenureRange.addEventListener('input', () => {
             tenureInput.value = tenureRange.value;
-            calculateLoan();
+            calculatePayment();
         });
         
-        interestInput.addEventListener('input', () => {
-            interestRange.value = interestInput.value;
-            calculateLoan();
+        rateInput.addEventListener('input', () => {
+            rateRange.value = rateInput.value;
+            calculatePayment();
         });
         
-        interestRange.addEventListener('input', () => {
-            interestInput.value = interestRange.value;
-            calculateLoan();
+        rateRange.addEventListener('input', () => {
+            rateInput.value = rateRange.value;
+            calculatePayment();
         });
         
-        // Loan Calculation Function
-        function calculateLoan() {
-            const amount = parseFloat(loanAmountInput.value) || 0;
+        // Payment Calculation Function
+        function calculatePayment() {
+            const amount = parseFloat(amountInput.value) || 0;
             const tenure = parseFloat(tenureInput.value) || 1;
-            const rate = parseFloat(interestInput.value) || 0;
+            const rate = parseFloat(rateInput.value) || 0;
             
             // Monthly interest rate
             const monthlyRate = rate / 100 / 12;
@@ -1189,7 +1189,7 @@
         }
         
         // Initialize calculator
-        calculateLoan();
+        calculatePayment();
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
