@@ -3,1586 +3,2002 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt Minds Premium TTS & STT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <title>Ultimate Tools Hub - All-in-One Solution</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Base Styles & Variables */
         :root {
-            --dark-purple: #2a1b5e;
-            --light-lavender: #f3eaff;
-            --deep-purple: #4a3b8c;
-            --very-light-white: #ffffff;
-            --almost-white: #f8f8ff;
-            --accent-color: #7b68ee;
-            --error-color: #ff4d4d;
-            --success-color: #4caf50;
-            --premium-gold: #ffd700;
-            --premium-gradient: linear-gradient(135deg, #ffd700, #ff8c00);
+            --primary: #4F46E5;
+            --primary-dark: #3730A3;
+            --primary-light: #6366F1;
+            --secondary: #10B981;
+            --accent: #F59E0B;
+            --danger: #EF4444;
+            --dark: #111827;
+            --darker: #0F172A;
+            --dark-light: #1E293B;
+            --light: #F3F4F6;
+            --lighter: #F9FAFB;
+            --gray: #6B7280;
+            --menu-bg: rgba(17, 24, 39, 0.98);
+            --menu-text: #FFFFFF;
+            --menu-hover: rgba(79, 70, 229, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 0.25rem;
+            --radius: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, var(--dark-purple), #1a113f);
-            color: var(--dark-purple);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+        h3 { font-size: 1.75rem; }
+        h4 { font-size: 1.5rem; }
+        h5 { font-size: 1.25rem; }
+        h6 { font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        /* Utility Classes */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-effect {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+        }
+
+        /* Premium Header */
         .header {
-            background: var(--light-lavender);
-            padding: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--menu-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-slow);
+        }
+
+        .header.hidden {
+            transform: translateY(-100%);
+        }
+
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 3px solid var(--deep-purple);
-            position: relative;
-        }
-
-        .premium-banner {
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--premium-gradient);
-            color: #000;
-            padding: 0.5rem 1.5rem;
-            border-bottom-left-radius: 15px;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 10;
+            padding: 0 1.5rem;
         }
 
         .logo {
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--light);
         }
 
-        .logo-circle {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--deep-purple), #7b68ee);
-            border-radius: 50%;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            margin-right: 1rem;
-            box-shadow: 0 0 10px rgba(75, 59, 140, 0.5);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius);
+            color: white;
+            font-size: 1.25rem;
+            transition: var(--transition);
         }
 
-        .logo-circle span {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--almost-white);
+        .logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
         }
 
-        .header h1 {
-            color: var(--dark-purple);
-            font-size: 2.2rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .toolbar {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
+        /* Navigation */
         .nav-links {
             display: flex;
             gap: 1.5rem;
             list-style: none;
         }
 
-        .nav-links a {
-            color: var(--dark-purple);
-            text-decoration: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--very-light-white);
-            box-shadow: 0 0 10px rgba(106, 90, 205, 0.5);
-        }
-
-        .toggle-button {
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--almost-white);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .toggle-button:hover {
-            background: var(--very-light-white);
-            color: var(--deep-purple);
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
-        }
-
-        .premium-button {
-            background: var(--premium-gradient);
-            color: #000;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        }
-
-        .premium-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-            flex: 1;
-            width: 100%;
-        }
-
-        .tts-stt-wrapper {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .tts-box, .stt-box {
-            flex: 1;
-            min-width: 0;
-            background: var(--light-lavender);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(75, 59, 140, 0.2);
+        .nav-item {
             position: relative;
         }
 
-        .premium-badge {
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+            color: var(--light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
             position: absolute;
-            top: -10px;
-            right: 20px;
-            background: var(--premium-gradient);
-            color: #000;
-            padding: 0.3rem 1rem;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
-        .tts-box:hover, .stt-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(74, 59, 140, 0.3);
-        }
-
-        .tts-box h2, .stt-box h2 {
-            color: var(--dark-purple);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        textarea {
+        .nav-link:hover::before {
             width: 100%;
-            padding: 1.2rem;
-            border: 2px solid var(--deep-purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.15);
-            color: var(--dark-purple);
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            resize: vertical;
-            min-height: 150px;
         }
 
-        textarea:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-            background: rgba(255,255,255,0.25);
+        .nav-link i {
+            transition: var(--transition);
         }
 
-        select, input[type="range"] {
-            padding: 0.8rem;
-            border: 2px solid var(--deep-purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.15);
-            color: var(--dark-purple);
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-            width: 100%;
-            transition: all 0.3s ease;
+        .nav-link:hover i {
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        select:focus, input[type="range"]:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 220px;
+            background: var(--menu-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-xl);
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            z-index: 100;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
         }
 
-        .control-group {
-            margin: 1rem 0;
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
 
-        label {
-            font-weight: bold;
-            margin-top: 1rem;
+        .dropdown-link {
             display: block;
-            color: var(--dark-purple);
-            font-size: 1.1rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--light);
+            transition: var(--transition);
+            position: relative;
         }
 
-        .note {
-            font-size: 0.95rem;
-            color: var(--dark-purple);
-            margin: 0.5rem 0;
-            text-align: center;
-            font-style: italic;
+        .dropdown-link:hover {
+            background: var(--menu-hover);
+            padding-left: 1.75rem;
         }
 
-        .buttons {
+        .dropdown-link::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .dropdown-link:hover::before {
+            opacity: 1;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
             display: flex;
+            align-items: center;
             gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
         }
 
-        button {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            flex: 1;
-            display: flex;
+        .btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--almost-white);
-            min-width: 150px;
-        }
-
-        button.premium-feature {
-            background: var(--premium-gradient);
-            color: #000;
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #cccccc !important;
-        }
-
-        button:hover:not(:disabled) {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(106, 90, 205, 0.6);
-            background: linear-gradient(135deg, #6a5acd, var(--deep-purple));
-        }
-
-        button.premium-feature:hover:not(:disabled) {
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
-        }
-
-        .speaking {
-            background: rgba(255, 255, 204, 0.3) !important;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
-        }
-
-        .stt-box.recording {
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-        }
-
-        .emotion-display {
-            margin-top: 1.5rem;
-            text-align: center;
-            font-size: 1.3rem;
-            color: var(--dark-purple);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(123, 104, 238, 0.1));
-            padding: 1.2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .emotion-display.active {
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(123, 104, 238, 0.2));
-        }
-
-        .footer {
-            background: var(--light-lavender);
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: var(--dark-purple);
-            border-top: 3px solid var(--deep-purple);
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--dark-purple);
-            text-decoration: none;
-            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
             font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: none;
         }
 
-        .footer-links a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 5px rgba(106, 90, 205, 0.5);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--shadow);
         }
 
-        .social-icons {
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), #F97316);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Button Hover Effect */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::after {
+            left: 100%;
+        }
+
+        /* Premium Badge */
+        .premium-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, #FCD34D, #F59E0B);
+            color: #000;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            z-index: 1100;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--light);
+            position: absolute;
+            left: 7px;
+            transition: var(--transition);
+        }
+
+        .menu-toggle span:nth-child(1) {
+            top: 12px;
+        }
+
+        .menu-toggle span:nth-child(2) {
+            top: 19px;
+        }
+
+        .menu-toggle span:nth-child(3) {
+            bottom: 12px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 19px;
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            bottom: 19px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
+            align-items: center;
+            background: linear-gradient(135deg, var(--darker), var(--dark));
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .social-icons a {
-            color: var(--dark-purple);
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
         }
 
-        .social-icons a:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
-
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: var(--light-lavender);
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        .hero-content {
             position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--dark-purple);
-        }
-
-        .modal-title {
-            margin-bottom: 1.5rem;
-            color: var(--dark-purple);
+            z-index: 1;
             text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .modal-buttons {
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        /* Premium features section */
-        .premium-features {
-            background: var(--light-lavender);
-            border-radius: 15px;
-            padding: 2rem;
+            justify-content: center;
             margin-top: 2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
 
-        .premium-features h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--dark-purple);
-            font-size: 1.8rem;
+        /* Features Section */
+        .features {
+            background: var(--darker);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(75, 59, 140, 0.2);
+            background: var(--dark-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
         }
 
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(74, 59, 140, 0.2);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
         }
 
         .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--deep-purple);
-        }
-
-        .feature-title {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--dark-purple);
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .tts-stt-wrapper {
-                flex-direction: column;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .toolbar {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-
-            .nav-links a {
-                width: 100%;
-                text-align: center;
-            }
-
-            .toggle-button, .premium-button {
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .buttons {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .tts-box, .stt-box {
-                padding: 1.5rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--deep-purple);
-            color: white;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius);
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .feature-text {
+            color: var(--gray);
+        }
+
+        /* Tools Categories */
+        .categories {
+            background: var(--dark);
+        }
+
+        .categories-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--dark-light);
+            border-radius: var(--radius);
+            font-weight: 500;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 100;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
 
-        /* Word counter */
-        .word-counter {
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--deep-purple);
-            margin-top: -10px;
-            margin-bottom: 10px;
+        .category-tab:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        /* Progress bar */
-        .progress-container {
-            width: 100%;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            margin: 1rem 0;
+        .category-tab.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            background: var(--dark-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
             overflow: hidden;
+            border: 1px solid var(--glass-border);
         }
 
-        .progress-bar {
-            height: 10px;
-            background: var(--premium-gradient);
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.3s ease;
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
         }
 
-        /* Advanced settings */
-        .advanced-settings {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            border: 1px dashed var(--deep-purple);
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
         }
 
-        .advanced-toggle {
+        .tool-icon {
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            background: rgba(79, 70, 229, 0.1);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        .tool-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .tool-description {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: var(--darker);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: var(--dark-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            border: 1px solid var(--glass-border);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 4rem;
+            color: rgba(79, 70, 229, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        .author-info h4 {
+            color: var(--light);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: var(--dark);
+        }
+
+        .pricing-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .pricing-toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .pricing-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .pricing-slider {
+            position: absolute;
             cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--dark-light);
+            transition: var(--transition);
+            border-radius: 34px;
+        }
+
+        .pricing-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        input:checked + .pricing-slider {
+            background: var(--primary);
+        }
+
+        input:checked + .pricing-slider:before {
+            transform: translateX(30px);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--dark-light);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+
+        .pricing-card.popular {
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .pricing-card.popular::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-bottom-left-radius: var(--radius);
+        }
+
+        .pricing-header {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-title {
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
         }
 
-        .advanced-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .advanced-content.show {
+        .pricing-period {
+            color: var(--gray);
+        }
+
+        .pricing-features {
+            margin-bottom: 2rem;
+        }
+
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-feature i {
+            color: var(--secondary);
+        }
+
+        .pricing-button {
+            width: 100%;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--darker);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--dark-light);
+            border: 1px solid var(--glass-border);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--primary);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-slow);
+        }
+
+        .faq-item.active .faq-question {
+            background: rgba(79, 70, 229, 0.1);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 1.5rem;
             max-height: 500px;
         }
 
-        /* Voice preview */
-        .voice-preview {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            border: 1px solid var(--deep-purple);
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            text-align: center;
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
         }
 
-        .voice-preview-text {
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--darker);
+            padding: 5rem 0 2rem;
+            border-top: 1px solid var(--dark-light);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: var(--radius);
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .footer-text {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-light);
+            border-radius: 50%;
+            color: var(--light);
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-light);
+            color: var(--gray);
             font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+            z-index: 999;
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--menu-bg);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem;
+                transition: var(--transition-slow);
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 1rem 0;
+                border-radius: 0;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .dropdown {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                background: transparent;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                padding: 0;
+                margin-left: 1rem;
+                border: none;
+            }
+
+            .nav-item:hover .dropdown {
+                max-height: 500px;
+            }
+
+            .dropdown-link {
+                padding: 0.75rem 0;
+            }
+
+            .dropdown-link:hover {
+                padding-left: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .action-buttons {
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .categories-tabs {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .category-tab {
+                text-align: center;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Premium Header -->
     <header class="header">
-        <div class="premium-banner">PREMIUM</div>
-        <div class="logo">
-            <div class="logo-circle">
-                <span>PM</span>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <span>UltimateTools</span>
+            </a>
+
+            <nav class="nav-links">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#features" class="nav-link">
+                        <i class="fas fa-star"></i> Features
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#tools" class="nav-link">
+                        <i class="fas fa-tools"></i> Tools
+                    </a>
+                    <div class="dropdown">
+                        <a href="#image-tools" class="dropdown-link">
+                            <i class="fas fa-image"></i> Image Tools
+                        </a>
+                        <a href="#video-tools" class="dropdown-link">
+                            <i class="fas fa-video"></i> Video Tools
+                        </a>
+                        <a href="#document-tools" class="dropdown-link">
+                            <i class="fas fa-file-alt"></i> Document Tools
+                        </a>
+                        <a href="#developer-tools" class="dropdown-link">
+                            <i class="fas fa-code"></i> Developer Tools
+                        </a>
+                        <a href="#ai-tools" class="dropdown-link">
+                            <i class="fas fa-brain"></i> AI Tools
+                            <span class="premium-badge">
+                                <i class="fas fa-crown"></i> PRO
+                            </span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#pricing" class="nav-link">
+                        <i class="fas fa-tag"></i> Pricing
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#faq" class="nav-link">
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </li>
+            </nav>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Sign Up
+                </button>
             </div>
-            <h1>Prompt Minds Premium TTS & STT</h1>
-        </div>
-        <div class="toolbar">
-            <ul class="nav-links">
-                <li><a href="#home">होम</a></li>
-                <li><a href="#about">हमारे बारे में</a></li>
-                <li><a href="#services">सेवाएँ</a></li>
-                <li><a href="#contact">संपर्क</a></li>
-            </ul>
-            <button class="toggle-button" id="viewToggle">व्यू टॉगल करें</button>
-            <button class="premium-button" id="upgradeButton"><i class="fas fa-crown"></i> अपग्रेड करें</button>
+
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container">
-        <div class="tts-stt-wrapper">
-            <!-- Text to Speech Section -->
-            <div class="tts-box">
-                <div class="premium-badge">ADVANCED</div>
-                <h2>Text to Speech</h2>
-                <div class="word-counter" id="ttsWordCount">शब्द: 0</div>
-                <textarea id="text" rows="5" placeholder="Enter text (उदा., नमस्ते for Hindi)"></textarea>
-                
-                <div class="control-group">
-                    <label for="languages">भाषा चुनें:</label>
-                    <select id="languages"></select>
-                </div>
-                
-                <div class="control-group">
-                    <label for="voices">आवाज़ चुनें:</label>
-                    <select id="voices"></select>
-                    <div class="voice-preview">
-                        <p class="voice-preview-text">This is a preview of the selected voice</p>
-                        <button id="previewVoice" class="premium-feature"><i class="fas fa-play"></i> Preview Voice</button>
-                    </div>
-                </div>
-                
-                <p class="note">नोट: आवाज़ के नाम लिंग का संकेत दे सकते हैं (उदा., "Heera" महिला के लिए, "Ravi" पुरुष के लिए)</p>
-                
-                <div class="control-group">
-                    <label for="rate">स्पीच गति: <span id="rateValue">1</span></label>
-                    <input type="range" id="rate" min="0.1" max="10" step="0.1" value="1">
-                </div>
-                
-                <div class="control-group">
-                    <label for="pitch">पिच: <span id="pitchValue">1</span></label>
-                    <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
-                </div>
-                
-                <div class="control-group">
-                    <label for="volume">आवाज़ की मात्रा: <span id="volumeValue">1</span></label>
-                    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-                </div>
-                
-                <div class="advanced-settings">
-                    <div class="advanced-toggle" id="ttsAdvancedToggle">
-                        <span><i class="fas fa-cog"></i> Advanced Settings</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="advanced-content" id="ttsAdvancedContent">
-                        <div class="control-group">
-                            <label for="emphasis">शब्द जोर: <span id="emphasisValue">moderate</span></label>
-                            <input type="range" id="emphasis" min="0" max="2" step="0.1" value="1">
-                        </div>
-                        
-                        <div class="control-group">
-                            <label for="intonation">Intonation Pattern:</label>
-                            <select id="intonation">
-                                <option value="default">Default</option>
-                                <option value="question">Question</option>
-                                <option value="exclamation">Exclamation</option>
-                                <option value="statement">Statement</option>
-                            </select>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>
-                                <input type="checkbox" id="breathingEffect"> Add breathing effect
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="buttons">
-                    <button id="speak"><i class="fas fa-volume-up"></i> बोलें</button>
-                    <button id="pauseResume"><i class="fas fa-pause"></i> रुकें</button>
-                    <button id="stop"><i class="fas fa-stop"></i> बंद करें</button>
-                    <button id="downloadAudio" class="premium-feature"><i class="fas fa-download"></i> High Quality MP3</button>
-                    <button id="savePreset" class="premium-feature"><i class="fas fa-save"></i> Save Preset</button>
-                </div>
-                
-                <div class="progress-container" id="ttsProgressContainer">
-                    <div class="progress-bar" id="ttsProgressBar"></div>
-                </div>
-            </div>
-
-            <!-- Speech to Text Section -->
-            <div class="stt-box">
-                <div class="premium-badge">ADVANCED</div>
-                <h2>Speech to Text</h2>
-                <div class="word-counter" id="sttWordCount">शब्द: 0</div>
-                <textarea id="transcription" rows="5" placeholder="आपकी स्पीच यहाँ दिखाई देगी..."></textarea>
-                
-                <div class="control-group">
-                    <label for="sttLanguage">Recognition Language:</label>
-                    <select id="sttLanguage">
-                        <option value="hi-IN">हिंदी (Hindi)</option>
-                        <option value="en-US">English (US)</option>
-                        <option value="en-GB">English (UK)</option>
-                        <option value="es-ES">Spanish</option>
-                        <option value="fr-FR">French</option>
-                        <option value="de-DE">German</option>
-                    </select>
-                </div>
-                
-                <div class="advanced-settings">
-                    <div class="advanced-toggle" id="sttAdvancedToggle">
-                        <span><i class="fas fa-cog"></i> Advanced Settings</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="advanced-content" id="sttAdvancedContent">
-                        <div class="control-group">
-                            <label>
-                                <input type="checkbox" id="punctuation" checked> Auto punctuation
-                            </label>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label>
-                                <input type="checkbox" id="profanityFilter"> Profanity filter
-                            </label>
-                        </div>
-                        
-                        <div class="control-group">
-                            <label for="recognitionMode">Recognition Mode:</label>
-                            <select id="recognitionMode">
-                                <option value="fast">Fast (less accurate)</option>
-                                <option value="balanced" selected>Balanced</option>
-                                <option value="precise">Precise (slower)</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="buttons">
-                    <button id="record"><i class="fas fa-microphone"></i> <span id="recordText">रिकॉर्डिंग शुरू करें</span></button>
-                    <button id="copyText"><i class="fas fa-copy"></i> कॉपी करें</button>
-                    <button id="clearText"><i class="fas fa-trash"></i> साफ करें</button>
-                    <button id="translateText" class="premium-feature"><i class="fas fa-language"></i> Translate</button>
-                    <button id="summarizeText" class="premium-feature"><i class="fas fa-file-alt"></i> Summarize</button>
-                </div>
-                
-                <div class="progress-container" id="sttProgressContainer">
-                    <div class="progress-bar" id="sttProgressBar"></div>
-                </div>
-                
-                <div class="emotion-display">
-                    <h3><span id="emotion"></span></h3>
-                    <p id="confidence">Confidence: 0%</p>
-                    <p id="sentiment">Sentiment: Neutral</p>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">All Your Essential Tools in One Place</h1>
+            <p class="hero-subtitle">Access 100+ powerful tools to boost your productivity, enhance your content, and simplify your workflow. No downloads, no hassle.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket"></i> Get Started Free
+                </button>
+                <button class="btn btn-secondary btn-lg">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </button>
             </div>
         </div>
-        
-        <!-- Premium Features Section -->
-        <div class="premium-features">
-            <h2><i class="fas fa-crown"></i> Premium Features</h2>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose Our <span class="text-gradient">Tools Hub</span></h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-file-audio"></i></div>
-                    <h3 class="feature-title">High Quality Audio</h3>
-                    <p>Download your speech as high quality MP3 files with customizable bitrates.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="feature-title">Lightning Fast</h3>
+                    <p class="feature-text">Our tools process your requests in seconds, saving you valuable time on your projects and content creation.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-language"></i></div>
-                    <h3 class="feature-title">Real-time Translation</h3>
-                    <p>Translate your speech to multiple languages with accurate pronunciation.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Secure & Private</h3>
+                    <p class="feature-text">Your data is encrypted and never stored permanently. We prioritize your privacy above all else.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
-                    <h3 class="feature-title">AI Emotion Detection</h3>
-                    <p>Advanced emotion and sentiment analysis from speech patterns.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="feature-title">No Limits</h3>
+                    <p class="feature-text">Free users get generous access, while premium users enjoy unlimited usage of all tools.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
-                    <h3 class="feature-title">Advanced Controls</h3>
-                    <p>Fine-tune speech parameters with professional-grade settings.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Always Updated</h3>
+                    <p class="feature-text">We continuously add new tools and improve existing ones based on user feedback.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-cloud"></i></div>
-                    <h3 class="feature-title">Cloud Storage</h3>
-                    <p>Save your audio files and transcriptions in secure cloud storage.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Fully Responsive</h3>
+                    <p class="feature-text">Access all tools from any device - desktop, tablet or mobile - with full functionality.</p>
                 </div>
-                
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
-                    <h3 class="feature-title">Privacy Protection</h3>
-                    <p>Enterprise-grade security for all your speech data.</p>
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="feature-title">Premium Support</h3>
+                    <p class="feature-text">Get priority support with our premium plans, with average response times under 1 hour.</p>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <button class="premium-button" id="learnMoreButton"><i class="fas fa-info-circle"></i> Learn More About Premium</button>
             </div>
         </div>
-    </main>
+    </section>
+
+    <!-- Tools Categories Section -->
+    <section class="section categories" id="tools">
+        <div class="container">
+            <h2 class="section-title">Explore Our <span class="text-gradient">Powerful Tools</span></h2>
+            
+            <div class="categories-tabs">
+                <div class="category-tab active" data-category="all">All Tools</div>
+                <div class="category-tab" data-category="image">Image Tools</div>
+                <div class="category-tab" data-category="video">Video Tools</div>
+                <div class="category-tab" data-category="document">Document Tools</div>
+                <div class="category-tab" data-category="developer">Developer Tools</div>
+                <div class="category-tab" data-category="ai">AI Tools</div>
+                <div class="category-tab" data-category="other">Other Tools</div>
+            </div>
+
+            <div class="tools-grid">
+                <!-- Image Tools -->
+                <div class="tool-card" data-category="image">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3 class="tool-title">Background Remover</h3>
+                    <p class="tool-description">Remove backgrounds from images automatically with AI-powered precision.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="image">
+                    <div class="tool-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3 class="tool-title">Image Upscaler</h3>
+                    <p class="tool-description">Enhance image resolution without losing quality using advanced algorithms.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                    <div class="tool-badge">
+                        <span class="premium-badge">
+                            <i class="fas fa-crown"></i> PRO
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="image">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3 class="tool-title">Image Compressor</h3>
+                    <p class="tool-description">Reduce image file size without noticeable quality loss.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <!-- Video Tools -->
+                <div class="tool-card" data-category="video">
+                    <div class="tool-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="tool-title">Video Compressor</h3>
+                    <p class="tool-description">Compress video files while maintaining high quality.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="video">
+                    <div class="tool-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3 class="tool-title">Video Trimmer</h3>
+                    <p class="tool-description">Cut and trim your videos online without quality loss.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                    <div class="tool-badge">
+                        <span class="premium-badge">
+                            <i class="fas fa-crown"></i> PRO
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="video">
+                    <div class="tool-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 class="tool-title">Video Converter</h3>
+                    <p class="tool-description">Convert videos between all popular formats.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <!-- Document Tools -->
+                <div class="tool-card" data-category="document">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3 class="tool-title">PDF Compressor</h3>
+                    <p class="tool-description">Reduce PDF file size while preserving quality.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="document">
+                    <div class="tool-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="tool-title">PDF to Word</h3>
+                    <p class="tool-description">Convert PDF files to editable Word documents.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="document">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <h3 class="tool-title">Word to PDF</h3>
+                    <p class="tool-description">Convert Word documents to PDF format.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <!-- Developer Tools -->
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="tool-title">Code Beautifier</h3>
+                    <p class="tool-description">Format and beautify your code with multiple language support.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="tool-title">Password Generator</h3>
+                    <p class="tool-description">Create strong, secure passwords instantly.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="developer">
+                    <div class="tool-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="tool-title">QR Code Generator</h3>
+                    <p class="tool-description">Create custom QR codes for URLs, text, and more.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <!-- AI Tools -->
+                <div class="tool-card" data-category="ai">
+                    <div class="tool-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="tool-title">AI Image Generator</h3>
+                    <p class="tool-description">Create stunning images from text prompts with AI.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                    <div class="tool-badge">
+                        <span class="premium-badge">
+                            <i class="fas fa-crown"></i> PRO
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="ai">
+                    <div class="tool-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="tool-title">AI Text Generator</h3>
+                    <p class="tool-description">Generate high-quality content with AI assistance.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                    <div class="tool-badge">
+                        <span class="premium-badge">
+                            <i class="fas fa-crown"></i> PRO
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="tool-card" data-category="ai">
+                    <div class="tool-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="tool-title">AI Photo Enhancer</h3>
+                    <p class="tool-description">Automatically enhance and restore old photos.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                    <div class="tool-badge">
+                        <span class="premium-badge">
+                            <i class="fas fa-crown"></i> PRO
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Other Tools -->
+                <div class="tool-card" data-category="other">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-download"></i>
+                    </div>
+                    <h3 class="tool-title">File Downloader</h3>
+                    <p class="tool-description">Download videos and files from various platforms.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="other">
+                    <div class="tool-icon">
+                        <i class="fas fa-volume-up"></i>
+                    </div>
+                    <h3 class="tool-title">Text to Speech</h3>
+                    <p class="tool-description">Convert text to natural sounding audio.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+                
+                <div class="tool-card" data-category="other">
+                    <div class="tool-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="tool-title">Color Picker</h3>
+                    <p class="tool-description">Extract colors from images and generate palettes.</p>
+                    <button class="btn btn-primary btn-sm">Use Tool</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our <span class="text-gradient">Users Say</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">This tools hub has completely transformed my workflow. I can now handle all my content creation needs in one place without switching between multiple apps and websites.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>John Doe</h4>
+                            <p>Content Creator</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As a developer, I use multiple tools daily. Having them all in one place with such quality and performance is a game-changer for my productivity.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <h4>Alice Smith</h4>
+                            <p>Web Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The premium features are worth every penny. The AI tools have helped me generate content ideas that boosted my traffic by 40% in just two months.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RJ</div>
+                        <div class="author-info">
+                            <h4>Robert Johnson</h4>
+                            <p>Digital Marketer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple, Transparent <span class="text-gradient">Pricing</span></h2>
+            
+            <div class="pricing-switch">
+                <span>Monthly</span>
+                <label class="pricing-toggle">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="pricing-slider"></span>
+                </label>
+                <span>Yearly <small>(Save 20%)</small></span>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Starter</h3>
+                        <div class="pricing-price">$0</div>
+                        <div class="pricing-period">forever</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Access to basic tools</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>10 uses per tool/month</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Standard processing speed</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Community support</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary pricing-button">Get Started</button>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Pro</h3>
+                        <div class="pricing-price">$9.99</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>All basic tools unlimited</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Access to premium tools</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority processing</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Email support</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>No watermarks</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary pricing-button">Choose Plan</button>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">Business</h3>
+                        <div class="pricing-price">$29.99</div>
+                        <div class="pricing-period">per month</div>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>All tools unlimited</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Priority processing</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>24/7 premium support</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Team access (5 users)</span>
+                        </div>
+                        <div class="pricing-feature">
+                            <i class="fas fa-check"></i>
+                            <span>API access</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary pricing-button">Choose Plan</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a free version available?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a free version with access to all basic tools with some limitations. You can use each tool up to 10 times per month with the free plan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I upgrade to a premium plan?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can upgrade to a premium plan by clicking on the "Upgrade" button in your account dashboard or by selecting a plan from our pricing page. We accept all major credit cards and PayPal.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I cancel my subscription anytime?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! You can cancel your subscription anytime from your account settings. Your premium features will remain active until the end of your billing period.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my data secure with your tools?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we take security very seriously. All file uploads are encrypted during transfer and automatically deleted from our servers after processing. We never store your data permanently.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer team or enterprise plans?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer custom plans for teams and enterprises with additional features like centralized billing, user management, and priority support. Contact our sales team for more information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Boost Your Productivity?</h2>
+            <p class="cta-text">Join thousands of satisfied users who are saving time and creating better content with our powerful tools.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-accent btn-lg">
+                    <i class="fas fa-rocket"></i> Get Started Free
+                </button>
+                <button class="btn btn-secondary btn-lg" style="background: rgba(255, 255, 255, 0.1); color: white;">
+                    <i class="fas fa-play-circle"></i> Watch Demo
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#home">होम</a>
-            <a href="#about">हमारे बारे में</a>
-            <a href="#services">सेवाएँ</a>
-            <a href="#contact">संपर्क</a>
-            <a href="#privacy">गोपनीयता नीति</a>
-            <a href="#terms">नियम और शर्तें</a>
-        </div>
-        <div class="social-icons">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p>© 2025 Prompt Minds Premium. सभी अधिकार सुरक्षित।</p>
-    </footer>
-
-    <!-- Dark mode toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
-    </div>
-
-    <!-- Upgrade Modal -->
-    <div class="modal" id="upgradeModal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 class="modal-title"><i class="fas fa-crown"></i> Upgrade to Premium</h2>
-            <p>Unlock all advanced features with our premium subscription:</p>
-            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
-                <li>High quality audio downloads</li>
-                <li>Advanced speech customization</li>
-                <li>Real-time translation</li>
-                <li>Emotion and sentiment analysis</li>
-                <li>Cloud storage for your files</li>
-                <li>Priority support</li>
-            </ul>
-            
-            <div style="text-align: center; margin: 1.5rem 0;">
-                <h3>Choose Your Plan</h3>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
-                    <div style="border: 1px solid var(--deep-purple); border-radius: 10px; padding: 1rem; width: 150px;">
-                        <h4>Monthly</h4>
-                        <p><strong>$9.99</strong>/month</p>
-                        <button class="premium-button" style="width: 100%;">Select</button>
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <span>UltimateTools</span>
                     </div>
-                    <div style="border: 2px solid var(--premium-gold); border-radius: 10px; padding: 1rem; width: 150px; position: relative;">
-                        <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--premium-gradient); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">BEST VALUE</div>
-                        <h4>Yearly</h4>
-                        <p><strong>$5.99</strong>/month</p>
-                        <p style="font-size: 0.8rem;">$71.88 billed annually</p>
-                        <button class="premium-button" style="width: 100%;">Select</button>
+                    <p class="footer-text">All your essential tools in one powerful platform. Boost your productivity and simplify your workflow.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Tools</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Image Tools</a></li>
+                        <li><a href="#">Video Tools</a></li>
+                        <li><a href="#">Document Tools</a></li>
+                        <li><a href="#">Developer Tools</a></li>
+                        <li><a href="#">AI Tools</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-title">Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">DMCA</a></li>
+                    </ul>
+                </div>
             </div>
-            
-            <p style="font-size: 0.9rem; text-align: center;">7-day free trial available. Cancel anytime.</p>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 UltimateTools. All rights reserved.</p>
+            </div>
         </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
-        // Notification system using Toastify
-        function showNotification(message, type = 'info', duration = 3000) {
-            let backgroundColor;
-            switch(type) {
-                case 'success': backgroundColor = '#4caf50'; break;
-                case 'error': backgroundColor = '#ff4d4d'; break;
-                case 'info': backgroundColor = '#7b68ee'; break;
-                case 'warning': backgroundColor = '#ff9800'; break;
-                default: backgroundColor = '#7b68ee';
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Hide Header on Scroll Down
+        let lastScroll = 0;
+        const header = document.querySelector('.header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                return;
             }
             
-            Toastify({
-                text: message,
-                duration: duration,
-                close: true,
-                gravity: "top",
-                position: "right",
-                stopOnFocus: true,
-                style: {
-                    background: backgroundColor,
-                    borderRadius: "8px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
-                }
-            }).showToast();
-        }
-
-        // TTS Global Variables
-        let voices = [];
-        let isSpeaking = false;
-        let isPaused = false;
-        let pauseIndex = 0;
-        let currentUtterance = null;
-        let audioContext;
-        let mediaRecorder;
-        let audioChunks = [];
-        let isPremiumUser = false; // Change to true for premium features
-
-        // DOM Elements
-        const textArea = document.getElementById('text');
-        const speakButton = document.getElementById('speak');
-        const pauseResumeButton = document.getElementById('pauseResume');
-        const stopButton = document.getElementById('stop');
-        const voicesSelect = document.getElementById('voices');
-        const rateSlider = document.getElementById('rate');
-        const pitchSlider = document.getElementById('pitch');
-        const volumeSlider = document.getElementById('volume');
-        const rateValue = document.getElementById('rateValue');
-        const pitchValue = document.getElementById('pitchValue');
-        const volumeValue = document.getElementById('volumeValue');
-        const languagesSelect = document.getElementById('languages');
-        const downloadAudioBtn = document.getElementById('downloadAudio');
-        const ttsWordCount = document.getElementById('ttsWordCount');
-        const sttWordCount = document.getElementById('sttWordCount');
-        const previewVoiceBtn = document.getElementById('previewVoice');
-        const ttsProgressBar = document.getElementById('ttsProgressBar');
-        const ttsProgressContainer = document.getElementById('ttsProgressContainer');
-        const sttProgressBar = document.getElementById('sttProgressBar');
-        const sttProgressContainer = document.getElementById('sttProgressContainer');
-        const upgradeModal = document.getElementById('upgradeModal');
-        const closeModal = document.querySelector('.close-modal');
-        const upgradeButton = document.getElementById('upgradeButton');
-        const learnMoreButton = document.getElementById('learnMoreButton');
-
-        // Language names in Hindi and English
-        const languageNames = {
-            'hi-IN': 'हिंदी (Hindi - India)',
-            'en-US': 'अंग्रेजी (English - US)',
-            'en-GB': 'अंग्रेजी (English - UK)',
-            'es-ES': 'स्पेनिश (Spanish - Spain)',
-            'fr-FR': 'फ्रेंच (French - France)',
-            'de-DE': 'जर्मन (German - Germany)',
-            'it-IT': 'इटालियन (Italian - Italy)',
-            'ja-JP': 'जापानी (Japanese - Japan)',
-            'zh-CN': 'चीनी (Chinese - Simplified)',
-            'ru-RU': 'रूसी (Russian - Russia)',
-            'all': 'सभी भाषाएँ (All Languages)'
-        };
-
-        // Initialize advanced settings toggles
-        document.getElementById('ttsAdvancedToggle').addEventListener('click', function() {
-            const content = document.getElementById('ttsAdvancedContent');
-            const icon = this.querySelector('i');
-            content.classList.toggle('show');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-        });
-
-        document.getElementById('sttAdvancedToggle').addEventListener('click', function() {
-            const content = document.getElementById('sttAdvancedContent');
-            const icon = this.querySelector('i');
-            content.classList.toggle('show');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-        });
-
-        // Word counter for TTS
-        textArea.addEventListener('input', () => {
-            const text = textArea.value.trim();
-            const wordCount = text ? text.split(/\s+/).length : 0;
-            ttsWordCount.textContent = `शब्द: ${wordCount}`;
-        });
-
-        // Word counter for STT
-        document.getElementById('transcription').addEventListener('input', () => {
-            const text = document.getElementById('transcription').value.trim();
-            const wordCount = text ? text.split(/\s+/).length : 0;
-            sttWordCount.textContent = `शब्द: ${wordCount}`;
-        });
-
-        // Populate languages dropdown
-        function populateLanguages() {
-            voices = window.speechSynthesis.getVoices();
-            const uniqueLangs = [...new Set(voices.map(voice => voice.lang))].sort();
-            languagesSelect.innerHTML = ''; // Clear existing options
-
-            // Add Hindi and English first
-            const priorityLangs = ['hi-IN', 'en-US'];
-            priorityLangs.forEach(lang => {
-                if (uniqueLangs.includes(lang)) {
-                    const option = document.createElement('option');
-                    option.value = lang;
-                    option.textContent = languageNames[lang];
-                    languagesSelect.appendChild(option);
-                }
-            });
-
-            // Add "All Languages" option
-            const allOption = document.createElement('option');
-            allOption.value = 'all';
-            allOption.textContent = languageNames['all'];
-            languagesSelect.appendChild(allOption);
-
-            // Add remaining languages
-            uniqueLangs.forEach(lang => {
-                if (!priorityLangs.includes(lang)) {
-                    const option = document.createElement('option');
-                    option.value = lang;
-                    option.textContent = languageNames[lang] || lang;
-                    languagesSelect.appendChild(option);
-                }
-            });
-        }
-
-        // Populate voices dropdown based on selected language
-        function populateVoices() {
-            const selectedLang = languagesSelect.value;
-            const filteredVoices = selectedLang === 'all' ? voices : voices.filter(voice => voice.lang === selectedLang);
-            voicesSelect.innerHTML = '';
+            if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
+                // Scroll down
+                header.classList.add('hidden');
+            } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
+                // Scroll up
+                header.classList.remove('hidden');
+            }
             
-            if (filteredVoices.length === 0) {
-                const option = document.createElement('option');
-                option.value = '-1';
-                option.textContent = 'कोई आवाज़ उपलब्ध नहीं';
-                voicesSelect.appendChild(option);
-                voicesSelect.disabled = true;
-                previewVoiceBtn.disabled = true;
+            lastScroll = currentScroll;
+
+            // Back to top button
+            if (currentScroll > 300) {
+                document.getElementById('backToTop').classList.add('active');
             } else {
-                voicesSelect.disabled = false;
-                previewVoiceBtn.disabled = !isPremiumUser;
-                filteredVoices.forEach(voice => {
-                    const option = document.createElement('option');
-                    option.value = voices.indexOf(voice);
-                    option.textContent = `${voice.name} (${languageNames[voice.lang] || voice.lang})`;
-                    voicesSelect.appendChild(option);
-                });
+                document.getElementById('backToTop').classList.remove('active');
             }
-        }
+        });
 
-        // Initialize speech synthesis
-        window.speechSynthesis.onvoiceschanged = () => {
-            populateLanguages();
-            populateVoices();
-        };
-
-        // Check if voices are already loaded
-        if (window.speechSynthesis.getVoices().length > 0) {
-            voices = window.speechSynthesis.getVoices();
-            populateLanguages();
-            populateVoices();
-        }
-
-        // Event listeners
-        languagesSelect.addEventListener('change', populateVoices);
-
-        rateSlider.addEventListener('input', () => rateValue.textContent = rateSlider.value);
-        pitchSlider.addEventListener('input', () => pitchValue.textContent = pitchSlider.value);
-        volumeSlider.addEventListener('input', () => volumeValue.textContent = volumeSlider.value);
-
-        // Speak text function
-        function speakText(startIndex = 0) {
-            const text = textArea.value;
-            if (!text.trim()) {
-                showNotification('कृपया बोलने के लिए कुछ टेक्स्ट दर्ज करें।', 'error');
-                return;
-            }
-            const selectedVoiceIndex = parseInt(voicesSelect.value);
-            if (selectedVoiceIndex < 0) {
-                showNotification('कृपया एक मान्य आवाज़ चुनें।', 'error');
-                return;
-            }
-
-            const speakText = text.slice(startIndex);
-            const utterance = new SpeechSynthesisUtterance(speakText);
-            utterance.voice = voices[selectedVoiceIndex];
-            utterance.lang = voices[selectedVoiceIndex].lang;
-            utterance.rate = parseFloat(rateSlider.value);
-            utterance.pitch = parseFloat(pitchSlider.value);
-            utterance.volume = parseFloat(volumeSlider.value);
-
-            // Initialize progress bar
-            ttsProgressBar.style.width = '0%';
-            ttsProgressContainer.style.display = 'block';
-
-            utterance.onboundary = (event) => {
-                if (event.name === 'word') {
-                    pauseIndex = event.charIndex;
-                    
-                    // Update progress
-                    const progress = (event.charIndex / text.length) * 100;
-                    ttsProgressBar.style.width = `${progress}%`;
-                }
-            };
-
-            utterance.onend = () => {
-                isSpeaking = false;
-                isPaused = false;
-                pauseIndex = 0;
-                updateButtonStates();
-                textArea.classList.remove('speaking');
-                ttsProgressBar.style.width = '100%';
-                setTimeout(() => {
-                    ttsProgressContainer.style.display = 'none';
-                }, 1000);
-            };
-
-            utterance.onerror = (event) => {
-                console.error('SpeechSynthesis error:', event);
-                showNotification('टेक्स्ट टू स्पीच में त्रुटि हुई।', 'error');
-                isSpeaking = false;
-                isPaused = false;
-                updateButtonStates();
-                textArea.classList.remove('speaking');
-                ttsProgressContainer.style.display = 'none';
-            };
-
-            window.speechSynthesis.speak(utterance);
-            currentUtterance = utterance;
-            isSpeaking = true;
-            isPaused = false;
-            textArea.classList.add('speaking');
-            updateButtonStates();
-        }
-
-        // Update button states based on speech status
-        function updateButtonStates() {
-            speakButton.disabled = isSpeaking && !isPaused;
-            pauseResumeButton.disabled = !isSpeaking && !isPaused;
-            stopButton.disabled = !isSpeaking && !isPaused;
-            pauseResumeButton.innerHTML = isPaused ? '<i class="fas fa-play"></i> फिर से शुरू करें' : '<i class="fas fa-pause"></i> रुकें';
-            
-            // Disable premium features if not premium user
-            document.querySelectorAll('.premium-feature').forEach(btn => {
-                btn.disabled = !isPremiumUser;
+        // Back to top button
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-        }
-
-        // Speak button event
-        speakButton.addEventListener('click', () => {
-            if (isPaused) {
-                speakText(pauseIndex);
-            } else if (!isSpeaking) {
-                speakText(0);
-            }
         });
 
-        // Pause/Resume button event
-        pauseResumeButton.addEventListener('click', () => {
-            if (isSpeaking && !isPaused) {
-                window.speechSynthesis.pause();
-                isSpeaking = false;
-                isPaused = true;
-                updateButtonStates();
-            } else if (isPaused) {
-                speakText(pauseIndex);
-            }
-        });
+        // Category Tabs
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const toolCards = document.querySelectorAll('.tool-card');
 
-        // Stop button event
-        stopButton.addEventListener('click', () => {
-            window.speechSynthesis.cancel();
-            isSpeaking = false;
-            isPaused = false;
-            pauseIndex = 0;
-            textArea.classList.remove('speaking');
-            ttsProgressContainer.style.display = 'none';
-            updateButtonStates();
-        });
-
-        // Preview voice button
-        previewVoiceBtn.addEventListener('click', () => {
-            if (!isPremiumUser) {
-                showUpgradeModal();
-                return;
-            }
-            
-            const selectedVoiceIndex = parseInt(voicesSelect.value);
-            if (selectedVoiceIndex < 0) return;
-            
-            const utterance = new SpeechSynthesisUtterance("This is a preview of the selected voice. You can hear how it sounds.");
-            utterance.voice = voices[selectedVoiceIndex];
-            utterance.rate = parseFloat(rateSlider.value);
-            utterance.pitch = parseFloat(pitchSlider.value);
-            utterance.volume = parseFloat(volumeSlider.value);
-            
-            previewVoiceBtn.innerHTML = '<i class="fas fa-spinner loading"></i> Playing...';
-            previewVoiceBtn.disabled = true;
-            
-            utterance.onend = () => {
-                previewVoiceBtn.innerHTML = '<i class="fas fa-play"></i> Preview Voice';
-                previewVoiceBtn.disabled = false;
-            };
-            
-            window.speechSynthesis.speak(utterance);
-        });
-
-        // Download audio button
-        downloadAudioBtn.addEventListener('click', () => {
-            if (!isPremiumUser) {
-                showUpgradeModal();
-                return;
-            }
-            
-            const text = textArea.value;
-            if (!text.trim()) {
-                showNotification('डाउनलोड करने के लिए कृपया टेक्स्ट दर्ज करें', 'error');
-                return;
-            }
-
-            const selectedVoiceIndex = parseInt(voicesSelect.value);
-            if (selectedVoiceIndex < 0) {
-                showNotification('कृपया एक मान्य आवाज़ चुनें', 'error');
-                return;
-            }
-
-            downloadAudioBtn.innerHTML = '<i class="fas fa-spinner loading"></i> Processing...';
-            downloadAudioBtn.disabled = true;
-
-            // Create a new utterance
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = voices[selectedVoiceIndex];
-            utterance.rate = parseFloat(rateSlider.value);
-            utterance.pitch = parseFloat(pitchSlider.value);
-            utterance.volume = parseFloat(volumeSlider.value);
-
-            // Initialize audio context
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // Create a media stream destination
-            const destination = audioContext.createMediaStreamDestination();
-            mediaRecorder = new MediaRecorder(destination.stream);
-            audioChunks = [];
-
-            mediaRecorder.ondataavailable = (event) => {
-                audioChunks.push(event.data);
-            };
-
-            mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const a = document.createElement('a');
-                a.href = audioUrl;
-                a.download = 'prompt-minds-tts.wav';
-                a.click();
-                URL.revokeObjectURL(audioUrl);
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
                 
-                downloadAudioBtn.innerHTML = '<i class="fas fa-download"></i> High Quality MP3';
-                downloadAudioBtn.disabled = false;
-                showNotification('ऑडियो डाउनलोड तैयार है', 'success');
-            };
-
-            // Connect the speech synthesis to the audio context
-            const source = audioContext.createMediaStreamSource(new MediaStream());
-            source.connect(destination);
-
-            // Start recording
-            mediaRecorder.start();
-
-            // Speak the text
-            utterance.onend = () => {
-                setTimeout(() => {
-                    mediaRecorder.stop();
-                }, 500);
-            };
-
-            window.speechSynthesis.speak(utterance);
-        });
-
-        // Initialize button states
-        updateButtonStates();
-
-        // STT Functionality
-        const sttBox = document.querySelector('.stt-box');
-        const transcription = document.getElementById('transcription');
-        const recordButton = document.getElementById('record');
-        const copyButton = document.getElementById('copyText');
-        const clearButton = document.getElementById('clearText');
-        const recordText = document.getElementById('recordText');
-        const emotionDisplay = document.getElementById('emotion');
-        const confidenceDisplay = document.getElementById('confidence');
-        const sentimentDisplay = document.getElementById('sentiment');
-        const translateButton = document.getElementById('translateText');
-        const summarizeButton = document.getElementById('summarizeText');
-
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            const recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.maxAlternatives = 3;
-
-            let isRecording = false;
-            let finalTranscript = '';
-
-            // Emotion detection based on speech characteristics
-            function detectEmotion(rate, pitch, confidence) {
-                if (rate > 1.5 && pitch > 1.2) return "Excited (उत्साहित)";
-                else if (rate < 0.8 && pitch < 0.8) return "Sad (उदास)";
-                else if (rate > 1.2 && pitch < 0.8) return "Angry (गुस्सा)";
-                else if (confidence < 0.5) return "Uncertain (अनिश्चित)";
-                else return "Neutral (सामान्य)";
-            }
-
-            // Sentiment analysis (simulated)
-            function analyzeSentiment(text) {
-                if (!text) return "Neutral";
-                
-                const positiveWords = ['happy', 'good', 'great', 'excellent', 'wonderful', 'awesome', 'love', 'like'];
-                const negativeWords = ['sad', 'bad', 'terrible', 'awful', 'hate', 'angry', 'upset'];
-                
-                const words = text.toLowerCase().split(/\s+/);
-                let positiveCount = 0;
-                let negativeCount = 0;
-                
-                words.forEach(word => {
-                    if (positiveWords.includes(word)) positiveCount++;
-                    if (negativeWords.includes(word)) negativeCount++;
-                });
-                
-                if (positiveCount > negativeCount + 2) return "Positive";
-                if (negativeCount > positiveCount + 2) return "Negative";
-                return "Neutral";
-            }
-
-            // Record button event
-            recordButton.addEventListener('click', () => {
-                if (!isRecording) {
-                    const selectedLang = document.getElementById('sttLanguage').value;
-                    recognition.lang = selectedLang;
-                    recognition.start();
-                    isRecording = true;
-                    recordText.textContent = 'रिकॉर्डिंग बंद करें';
-                    recordButton.innerHTML = '<i class="fas fa-stop"></i> रिकॉर्डिंग बंद करें';
-                    finalTranscript = '';
-                    sttBox.classList.add('recording');
-                    sttProgressBar.style.width = '0%';
-                    sttProgressContainer.style.display = 'block';
-                    showNotification('रिकॉर्डिंग शुरू हो गई है', 'info');
-                } else {
-                    recognition.stop();
-                    isRecording = false;
-                    recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                    recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                    sttBox.classList.remove('recording');
-                    sttProgressContainer.style.display = 'none';
-                }
-            });
-
-            // Recognition result event
-            recognition.onresult = (event) => {
-                let interimTranscript = '';
-                let highestConfidence = 0;
-                
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const transcript = event.results[i][0].transcript;
-                    const confidence = event.results[i][0].confidence;
-                    
-                    if (confidence > highestConfidence) {
-                        highestConfidence = confidence;
-                    }
-                    
-                    if (event.results[i].isFinal) {
-                        finalTranscript += transcript + ' ';
-                        
-                        // Simulate some emotion detection (in a real app, you'd analyze speech patterns)
-                        const simulatedRate = 0.8 + Math.random() * 1.2;
-                        const simulatedPitch = 0.8 + Math.random() * 1.2;
-                        const emotion = detectEmotion(simulatedRate, simulatedPitch, confidence);
-                        const sentiment = analyzeSentiment(transcript);
-                        
-                        emotionDisplay.textContent = emotion;
-                        confidenceDisplay.textContent = `Confidence: ${Math.round(confidence * 100)}%`;
-                        sentimentDisplay.textContent = `Sentiment: ${sentiment}`;
-                        document.querySelector('.emotion-display').classList.add('active');
+                // Filter tools
+                const category = tab.dataset.category;
+                toolCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
                     } else {
-                        interimTranscript += transcript;
+                        card.style.display = 'none';
                     }
-                }
-                
-                transcription.value = finalTranscript + interimTranscript;
-                
-                // Update progress bar based on speech length
-                const progress = Math.min(100, (transcription.value.length / 1000) * 100);
-                sttProgressBar.style.width = `${progress}%`;
-                
-                // Update word count
-                const text = transcription.value.trim();
-                const wordCount = text ? text.split(/\s+/).length : 0;
-                sttWordCount.textContent = `शब्द: ${wordCount}`;
-            };
-
-            // Recognition end event
-            recognition.onend = () => {
-                isRecording = false;
-                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                sttBox.classList.remove('recording');
-                sttProgressContainer.style.display = 'none';
-                emotionDisplay.textContent = '';
-                confidenceDisplay.textContent = 'Confidence: 0%';
-                sentimentDisplay.textContent = 'Sentiment: Neutral';
-                document.querySelector('.emotion-display').classList.remove('active');
-            };
-
-            // Recognition error event
-            recognition.onerror = (event) => {
-                console.error('Speech recognition error:', event.error);
-                showNotification('स्पीच रिकग्निशन में त्रुटि: ' + event.error, 'error');
-                isRecording = false;
-                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                sttBox.classList.remove('recording');
-                sttProgressContainer.style.display = 'none';
-            };
-        } else {
-            recordButton.disabled = true;
-            recordButton.innerHTML = '<i class="fas fa-microphone-slash"></i> असमर्थित';
-            showNotification('यह ब्राउज़र स्पीच रिकग्निशन को समर्थन नहीं करता', 'error');
-        }
-
-        // Copy text button
-        copyButton.addEventListener('click', () => {
-            const text = transcription.value;
-            if (text.trim()) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showNotification('टेक्स्ट कॉपी हो गया है', 'success');
-                }).catch(err => {
-                    console.error('Could not copy text: ', err);
-                    showNotification('टेक्स्ट कॉपी करने में त्रुटि', 'error');
                 });
-            } else {
-                showNotification('कॉपी करने के लिए कोई टेक्स्ट नहीं है', 'error');
-            }
+            });
         });
 
-        // Clear text button
-        clearButton.addEventListener('click', () => {
-            transcription.value = '';
-            sttWordCount.textContent = 'शब्द: 0';
-            showNotification('टेक्स्ट साफ हो गया है', 'success');
+        // Pricing Toggle
+        const pricingToggle = document.getElementById('pricingToggle');
+        const monthlyPrices = document.querySelectorAll('.pricing-price');
+        const monthlyPricesValues = ['$0', '$9.99', '$29.99'];
+        const yearlyPricesValues = ['$0', '$7.99', '$23.99'];
+        const monthlyPeriods = ['forever', 'per month', 'per month'];
+        const yearlyPeriods = ['forever', 'per month', 'per month'];
+
+        pricingToggle.addEventListener('change', () => {
+            const prices = pricingToggle.checked ? yearlyPricesValues : monthlyPricesValues;
+            const periods = pricingToggle.checked ? yearlyPeriods : monthlyPeriods;
+            
+            monthlyPrices.forEach((price, index) => {
+                price.textContent = prices[index];
+                price.nextElementSibling.textContent = periods[index];
+            });
         });
 
-        // Translate text button
-        translateButton.addEventListener('click', () => {
-            if (!isPremiumUser) {
-                showUpgradeModal();
-                return;
-            }
-            
-            const text = transcription.value;
-            if (!text.trim()) {
-                showNotification('Translate करने के लिए कोई टेक्स्ट नहीं है', 'error');
-                return;
-            }
-            
-            showNotification('Translating text... (This is a premium feature demo)', 'info');
-            // In a real app, you would call a translation API here
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
 
-        // Summarize text button
-        summarizeButton.addEventListener('click', () => {
-            if (!isPremiumUser) {
-                showUpgradeModal();
-                return;
-            }
-            
-            const text = transcription.value;
-            if (!text.trim()) {
-                showNotification('Summarize करने के लिए कोई टेक्स्ट नहीं है', 'error');
-                return;
-            }
-            
-            showNotification('Summarizing text... (This is a premium feature demo)', 'info');
-            // In a real app, you would call a summarization API here
+        // Tool card click handler
+        toolCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                // Don't trigger if clicking on a button inside the card
+                if (!e.target.closest('.btn')) {
+                    const toolName = card.querySelector('.tool-title').textContent;
+                    alert(`You clicked on ${toolName}. In a real implementation, this would open the tool.`);
+                }
+            });
         });
 
-        // Modal functionality
-        function showUpgradeModal() {
-            upgradeModal.style.display = 'flex';
-        }
-
-        function hideUpgradeModal() {
-            upgradeModal.style.display = 'none';
-        }
-
-        closeModal.addEventListener('click', hideUpgradeModal);
-        upgradeButton.addEventListener('click', showUpgradeModal);
-        learnMoreButton.addEventListener('click', showUpgradeModal);
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (event) => {
-            if (event.target === upgradeModal) {
-                hideUpgradeModal();
-            }
-        });
-
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            
-            if (isDarkMode) {
-                document.documentElement.style.setProperty('--dark-purple', '#f3eaff');
-                document.documentElement.style.setProperty('--light-lavender', '#2a1b5e');
-                document.documentElement.style.setProperty('--deep-purple', '#7b68ee');
-                document.documentElement.style.setProperty('--very-light-white', '#1a113f');
-                document.documentElement.style.setProperty('--almost-white', '#4a3b8c');
-            } else {
-                document.documentElement.style.setProperty('--dark-purple', '#2a1b5e');
-                document.documentElement.style.setProperty('--light-lavender', '#f3eaff');
-                document.documentElement.style.setProperty('--deep-purple', '#4a3b8c');
-                document.documentElement.style.setProperty('--very-light-white', '#ffffff');
-                document.documentElement.style.setProperty('--almost-white', '#f8f8ff');
-            }
-        });
-
-        // View toggle button
-        const viewToggle = document.getElementById('viewToggle');
-        viewToggle.addEventListener('click', () => {
-            const ttsBox = document.querySelector('.tts-box');
-            const sttBox = document.querySelector('.stt-box');
-            
-            if (ttsBox.style.display === 'none') {
-                ttsBox.style.display = 'block';
-                sttBox.style.display = 'block';
-                viewToggle.textContent = 'व्यू टॉगल करें';
-            } else {
-                ttsBox.style.display = 'none';
-                viewToggle.textContent = 'TTS दिखाएँ';
-            }
-        });
-
-        // Initialize with some demo text
-        window.addEventListener('load', () => {
-            textArea.value = "नमस्ते, यह प्रॉम्प्ट माइंड्स टेक्स्ट टू स्पीच डेमो है। आप यहाँ किसी भी भाषा में टेक्स्ट दर्ज कर सकते हैं और इसे सुन सकते हैं।";
-            const wordCount = textArea.value.trim() ? textArea.value.trim().split(/\s+/).length : 0;
-            ttsWordCount.textContent = `शब्द: ${wordCount}`;
-            
-            // Show welcome notification
-            setTimeout(() => {
-                showNotification('Welcome to Prompt Minds Premium TTS & STT! Try speaking or typing text.', 'info', 5000);
-            }, 1000);
+        // Initialize tooltips (would use a library like tippy.js in production)
+        const tooltips = document.querySelectorAll('[data-tooltip]');
+        tooltips.forEach(tooltip => {
+            tooltip.addEventListener('mouseenter', () => {
+                // In a real implementation, we'd show a tooltip here
+                console.log(`Tooltip: ${tooltip.dataset.tooltip}`);
+            });
         });
     </script>
 </body>
