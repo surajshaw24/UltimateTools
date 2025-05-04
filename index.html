@@ -3,2002 +3,879 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Tools Hub - All-in-One Solution</title>
+    <title>PrimePay | Secure Payment Gateway</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Base Styles & Variables */
         :root {
-            --primary: #4F46E5;
-            --primary-dark: #3730A3;
-            --primary-light: #6366F1;
-            --secondary: #10B981;
-            --accent: #F59E0B;
-            --danger: #EF4444;
-            --dark: #111827;
-            --darker: #0F172A;
-            --dark-light: #1E293B;
-            --light: #F3F4F6;
-            --lighter: #F9FAFB;
-            --gray: #6B7280;
-            --menu-bg: rgba(17, 24, 39, 0.98);
-            --menu-text: #FFFFFF;
-            --menu-hover: rgba(79, 70, 229, 0.2);
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            --radius-sm: 0.25rem;
-            --radius: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-xl: 1rem;
+            --primary: #4a6bff;
+            --secondary: #f8f9fa;
+            --dark: #343a40;
+            --light: #ffffff;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
+            background-color: #f5f7ff;
+            color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
         }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--dark-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.75rem; }
-        h4 { font-size: 1.5rem; }
-        h5 { font-size: 1.25rem; }
-        h6 { font-size: 1rem; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.5rem; }
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        /* Utility Classes */
+        
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 20px;
         }
-
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            position: relative;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .glass-effect {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-        }
-
-        /* Premium Header */
-        .header {
-            position: fixed;
+        
+        /* Header Styles */
+        header {
+            background-color: var(--light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--menu-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 1000;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition-slow);
+            z-index: 100;
         }
-
-        .header.hidden {
-            transform: translateY(-100%);
-        }
-
-        .header-container {
+        
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 1.5rem;
+            padding: 15px 0;
         }
-
+        
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            font-size: 24px;
             font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--light);
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
+            color: var(--primary);
+            text-decoration: none;
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius);
-            color: white;
-            font-size: 1.25rem;
-            transition: var(--transition);
         }
-
-        .logo:hover .logo-icon {
-            transform: rotate(15deg) scale(1.1);
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
         }
-
-        /* Navigation */
+        
         .nav-links {
             display: flex;
-            gap: 1.5rem;
             list-style: none;
         }
-
-        .nav-item {
-            position: relative;
+        
+        .nav-links li {
+            margin-left: 30px;
         }
-
-        .nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1rem;
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
             font-weight: 500;
-            color: var(--light);
-            border-radius: var(--radius);
-            transition: var(--transition);
-            position: relative;
+            transition: color 0.3s;
         }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-link:hover::before {
-            width: 100%;
-        }
-
-        .nav-link i {
-            transition: var(--transition);
-        }
-
-        .nav-link:hover i {
+        
+        .nav-links a:hover {
             color: var(--primary);
-            transform: translateY(-2px);
         }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 220px;
-            background: var(--menu-bg);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-xl);
-            padding: 0.5rem 0;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: var(--transition);
-            z-index: 100;
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-link {
-            display: block;
-            padding: 0.75rem 1.5rem;
-            color: var(--light);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .dropdown-link:hover {
-            background: var(--menu-hover);
-            padding-left: 1.75rem;
-        }
-
-        .dropdown-link::before {
-            content: '';
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .dropdown-link:hover::before {
-            opacity: 1;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: none;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(79, 70, 229, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .btn-accent {
-            background: linear-gradient(135deg, var(--accent), #F97316);
-            color: white;
-        }
-
-        .btn-accent:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        /* Button Hover Effect */
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.2),
-                transparent
-            );
-            transition: all 0.6s ease;
-        }
-
-        .btn:hover::after {
-            left: 100%;
-        }
-
-        /* Premium Badge */
-        .premium-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.25rem 0.75rem;
-            background: linear-gradient(135deg, #FCD34D, #F59E0B);
-            color: #000;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        /* Mobile Menu Toggle */
-        .menu-toggle {
+        
+        .mobile-menu-btn {
             display: none;
-            width: 40px;
-            height: 40px;
-            background: transparent;
+            background: none;
             border: none;
+            font-size: 24px;
+            color: var(--dark);
             cursor: pointer;
-            position: relative;
-            z-index: 1100;
         }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 2px;
-            background: var(--light);
-            position: absolute;
-            left: 7px;
-            transition: var(--transition);
-        }
-
-        .menu-toggle span:nth-child(1) {
-            top: 12px;
-        }
-
-        .menu-toggle span:nth-child(2) {
-            top: 19px;
-        }
-
-        .menu-toggle span:nth-child(3) {
-            bottom: 12px;
-        }
-
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 19px;
-        }
-
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg);
-            bottom: 19px;
-        }
-
+        
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, var(--darker), var(--dark));
-            padding-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+            padding: 80px 0;
             text-align: center;
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Payment Section */
+        .payment-section {
+            padding: 60px 0;
+        }
+        
+        .payment-container {
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
         }
-
-        .hero-title {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
+        
+        .payment-header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 20px;
+            text-align: center;
         }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        
+        .payment-header h2 {
+            font-size: 1.5rem;
         }
-
-        .hero-buttons {
+        
+        .payment-body {
+            padding: 30px;
+        }
+        
+        .payment-amount {
+            margin-bottom: 30px;
+        }
+        
+        .payment-amount label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .amount-input {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
         }
-
+        
+        .amount-input span {
+            padding: 12px 15px;
+            background-color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .amount-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+        
+        .payment-methods {
+            margin-bottom: 30px;
+        }
+        
+        .payment-methods h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: var(--dark);
+        }
+        
+        .method-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .method-tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .method-tab.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .method-content {
+            display: none;
+        }
+        
+        .method-content.active {
+            display: block;
+        }
+        
+        .wallet-options, .card-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .wallet-option, .card-option {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .wallet-option:hover, .card-option:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .wallet-option img, .card-option img {
+            width: 60px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        
+        .wallet-option p, .card-option p {
+            font-size: 14px;
+            margin: 0;
+        }
+        
+        .card-form {
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .col {
+            flex: 1;
+            padding: 0 10px;
+            min-width: 150px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #3a5ae8;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .secure-payment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .secure-payment i {
+            color: var(--success);
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        
         /* Features Section */
         .features {
-            background: var(--darker);
+            padding: 60px 0;
+            background-color: var(--light);
         }
-
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 30px;
         }
-
+        
         .feature-card {
-            background: var(--dark-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition);
-            border: 1px solid var(--glass-border);
+            background-color: var(--secondary);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-
+        
         .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-
+        
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: var(--radius);
-            margin-bottom: 1.5rem;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        .feature-title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .feature-text {
-            color: var(--gray);
-        }
-
-        /* Tools Categories */
-        .categories {
-            background: var(--dark);
-        }
-
-        .categories-tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .category-tab {
-            padding: 0.75rem 1.5rem;
-            background: var(--dark-light);
-            border-radius: var(--radius);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
-        }
-
-        .category-tab:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .category-tab.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary-dark);
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tool-card {
-            background: var(--dark-light);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
-        }
-
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-        }
-
-        .tool-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(79, 70, 229, 0.1);
-            border-radius: var(--radius);
-            margin-bottom: 1rem;
+            font-size: 40px;
             color: var(--primary);
-            font-size: 1.25rem;
+            margin-bottom: 20px;
         }
-
-        .tool-title {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--light);
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
         }
-
-        .tool-description {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+        
+        .feature-card p {
+            color: #666;
         }
-
-        .tool-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--darker);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--dark-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            position: relative;
-            border: 1px solid var(--glass-border);
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-size: 4rem;
-            color: rgba(79, 70, 229, 0.2);
-            font-family: serif;
-            line-height: 1;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.25rem;
-        }
-
-        .author-info h4 {
-            color: var(--light);
-            margin-bottom: 0.25rem;
-        }
-
-        .author-info p {
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            background: var(--dark);
-        }
-
-        .pricing-switch {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-        }
-
-        .pricing-toggle {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 30px;
-        }
-
-        .pricing-toggle input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .pricing-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--dark-light);
-            transition: var(--transition);
-            border-radius: 34px;
-        }
-
-        .pricing-slider:before {
-            position: absolute;
-            content: "";
-            height: 22px;
-            width: 22px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        input:checked + .pricing-slider {
-            background: var(--primary);
-        }
-
-        input:checked + .pricing-slider:before {
-            transform: translateX(30px);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: var(--dark-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-        }
-
-        .pricing-card.popular {
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 0 1px var(--primary);
-        }
-
-        .pricing-card.popular::after {
-            content: 'Most Popular';
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            border-bottom-left-radius: var(--radius);
-        }
-
-        .pricing-header {
-            margin-bottom: 2rem;
-        }
-
-        .pricing-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .pricing-period {
-            color: var(--gray);
-        }
-
-        .pricing-features {
-            margin-bottom: 2rem;
-        }
-
-        .pricing-feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .pricing-feature i {
-            color: var(--secondary);
-        }
-
-        .pricing-button {
-            width: 100%;
-        }
-
-        /* FAQ Section */
-        .faq {
-            background: var(--darker);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--dark-light);
-            border: 1px solid var(--glass-border);
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .faq-question:hover {
-            color: var(--primary);
-        }
-
-        .faq-question i {
-            transition: var(--transition);
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: var(--transition-slow);
-        }
-
-        .faq-item.active .faq-question {
-            background: rgba(79, 70, 229, 0.1);
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(180deg);
-        }
-
-        .faq-item.active .faq-answer {
-            padding-bottom: 1.5rem;
-            max-height: 500px;
-        }
-
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            text-align: center;
-            padding: 5rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            z-index: 0;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .cta-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .cta-text {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-        }
-
+        
         /* Footer */
-        .footer {
-            background: var(--darker);
-            padding: 5rem 0 2rem;
-            border-top: 1px solid var(--dark-light);
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
         }
-
-        .footer-grid {
+        
+        .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            gap: 30px;
+            margin-bottom: 40px;
         }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--light);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-logo-icon {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius);
-            color: white;
-            font-size: 1.25rem;
-        }
-
-        .footer-text {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .footer-social a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--dark-light);
-            border-radius: 50%;
-            color: var(--light);
-            transition: var(--transition);
-        }
-
-        .footer-social a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-title {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--light);
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 0.75rem;
+            padding-bottom: 10px;
         }
-
-        .footer-title::after {
+        
+        .footer-column h3::after {
             content: '';
             position: absolute;
-            bottom: 0;
             left: 0;
+            bottom: 0;
             width: 40px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 3px;
+            height: 2px;
+            background-color: var(--primary);
         }
-
+        
         .footer-links {
             list-style: none;
         }
-
+        
         .footer-links li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 10px;
         }
-
+        
         .footer-links a {
-            color: var(--gray);
-            transition: var(--transition);
-            display: inline-block;
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
         }
-
+        
         .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
+            color: var(--light);
         }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--dark-light);
-            color: var(--gray);
-            font-size: 0.9rem;
-        }
-
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
+        
+        .social-links {
             display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.25rem;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            box-shadow: var(--shadow-lg);
-            z-index: 999;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: background-color 0.3s;
         }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
+        
+        .social-links a:hover {
+            background-color: var(--primary);
         }
-
-        .back-to-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 14px;
         }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .section {
-                padding: 4rem 0;
-            }
-        }
-
+        
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: var(--menu-bg);
-                backdrop-filter: blur(15px);
-                flex-direction: column;
-                align-items: flex-start;
-                padding: 6rem 2rem;
-                transition: var(--transition-slow);
-                z-index: 1000;
-                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-item {
+                top: 70px;
+                left: -100%;
                 width: 100%;
-            }
-
-            .nav-link {
-                padding: 1rem 0;
-                border-radius: 0;
-                border-bottom: 1px solid var(--glass-border);
-            }
-
-            .dropdown {
-                position: static;
-                width: 100%;
-                box-shadow: none;
-                background: transparent;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                padding: 0;
-                margin-left: 1rem;
-                border: none;
-            }
-
-            .nav-item:hover .dropdown {
-                max-height: 500px;
-            }
-
-            .dropdown-link {
-                padding: 0.75rem 0;
-            }
-
-            .dropdown-link:hover {
-                padding-left: 1rem;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .action-buttons {
-                margin-left: auto;
-                margin-right: 1rem;
-            }
-
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .hero-buttons {
+                height: calc(100vh - 70px);
+                background-color: var(--light);
                 flex-direction: column;
                 align-items: center;
+                padding-top: 30px;
+                transition: left 0.3s;
             }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
+            
+            .nav-links.active {
+                left: 0;
             }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 0 auto;
+            
+            .nav-links li {
+                margin: 15px 0;
             }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
+            
+            .mobile-menu-btn {
+                display: block;
             }
-
-            .hero-title {
+            
+            .hero h1 {
                 font-size: 2rem;
             }
-
-            .section-title {
-                font-size: 1.75rem;
+            
+            .hero p {
+                font-size: 1rem;
             }
-
-            .categories-tabs {
+            
+            .wallet-options, .card-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .row {
                 flex-direction: column;
-                align-items: stretch;
             }
-
-            .category-tab {
-                text-align: center;
+            
+            .col {
+                margin-bottom: 15px;
             }
-
-            .footer-grid {
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .payment-body {
+                padding: 20px;
+            }
+            
+            .method-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .method-tab {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .wallet-options, .card-options {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Premium Header -->
-    <header class="header">
-        <div class="header-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <span>UltimateTools</span>
-            </a>
-
-            <nav class="nav-links">
-                <li class="nav-item">
-                    <a href="#home" class="nav-link">
-                        <i class="fas fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#features" class="nav-link">
-                        <i class="fas fa-star"></i> Features
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#tools" class="nav-link">
-                        <i class="fas fa-tools"></i> Tools
-                    </a>
-                    <div class="dropdown">
-                        <a href="#image-tools" class="dropdown-link">
-                            <i class="fas fa-image"></i> Image Tools
-                        </a>
-                        <a href="#video-tools" class="dropdown-link">
-                            <i class="fas fa-video"></i> Video Tools
-                        </a>
-                        <a href="#document-tools" class="dropdown-link">
-                            <i class="fas fa-file-alt"></i> Document Tools
-                        </a>
-                        <a href="#developer-tools" class="dropdown-link">
-                            <i class="fas fa-code"></i> Developer Tools
-                        </a>
-                        <a href="#ai-tools" class="dropdown-link">
-                            <i class="fas fa-brain"></i> AI Tools
-                            <span class="premium-badge">
-                                <i class="fas fa-crown"></i> PRO
-                            </span>
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a href="#pricing" class="nav-link">
-                        <i class="fas fa-tag"></i> Pricing
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#faq" class="nav-link">
-                        <i class="fas fa-question-circle"></i> FAQ
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#contact" class="nav-link">
-                        <i class="fas fa-envelope"></i> Contact
-                    </a>
-                </li>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-wallet"></i>
+                    PrimePay
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
             </nav>
-
-            <div class="action-buttons">
-                <button class="btn btn-secondary">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </button>
-                <button class="btn btn-primary">
-                    <i class="fas fa-user-plus"></i> Sign Up
-                </button>
-            </div>
-
-            <button class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="hero-title">All Your Essential Tools in One Place</h1>
-            <p class="hero-subtitle">Access 100+ powerful tools to boost your productivity, enhance your content, and simplify your workflow. No downloads, no hassle.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-primary btn-lg">
-                    <i class="fas fa-rocket"></i> Get Started Free
-                </button>
-                <button class="btn btn-secondary btn-lg">
-                    <i class="fas fa-play-circle"></i> Watch Demo
-                </button>
+    <section class="hero">
+        <div class="container">
+            <h1>Secure & Easy Online Payments</h1>
+            <p>Experience seamless transactions with our advanced payment gateway supporting all major payment methods including UPI, wallets, cards, and more.</p>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-container">
+                <div class="payment-header">
+                    <h2>Make a Payment</h2>
+                </div>
+                <div class="payment-body">
+                    <div class="payment-amount">
+                        <label for="amount">Enter Amount (INR)</label>
+                        <div class="amount-input">
+                            <span>₹</span>
+                            <input type="number" id="amount" placeholder="0.00" min="1">
+                        </div>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3>Choose Payment Method</h3>
+                        
+                        <div class="method-tabs">
+                            <div class="method-tab active" data-tab="upi">UPI Apps</div>
+                            <div class="method-tab" data-tab="wallet">Wallets</div>
+                            <div class="method-tab" data-tab="card">Cards</div>
+                        </div>
+                        
+                        <div class="method-content active" id="upi-content">
+                            <div class="wallet-options">
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=GPay" alt="Google Pay">
+                                    <p>Google Pay</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=PhonePe" alt="PhonePe">
+                                    <p>PhonePe</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=Paytm" alt="Paytm">
+                                    <p>Paytm</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=BHIM" alt="BHIM">
+                                    <p>BHIM UPI</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="upi-id">Enter UPI ID</label>
+                                <input type="text" id="upi-id" class="form-control" placeholder="yourname@upi">
+                            </div>
+                            
+                            <button class="btn">Pay Now</button>
+                        </div>
+                        
+                        <div class="method-content" id="wallet-content">
+                            <div class="wallet-options">
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=Paytm" alt="Paytm Wallet">
+                                    <p>Paytm Wallet</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=PhonePe" alt="PhonePe Wallet">
+                                    <p>PhonePe Wallet</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=AmazonPay" alt="Amazon Pay">
+                                    <p>Amazon Pay</p>
+                                </div>
+                                <div class="wallet-option">
+                                    <img src="https://via.placeholder.com/60x60?text=Mobikwik" alt="MobiKwik">
+                                    <p>MobiKwik</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="wallet-mobile">Registered Mobile Number</label>
+                                <input type="tel" id="wallet-mobile" class="form-control" placeholder="Enter mobile number">
+                            </div>
+                            
+                            <button class="btn">Pay Now</button>
+                        </div>
+                        
+                        <div class="method-content" id="card-content">
+                            <div class="card-options">
+                                <div class="card-option">
+                                    <img src="https://via.placeholder.com/60x40?text=Visa" alt="Visa">
+                                    <p>Visa</p>
+                                </div>
+                                <div class="card-option">
+                                    <img src="https://via.placeholder.com/60x40?text=Mastercard" alt="Mastercard">
+                                    <p>Mastercard</p>
+                                </div>
+                                <div class="card-option">
+                                    <img src="https://via.placeholder.com/60x40?text=Rupay" alt="RuPay">
+                                    <p>RuPay</p>
+                                </div>
+                                <div class="card-option">
+                                    <img src="https://via.placeholder.com/60x40?text=Amex" alt="American Express">
+                                    <p>Amex</p>
+                                </div>
+                            </div>
+                            
+                            <div class="card-form">
+                                <div class="form-group">
+                                    <label for="card-number">Card Number</label>
+                                    <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="card-name">Name on Card</label>
+                                    <input type="text" id="card-name" class="form-control" placeholder="John Doe">
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="card-expiry">Expiry Date</label>
+                                            <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="card-cvv">CVV</label>
+                                            <input type="text" id="card-cvv" class="form-control" placeholder="123">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="btn">Pay Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="secure-payment">
+                        <i class="fas fa-lock"></i>
+                        <span>Your payment is secured with 256-bit SSL encryption</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="section features" id="features">
+    <section class="features">
         <div class="container">
-            <h2 class="section-title">Why Choose Our <span class="text-gradient">Tools Hub</span></h2>
+            <div class="section-title">
+                <h2>Why Choose PrimePay?</h2>
+                <p>We provide the most secure and convenient payment experience for both businesses and customers.</p>
+            </div>
+            
             <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3 class="feature-title">Lightning Fast</h3>
-                    <p class="feature-text">Our tools process your requests in seconds, saving you valuable time on your projects and content creation.</p>
-                </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3 class="feature-title">Secure & Private</h3>
-                    <p class="feature-text">Your data is encrypted and never stored permanently. We prioritize your privacy above all else.</p>
+                    <h3>Bank-Level Security</h3>
+                    <p>All transactions are protected with advanced encryption and fraud detection systems.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-infinity"></i>
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3 class="feature-title">No Limits</h3>
-                    <p class="feature-text">Free users get generous access, while premium users enjoy unlimited usage of all tools.</p>
+                    <h3>Instant Processing</h3>
+                    <p>Payments are processed instantly with 99.9% uptime for uninterrupted service.</p>
                 </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
-                        <i class="fas fa-sync-alt"></i>
+                        <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h3 class="feature-title">Always Updated</h3>
-                    <p class="feature-text">We continuously add new tools and improve existing ones based on user feedback.</p>
+                    <h3>Multiple Payment Options</h3>
+                    <p>Accept all major payment methods including UPI, wallets, cards, and net banking.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3 class="feature-title">Fully Responsive</h3>
-                    <p class="feature-text">Access all tools from any device - desktop, tablet or mobile - with full functionality.</p>
-                </div>
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-headset"></i>
                     </div>
-                    <h3 class="feature-title">Premium Support</h3>
-                    <p class="feature-text">Get priority support with our premium plans, with average response times under 1 hour.</p>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated support team is available round the clock to assist you.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Categories Section -->
-    <section class="section categories" id="tools">
-        <div class="container">
-            <h2 class="section-title">Explore Our <span class="text-gradient">Powerful Tools</span></h2>
-            
-            <div class="categories-tabs">
-                <div class="category-tab active" data-category="all">All Tools</div>
-                <div class="category-tab" data-category="image">Image Tools</div>
-                <div class="category-tab" data-category="video">Video Tools</div>
-                <div class="category-tab" data-category="document">Document Tools</div>
-                <div class="category-tab" data-category="developer">Developer Tools</div>
-                <div class="category-tab" data-category="ai">AI Tools</div>
-                <div class="category-tab" data-category="other">Other Tools</div>
-            </div>
-
-            <div class="tools-grid">
-                <!-- Image Tools -->
-                <div class="tool-card" data-category="image">
-                    <div class="tool-icon">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <h3 class="tool-title">Background Remover</h3>
-                    <p class="tool-description">Remove backgrounds from images automatically with AI-powered precision.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="image">
-                    <div class="tool-icon">
-                        <i class="fas fa-expand"></i>
-                    </div>
-                    <h3 class="tool-title">Image Upscaler</h3>
-                    <p class="tool-description">Enhance image resolution without losing quality using advanced algorithms.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                    <div class="tool-badge">
-                        <span class="premium-badge">
-                            <i class="fas fa-crown"></i> PRO
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="tool-card" data-category="image">
-                    <div class="tool-icon">
-                        <i class="fas fa-compress-alt"></i>
-                    </div>
-                    <h3 class="tool-title">Image Compressor</h3>
-                    <p class="tool-description">Reduce image file size without noticeable quality loss.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <!-- Video Tools -->
-                <div class="tool-card" data-category="video">
-                    <div class="tool-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3 class="tool-title">Video Compressor</h3>
-                    <p class="tool-description">Compress video files while maintaining high quality.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="video">
-                    <div class="tool-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3 class="tool-title">Video Trimmer</h3>
-                    <p class="tool-description">Cut and trim your videos online without quality loss.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                    <div class="tool-badge">
-                        <span class="premium-badge">
-                            <i class="fas fa-crown"></i> PRO
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="tool-card" data-category="video">
-                    <div class="tool-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <h3 class="tool-title">Video Converter</h3>
-                    <p class="tool-description">Convert videos between all popular formats.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <!-- Document Tools -->
-                <div class="tool-card" data-category="document">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <h3 class="tool-title">PDF Compressor</h3>
-                    <p class="tool-description">Reduce PDF file size while preserving quality.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="document">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <h3 class="tool-title">PDF to Word</h3>
-                    <p class="tool-description">Convert PDF files to editable Word documents.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="document">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-word"></i>
-                    </div>
-                    <h3 class="tool-title">Word to PDF</h3>
-                    <p class="tool-description">Convert Word documents to PDF format.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <!-- Developer Tools -->
-                <div class="tool-card" data-category="developer">
-                    <div class="tool-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="tool-title">Code Beautifier</h3>
-                    <p class="tool-description">Format and beautify your code with multiple language support.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="developer">
-                    <div class="tool-icon">
-                        <i class="fas fa-key"></i>
-                    </div>
-                    <h3 class="tool-title">Password Generator</h3>
-                    <p class="tool-description">Create strong, secure passwords instantly.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="developer">
-                    <div class="tool-icon">
-                        <i class="fas fa-qrcode"></i>
-                    </div>
-                    <h3 class="tool-title">QR Code Generator</h3>
-                    <p class="tool-description">Create custom QR codes for URLs, text, and more.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <!-- AI Tools -->
-                <div class="tool-card" data-category="ai">
-                    <div class="tool-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3 class="tool-title">AI Image Generator</h3>
-                    <p class="tool-description">Create stunning images from text prompts with AI.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                    <div class="tool-badge">
-                        <span class="premium-badge">
-                            <i class="fas fa-crown"></i> PRO
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="tool-card" data-category="ai">
-                    <div class="tool-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="tool-title">AI Text Generator</h3>
-                    <p class="tool-description">Generate high-quality content with AI assistance.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                    <div class="tool-badge">
-                        <span class="premium-badge">
-                            <i class="fas fa-crown"></i> PRO
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="tool-card" data-category="ai">
-                    <div class="tool-icon">
-                        <i class="fas fa-magic"></i>
-                    </div>
-                    <h3 class="tool-title">AI Photo Enhancer</h3>
-                    <p class="tool-description">Automatically enhance and restore old photos.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                    <div class="tool-badge">
-                        <span class="premium-badge">
-                            <i class="fas fa-crown"></i> PRO
-                        </span>
-                    </div>
-                </div>
-                
-                <!-- Other Tools -->
-                <div class="tool-card" data-category="other">
-                    <div class="tool-icon">
-                        <i class="fas fa-file-download"></i>
-                    </div>
-                    <h3 class="tool-title">File Downloader</h3>
-                    <p class="tool-description">Download videos and files from various platforms.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="other">
-                    <div class="tool-icon">
-                        <i class="fas fa-volume-up"></i>
-                    </div>
-                    <h3 class="tool-title">Text to Speech</h3>
-                    <p class="tool-description">Convert text to natural sounding audio.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-                
-                <div class="tool-card" data-category="other">
-                    <div class="tool-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="tool-title">Color Picker</h3>
-                    <p class="tool-description">Extract colors from images and generate palettes.</p>
-                    <button class="btn btn-primary btn-sm">Use Tool</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="section testimonials">
-        <div class="container">
-            <h2 class="section-title">What Our <span class="text-gradient">Users Say</span></h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">This tools hub has completely transformed my workflow. I can now handle all my content creation needs in one place without switching between multiple apps and websites.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
-                        <div class="author-info">
-                            <h4>John Doe</h4>
-                            <p>Content Creator</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">As a developer, I use multiple tools daily. Having them all in one place with such quality and performance is a game-changer for my productivity.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">AS</div>
-                        <div class="author-info">
-                            <h4>Alice Smith</h4>
-                            <p>Web Developer</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-text">The premium features are worth every penny. The AI tools have helped me generate content ideas that boosted my traffic by 40% in just two months.</p>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RJ</div>
-                        <div class="author-info">
-                            <h4>Robert Johnson</h4>
-                            <p>Digital Marketer</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="section pricing" id="pricing">
-        <div class="container">
-            <h2 class="section-title">Simple, Transparent <span class="text-gradient">Pricing</span></h2>
-            
-            <div class="pricing-switch">
-                <span>Monthly</span>
-                <label class="pricing-toggle">
-                    <input type="checkbox" id="pricingToggle">
-                    <span class="pricing-slider"></span>
-                </label>
-                <span>Yearly <small>(Save 20%)</small></span>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-title">Starter</h3>
-                        <div class="pricing-price">$0</div>
-                        <div class="pricing-period">forever</div>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Access to basic tools</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>10 uses per tool/month</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Standard processing speed</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Community support</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary pricing-button">Get Started</button>
-                </div>
-
-                <div class="pricing-card popular">
-                    <div class="pricing-header">
-                        <h3 class="pricing-title">Pro</h3>
-                        <div class="pricing-price">$9.99</div>
-                        <div class="pricing-period">per month</div>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>All basic tools unlimited</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Access to premium tools</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Priority processing</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Email support</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>No watermarks</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary pricing-button">Choose Plan</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3 class="pricing-title">Business</h3>
-                        <div class="pricing-price">$29.99</div>
-                        <div class="pricing-period">per month</div>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>All tools unlimited</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Priority processing</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>24/7 premium support</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>Team access (5 users)</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <i class="fas fa-check"></i>
-                            <span>API access</span>
-                        </div>
-                    </div>
-                    <button class="btn btn-secondary pricing-button">Choose Plan</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section faq" id="faq">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
-            
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Is there a free version available?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer a free version with access to all basic tools with some limitations. You can use each tool up to 10 times per month with the free plan.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>How do I upgrade to a premium plan?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>You can upgrade to a premium plan by clicking on the "Upgrade" button in your account dashboard or by selecting a plan from our pricing page. We accept all major credit cards and PayPal.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Can I cancel my subscription anytime?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! You can cancel your subscription anytime from your account settings. Your premium features will remain active until the end of your billing period.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Is my data secure with your tools?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we take security very seriously. All file uploads are encrypted during transfer and automatically deleted from our servers after processing. We never store your data permanently.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Do you offer team or enterprise plans?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes, we offer custom plans for teams and enterprises with additional features like centralized billing, user management, and priority support. Contact our sales team for more information.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="cta-content">
-            <h2 class="cta-title">Ready to Boost Your Productivity?</h2>
-            <p class="cta-text">Join thousands of satisfied users who are saving time and creating better content with our powerful tools.</p>
-            <div class="hero-buttons">
-                <button class="btn btn-accent btn-lg">
-                    <i class="fas fa-rocket"></i> Get Started Free
-                </button>
-                <button class="btn btn-secondary btn-lg" style="background: rgba(255, 255, 255, 0.1); color: white;">
-                    <i class="fas fa-play-circle"></i> Watch Demo
-                </button>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <div class="footer-logo-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <span>UltimateTools</span>
-                    </div>
-                    <p class="footer-text">All your essential tools in one powerful platform. Boost your productivity and simplify your workflow.</p>
-                    <div class="footer-social">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PrimePay</h3>
+                    <p>Providing secure and seamless payment solutions for businesses and individuals since 2020.</p>
+                    <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-title">Tools</h3>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Image Tools</a></li>
-                        <li><a href="#">Video Tools</a></li>
-                        <li><a href="#">Document Tools</a></li>
-                        <li><a href="#">Developer Tools</a></li>
-                        <li><a href="#">AI Tools</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-title">Company</h3>
-                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
                         <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Press</a></li>
                         <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-title">Legal</h3>
+                
+                <div class="footer-column">
+                    <h3>Payment Methods</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">UPI Payments</a></li>
+                        <li><a href="#">Digital Wallets</a></li>
+                        <li><a href="#">Credit Cards</a></li>
+                        <li><a href="#">Debit Cards</a></li>
+                        <li><a href="#">Net Banking</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
                         <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Cookie Policy</a></li>
-                        <li><a href="#">GDPR</a></li>
-                        <li><a href="#">DMCA</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Refund Policy</a></li>
                     </ul>
                 </div>
             </div>
-
+            
             <div class="footer-bottom">
-                <p>&copy; 2023 UltimateTools. All rights reserved.</p>
+                <p>&copy; 2023 PrimePay. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
     <script>
         // Mobile Menu Toggle
-        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
-
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
+        
+        mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    menuToggle.classList.remove('active');
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
-
-        // Hide Header on Scroll Down
-        let lastScroll = 0;
-        const header = document.querySelector('.header');
-
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll <= 0) {
-                header.classList.remove('hidden');
-                return;
-            }
-            
-            if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
-                // Scroll down
-                header.classList.add('hidden');
-            } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
-                // Scroll up
-                header.classList.remove('hidden');
-            }
-            
-            lastScroll = currentScroll;
-
-            // Back to top button
-            if (currentScroll > 300) {
-                document.getElementById('backToTop').classList.add('active');
-            } else {
-                document.getElementById('backToTop').classList.remove('active');
-            }
-        });
-
-        // Back to top button
-        document.getElementById('backToTop').addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Category Tabs
-        const categoryTabs = document.querySelectorAll('.category-tab');
-        const toolCards = document.querySelectorAll('.tool-card');
-
-        categoryTabs.forEach(tab => {
+        
+        // Payment Method Tabs
+        const methodTabs = document.querySelectorAll('.method-tab');
+        const methodContents = document.querySelectorAll('.method-content');
+        
+        methodTabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Update active tab
-                categoryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+                // Remove active class from all tabs and contents
+                methodTabs.forEach(t => t.classList.remove('active'));
+                methodContents.forEach(c => c.classList.remove('active'));
                 
-                // Filter tools
-                const category = tab.dataset.category;
-                toolCards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.add('active');
             });
         });
-
-        // Pricing Toggle
-        const pricingToggle = document.getElementById('pricingToggle');
-        const monthlyPrices = document.querySelectorAll('.pricing-price');
-        const monthlyPricesValues = ['$0', '$9.99', '$29.99'];
-        const yearlyPricesValues = ['$0', '$7.99', '$23.99'];
-        const monthlyPeriods = ['forever', 'per month', 'per month'];
-        const yearlyPeriods = ['forever', 'per month', 'per month'];
-
-        pricingToggle.addEventListener('change', () => {
-            const prices = pricingToggle.checked ? yearlyPricesValues : monthlyPricesValues;
-            const periods = pricingToggle.checked ? yearlyPeriods : monthlyPeriods;
+        
+        // Wallet/Card Option Selection
+        const walletOptions = document.querySelectorAll('.wallet-option, .card-option');
+        
+        walletOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                walletOptions.forEach(opt => opt.style.borderColor = '#ddd');
+                option.style.borderColor = '#4a6bff';
+            });
+        });
+        
+        // Format Card Number Input
+        const cardNumberInput = document.getElementById('card-number');
+        
+        cardNumberInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\s+/g, '');
+            if (value.length > 16) {
+                value = value.substring(0, 16);
+            }
             
-            monthlyPrices.forEach((price, index) => {
-                price.textContent = prices[index];
-                price.nextElementSibling.textContent = periods[index];
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Tool card click handler
-        toolCards.forEach(card => {
-            card.addEventListener('click', (e) => {
-                // Don't trigger if clicking on a button inside the card
-                if (!e.target.closest('.btn')) {
-                    const toolName = card.querySelector('.tool-title').textContent;
-                    alert(`You clicked on ${toolName}. In a real implementation, this would open the tool.`);
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
                 }
-            });
+                formattedValue += value[i];
+            }
+            
+            e.target.value = formattedValue;
         });
-
-        // Initialize tooltips (would use a library like tippy.js in production)
-        const tooltips = document.querySelectorAll('[data-tooltip]');
-        tooltips.forEach(tooltip => {
-            tooltip.addEventListener('mouseenter', () => {
-                // In a real implementation, we'd show a tooltip here
-                console.log(`Tooltip: ${tooltip.dataset.tooltip}`);
-            });
+        
+        // Format Expiry Date Input
+        const expiryInput = document.getElementById('card-expiry');
+        
+        expiryInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) {
+                value = value.substring(0, 4);
+            }
+            
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2);
+            }
+            
+            e.target.value = value;
         });
     </script>
 </body>
