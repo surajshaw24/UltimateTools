@@ -3,1033 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prompt Minds Text to Speech & Speech to Text</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Advanced YouTube Video Downloader</title>
     <style>
-        :root {
-            --dark-purple: #2a1b5e;
-            --light-lavender: #f3eaff;
-            --deep-purple: #4a3b8c;
-            --very-light-white: #ffffff;
-            --almost-white: #f8f8ff;
-            --accent-color: #7b68ee;
-            --error-color: #ff4d4d;
-            --success-color: #4caf50;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
         body {
-            background: linear-gradient(135deg, var(--dark-purple), #1a113f);
-            color: var(--dark-purple);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
         }
-
-        .header {
-            background: var(--light-lavender);
-            padding: 1.5rem;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ff0000;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        .thumbnail {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .video-info {
+            margin-bottom: 20px;
+        }
+        .format-options {
+            margin-top: 20px;
+        }
+        .format-option {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            border-bottom: 3px solid var(--deep-purple);
-        }
-
-        .logo {
-            display: flex;
+            padding: 12px;
+            border-bottom: 1px solid #eee;
             align-items: center;
         }
-
-        .logo-circle {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--deep-purple), #7b68ee);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 1rem;
-            box-shadow: 0 0 10px rgba(75, 59, 140, 0.5);
+        .format-option:last-child {
+            border-bottom: none;
         }
-
-        .logo-circle span {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--almost-white);
+        .download-btn {
+            background-color: #4CAF50;
+            padding: 8px 15px;
+            width: auto;
         }
-
-        .header h1 {
-            color: var(--dark-purple);
-            font-size: 2.2rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        .download-btn:hover {
+            background-color: #3e8e41;
         }
-
-        .toolbar {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--dark-purple);
-            text-decoration: none;
-            padding: 0.7rem 1.2rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .nav-links a:hover {
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--very-light-white);
-            box-shadow: 0 0 10px rgba(106, 90, 205, 0.5);
-        }
-
-        .toggle-button {
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--almost-white);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .toggle-button:hover {
-            background: var(--very-light-white);
-            color: var(--deep-purple);
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 20px;
-            flex: 1;
-            width: 100%;
-        }
-
-        .tts-stt-wrapper {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .tts-box, .stt-box {
-            flex: 1;
-            min-width: 0;
-            background: var(--light-lavender);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(75, 59, 140, 0.2);
-        }
-
-        .tts-box:hover, .stt-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(74, 59, 140, 0.3);
-        }
-
-        .tts-box h2, .stt-box h2 {
-            color: var(--dark-purple);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            font-size: 1.8rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
-
-        textarea {
-            width: 100%;
-            padding: 1.2rem;
-            border: 2px solid var(--deep-purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.15);
-            color: var(--dark-purple);
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        textarea:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-            background: rgba(255,255,255,0.25);
-        }
-
-        select, input[type="range"] {
-            padding: 0.8rem;
-            border: 2px solid var(--deep-purple);
-            border-radius: 10px;
-            background: rgba(255,255,255,0.15);
-            color: var(--dark-purple);
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-
-        select:focus, input[type="range"]:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
-        }
-
-        .control-group {
-            margin: 1rem 0;
-        }
-
-        label {
-            font-weight: bold;
-            margin-top: 1rem;
-            display: block;
-            color: var(--dark-purple);
-            font-size: 1.1rem;
-        }
-
-        .note {
-            font-size: 0.95rem;
-            color: var(--dark-purple);
-            margin: 0.5rem 0;
-            text-align: center;
-            font-style: italic;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        button {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
-            color: var(--almost-white);
-            min-width: 150px;
-        }
-
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #cccccc !important;
-        }
-
-        button:hover:not(:disabled) {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(106, 90, 205, 0.6);
-            background: linear-gradient(135deg, #6a5acd, var(--deep-purple));
-        }
-
-        .speaking {
-            background: rgba(255, 255, 204, 0.3) !important;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
-        }
-
-        .stt-box.recording {
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-        }
-
-        .emotion-display {
-            margin-top: 1.5rem;
-            text-align: center;
-            font-size: 1.3rem;
-            color: var(--deep-purple);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(123, 104, 238, 0.1));
-            padding: 1.2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .emotion-display.active {
-            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(123, 104, 238, 0.2));
-        }
-
-        .footer {
-            background: var(--light-lavender);
-            padding: 2rem 1rem;
-            margin-top: 2rem;
-            text-align: center;
-            color: var(--dark-purple);
-            border-top: 3px solid var(--deep-purple);
-            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--dark-purple);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-            text-shadow: 0 0 5px rgba(106, 90, 205, 0.5);
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-icons a {
-            color: var(--dark-purple);
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
-
-        /* Loading animation */
         .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
+            text-align: center;
+            margin: 20px 0;
+            display: none;
+        }
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff0000;
             border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Notification system */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            transform: translateX(200%);
-            transition: transform 0.3s ease;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        .notification.success {
-            background-color: var(--success-color);
-        }
-
-        .notification.error {
-            background-color: var(--error-color);
-        }
-
-        .notification.info {
-            background-color: var(--accent-color);
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .tts-stt-wrapper {
-                flex-direction: column;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .toolbar {
-                flex-direction: column;
-                align-items: flex-start;
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-
-            .nav-links a {
-                width: 100%;
-                text-align: center;
-            }
-
-            .toggle-button {
-                width: 100%;
-                margin-top: 1rem;
-            }
-
-            .buttons {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .tts-box, .stt-box {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Dark mode toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
             width: 50px;
             height: 50px;
-            border-radius: 50%;
-            background: var(--deep-purple);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 100;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
         }
-
-        /* Word counter */
-        .word-counter {
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--deep-purple);
-            margin-top: -10px;
-            margin-bottom: 10px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            color: #ff0000;
+            background-color: #ffebee;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: none;
+        }
+        .advanced-options {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            display: none;
+        }
+        .toggle-advanced {
+            background-color: transparent;
+            color: #ff0000;
+            text-decoration: underline;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            width: auto;
+        }
+        .toggle-advanced:hover {
+            color: #cc0000;
+            background-color: transparent;
+        }
+        .quality-selector, .subtitles-option {
+            margin-bottom: 15px;
+        }
+        .checkbox-group {
+            margin-top: 10px;
+        }
+        .checkbox-item {
+            margin-bottom: 8px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 14px;
         }
     </style>
-    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
-    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo">
-            <div class="logo-circle">
-                <span>PM</span>
+    <div class="container">
+        <h1>Advanced YouTube Video Downloader</h1>
+        
+        <div class="input-group">
+            <label for="video-url">YouTube Video URL:</label>
+            <input type="text" id="video-url" placeholder="https://www.youtube.com/watch?v=..." required>
+        </div>
+        
+        <button id="fetch-btn">Fetch Video Info</button>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Fetching video information...</p>
+        </div>
+        
+        <div class="error" id="error"></div>
+        
+        <button class="toggle-advanced" id="toggle-advanced">Show Advanced Options</button>
+        
+        <div class="advanced-options" id="advanced-options">
+            <div class="quality-selector">
+                <label>Preferred Quality:</label>
+                <select id="quality-preference">
+                    <option value="highest">Highest Quality</option>
+                    <option value="1080p">1080p</option>
+                    <option value="720p">720p</option>
+                    <option value="480p">480p</option>
+                    <option value="360p">360p</option>
+                    <option value="lowest">Lowest Quality</option>
+                </select>
             </div>
-            <h1>Prompt Minds TTS AND STT</h1>
-        </div>
-        <div class="toolbar">
-            <ul class="nav-links">
-                <li><a href="#home">होम</a></li>
-                <li><a href="#about">हमारे बारे में</a></li>
-                <li><a href="#services">सेवाएँ</a></li>
-                <li><a href="#contact">संपर्क</a></li>
-            </ul>
-            <button class="toggle-button" id="viewToggle">व्यू टॉगल करें</button>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container">
-        <div class="tts-stt-wrapper">
-            <!-- Text to Speech Section -->
-            <div class="tts-box">
-                <h2>Text to Speech</h2>
-                <div class="word-counter" id="ttsWordCount">शब्द: 0</div>
-                <textarea id="text" rows="5" placeholder="Enter text (उदा., नमस्ते for Hindi)"></textarea>
-                <div class="control-group">
-                    <label for="languages">भाषा चुनें:</label>
-                    <select id="languages"></select>
-                </div>
-                <div class="control-group">
-                    <label for="voices">आवाज़ चुनें:</label>
-                    <select id="voices"></select>
-                </div>
-                <p class="note">नोट: आवाज़ के नाम लिंग का संकेत दे सकते हैं (उदा., "Heera" महिला के लिए, "Ravi" पुरुष के लिए)</p>
-                
-                <div class="control-group">
-                    <label for="rate">स्पीच गति: <span id="rateValue">1</span></label>
-                    <input type="range" id="rate" min="0.1" max="10" step="0.1" value="1">
-                </div>
-                <div class="control-group">
-                    <label for="pitch">पिच: <span id="pitchValue">1</span></label>
-                    <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
-                </div>
-                <div class="control-group">
-                    <label for="volume">आवाज़ की मात्रा: <span id="volumeValue">1</span></label>
-                    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-                </div>
-                
-                <div class="buttons">
-                    <button id="speak"><i class="fas fa-volume-up"></i> बोलें</button>
-                    <button id="pauseResume"><i class="fas fa-pause"></i> रुकें</button>
-                    <button id="stop"><i class="fas fa-stop"></i> बंद करें</button>
-                    <button id="downloadAudio"><i class="fas fa-download"></i> डाउनलोड</button>
+            
+            <div class="subtitles-option">
+                <label>Subtitles:</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="include-subtitles">
+                        <label for="include-subtitles">Include Subtitles (if available)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="burn-subtitles">
+                        <label for="burn-subtitles">Burn Subtitles into Video</label>
+                    </div>
                 </div>
             </div>
-
-            <!-- Speech to Text Section -->
-            <div class="stt-box">
-                <h2>Speech to Text</h2>
-                <div class="word-counter" id="sttWordCount">शब्द: 0</div>
-                <textarea id="transcription" rows="5" placeholder="आपकी स्पीच यहाँ दिखाई देगी..."></textarea>
-                <div class="buttons">
-                    <button id="record"><i class="fas fa-microphone"></i> <span id="recordText">रिकॉर्डिंग शुरू करें</span></button>
-                    <button id="copyText"><i class="fas fa-copy"></i> कॉपी करें</button>
-                    <button id="clearText"><i class="fas fa-trash"></i> साफ करें</button>
-                </div>
-                <div class="emotion-display">
-                    <h3><span id="emotion"></span></h3>
-                    <p id="confidence">Confidence: 0%</p>
-                </div>
+            
+            <div class="format-option">
+                <label>Output Format:</label>
+                <select id="output-format">
+                    <option value="mp4">MP4 (Video)</option>
+                    <option value="webm">WebM (Video)</option>
+                    <option value="mp3">MP3 (Audio Only)</option>
+                    <option value="m4a">M4A (Audio Only)</option>
+                    <option value="wav">WAV (Audio Only)</option>
+                </select>
+            </div>
+            
+            <div class="checkbox-item">
+                <input type="checkbox" id="custom-filename">
+                <label for="custom-filename">Use Custom Filename</label>
+                <input type="text" id="filename" placeholder="Custom filename (without extension)" disabled style="width: 100%; margin-top: 5px;">
             </div>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-links">
-            <a href="#home">होम</a>
-            <a href="#about">हमारे बारे में</a>
-            <a href="#services">सेवाएँ</a>
-            <a href="#contact">संपर्क</a>
+        
+        <div class="result" id="result">
+            <div class="video-info">
+                <img id="thumbnail" class="thumbnail" src="" alt="Video Thumbnail">
+                <h2 id="video-title"></h2>
+                <p id="video-duration"></p>
+                <p id="video-views"></p>
+                <p id="video-channel"></p>
+            </div>
+            
+            <div class="format-options" id="format-options">
+                <h3>Available Download Options:</h3>
+                <!-- Format options will be dynamically inserted here -->
+            </div>
         </div>
-        <div class="social-icons">
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p>© 2025 Prompt Minds. सभी अधिकार सुरक्षित।</p>
-    </footer>
-
-    <!-- Dark mode toggle -->
-    <div class="dark-mode-toggle" id="darkModeToggle">
-        <i class="fas fa-moon"></i>
+        
+        <footer>
+            <p>This tool is for educational purposes only. Please respect YouTube's Terms of Service.</p>
+            <p>© 2023 YouTube Downloader | v2.1.0</p>
+        </footer>
     </div>
 
-    <!-- Notification container -->
-    <div id="notificationContainer"></div>
-
     <script>
-        // Notification system
-        function showNotification(message, type = 'info', duration = 3000) {
-            const notification = document.createElement('div');
-            notification.className = `notification ${type}`;
-            notification.textContent = message;
-            document.getElementById('notificationContainer').appendChild(notification);
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const fetchBtn = document.getElementById('fetch-btn');
+            const videoUrlInput = document.getElementById('video-url');
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            const resultDiv = document.getElementById('result');
+            const formatOptionsDiv = document.getElementById('format-options');
+            const toggleAdvancedBtn = document.getElementById('toggle-advanced');
+            const advancedOptionsDiv = document.getElementById('advanced-options');
+            const customFilenameCheckbox = document.getElementById('custom-filename');
+            const filenameInput = document.getElementById('filename');
             
-            setTimeout(() => {
-                notification.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                notification.classList.remove('show');
-                setTimeout(() => {
-                    notification.remove();
-                }, 300);
-            }, duration);
-        }
-
-        // TTS Global Variables
-        let voices = [];
-        let isSpeaking = false;
-        let isPaused = false;
-        let pauseIndex = 0;
-        let currentUtterance = null;
-        let audioContext;
-        let mediaRecorder;
-        let audioChunks = [];
-
-        // DOM Elements
-        const textArea = document.getElementById('text');
-        const speakButton = document.getElementById('speak');
-        const pauseResumeButton = document.getElementById('pauseResume');
-        const stopButton = document.getElementById('stop');
-        const voicesSelect = document.getElementById('voices');
-        const rateSlider = document.getElementById('rate');
-        const pitchSlider = document.getElementById('pitch');
-        const volumeSlider = document.getElementById('volume');
-        const rateValue = document.getElementById('rateValue');
-        const pitchValue = document.getElementById('pitchValue');
-        const volumeValue = document.getElementById('volumeValue');
-        const languagesSelect = document.getElementById('languages');
-        const downloadAudioBtn = document.getElementById('downloadAudio');
-        const ttsWordCount = document.getElementById('ttsWordCount');
-        const sttWordCount = document.getElementById('sttWordCount');
-
-        // Language names in Hindi and English
-        const languageNames = {
-            'hi-IN': 'हिंदी (Hindi - India)',
-            'en-US': 'अंग्रेजी (English - US)',
-            'en-GB': 'अंग्रेजी (English - UK)',
-            'es-ES': 'स्पेनिश (Spanish - Spain)',
-            'fr-FR': 'फ्रेंच (French - France)',
-            'de-DE': 'जर्मन (German - Germany)',
-            'it-IT': 'इटालियन (Italian - Italy)',
-            'ja-JP': 'जापानी (Japanese - Japan)',
-            'zh-CN': 'चीनी (Chinese - Simplified)',
-            'ru-RU': 'रूसी (Russian - Russia)',
-            'all': 'सभी भाषाएँ (All Languages)'
-        };
-
-        // Word counter for TTS
-        textArea.addEventListener('input', () => {
-            const text = textArea.value.trim();
-            const wordCount = text ? text.split(/\s+/).length : 0;
-            ttsWordCount.textContent = `शब्द: ${wordCount}`;
-        });
-
-        // Word counter for STT
-        document.getElementById('transcription').addEventListener('input', () => {
-            const text = document.getElementById('transcription').value.trim();
-            const wordCount = text ? text.split(/\s+/).length : 0;
-            sttWordCount.textContent = `शब्द: ${wordCount}`;
-        });
-
-        // Populate languages dropdown
-        function populateLanguages() {
-            voices = window.speechSynthesis.getVoices();
-            const uniqueLangs = [...new Set(voices.map(voice => voice.lang))].sort();
-            languagesSelect.innerHTML = ''; // Clear existing options
-
-            // Add Hindi and English first
-            const priorityLangs = ['hi-IN', 'en-US'];
-            priorityLangs.forEach(lang => {
-                if (uniqueLangs.includes(lang)) {
-                    const option = document.createElement('option');
-                    option.value = lang;
-                    option.textContent = languageNames[lang];
-                    languagesSelect.appendChild(option);
-                }
+            // Toggle advanced options
+            let advancedOptionsVisible = false;
+            toggleAdvancedBtn.addEventListener('click', function() {
+                advancedOptionsVisible = !advancedOptionsVisible;
+                advancedOptionsDiv.style.display = advancedOptionsVisible ? 'block' : 'none';
+                toggleAdvancedBtn.textContent = advancedOptionsVisible ? 'Hide Advanced Options' : 'Show Advanced Options';
             });
-
-            // Add "All Languages" option
-            const allOption = document.createElement('option');
-            allOption.value = 'all';
-            allOption.textContent = languageNames['all'];
-            languagesSelect.appendChild(allOption);
-
-            // Add remaining languages
-            uniqueLangs.forEach(lang => {
-                if (!priorityLangs.includes(lang)) {
-                    const option = document.createElement('option');
-                    option.value = lang;
-                    option.textContent = languageNames[lang] || lang;
-                    languagesSelect.appendChild(option);
-                }
-            });
-        }
-
-        // Populate voices dropdown based on selected language
-        function populateVoices() {
-            const selectedLang = languagesSelect.value;
-            const filteredVoices = selectedLang === 'all' ? voices : voices.filter(voice => voice.lang === selectedLang);
-            voicesSelect.innerHTML = '';
             
-            if (filteredVoices.length === 0) {
-                const option = document.createElement('option');
-                option.value = '-1';
-                option.textContent = 'कोई आवाज़ उपलब्ध नहीं';
-                voicesSelect.appendChild(option);
-                voicesSelect.disabled = true;
-            } else {
-                voicesSelect.disabled = false;
-                filteredVoices.forEach(voice => {
-                    const option = document.createElement('option');
-                    option.value = voices.indexOf(voice);
-                    option.textContent = `${voice.name} (${languageNames[voice.lang] || voice.lang})`;
-                    voicesSelect.appendChild(option);
-                });
-            }
-        }
-
-        // Initialize speech synthesis
-        window.speechSynthesis.onvoiceschanged = () => {
-            populateLanguages();
-            populateVoices();
-        };
-
-        // Check if voices are already loaded
-        if (window.speechSynthesis.getVoices().length > 0) {
-            voices = window.speechSynthesis.getVoices();
-            populateLanguages();
-            populateVoices();
-        }
-
-        // Event listeners
-        languagesSelect.addEventListener('change', populateVoices);
-
-        rateSlider.addEventListener('input', () => rateValue.textContent = rateSlider.value);
-        pitchSlider.addEventListener('input', () => pitchValue.textContent = pitchSlider.value);
-        volumeSlider.addEventListener('input', () => volumeValue.textContent = volumeSlider.value);
-
-        // Speak text function
-        function speakText(startIndex = 0) {
-            const text = textArea.value;
-            if (!text.trim()) {
-                showNotification('कृपया बोलने के लिए कुछ टेक्स्ट दर्ज करें।', 'error');
-                return;
-            }
-            const selectedVoiceIndex = parseInt(voicesSelect.value);
-            if (selectedVoiceIndex < 0) {
-                showNotification('कृपया एक मान्य आवाज़ चुनें।', 'error');
-                return;
-            }
-
-            const speakText = text.slice(startIndex);
-            const utterance = new SpeechSynthesisUtterance(speakText);
-            utterance.voice = voices[selectedVoiceIndex];
-            utterance.lang = voices[selectedVoiceIndex].lang;
-            utterance.rate = parseFloat(rateSlider.value);
-            utterance.pitch = parseFloat(pitchSlider.value);
-            utterance.volume = parseFloat(volumeSlider.value);
-
-            utterance.onboundary = (event) => {
-                if (event.name === 'word') {
-                    pauseIndex = event.charIndex;
-                }
-            };
-
-            utterance.onend = () => {
-                isSpeaking = false;
-                isPaused = false;
-                pauseIndex = 0;
-                updateButtonStates();
-                textArea.classList.remove('speaking');
-            };
-
-            utterance.onerror = (event) => {
-                console.error('SpeechSynthesis error:', event);
-                showNotification('टेक्स्ट टू स्पीच में त्रुटि हुई।', 'error');
-                isSpeaking = false;
-                isPaused = false;
-                updateButtonStates();
-                textArea.classList.remove('speaking');
-            };
-
-            window.speechSynthesis.speak(utterance);
-            currentUtterance = utterance;
-            isSpeaking = true;
-            isPaused = false;
-            textArea.classList.add('speaking');
-            updateButtonStates();
-        }
-
-        // Update button states based on speech status
-        function updateButtonStates() {
-            speakButton.disabled = isSpeaking && !isPaused;
-            pauseResumeButton.disabled = !isSpeaking && !isPaused;
-            stopButton.disabled = !isSpeaking && !isPaused;
-            pauseResumeButton.innerHTML = isPaused ? '<i class="fas fa-play"></i> फिर से शुरू करें' : '<i class="fas fa-pause"></i> रुकें';
-        }
-
-        // Speak button event
-        speakButton.addEventListener('click', () => {
-            if (isPaused) {
-                speakText(pauseIndex);
-            } else if (!isSpeaking) {
-                speakText(0);
-            }
-        });
-
-        // Pause/Resume button event
-        pauseResumeButton.addEventListener('click', () => {
-            if (isSpeaking && !isPaused) {
-                window.speechSynthesis.pause();
-                isSpeaking = false;
-                isPaused = true;
-                updateButtonStates();
-            } else if (isPaused) {
-                speakText(pauseIndex);
-            }
-        });
-
-        // Stop button event
-        stopButton.addEventListener('click', () => {
-            window.speechSynthesis.cancel();
-            isSpeaking = false;
-            isPaused = false;
-            pauseIndex = 0;
-            textArea.classList.remove('speaking');
-            updateButtonStates();
-        });
-
-        // Download audio button
-        downloadAudioBtn.addEventListener('click', () => {
-            const text = textArea.value;
-            if (!text.trim()) {
-                showNotification('डाउनलोड करने के लिए कृपया टेक्स्ट दर्ज करें', 'error');
-                return;
-            }
-
-            const selectedVoiceIndex = parseInt(voicesSelect.value);
-            if (selectedVoiceIndex < 0) {
-                showNotification('कृपया एक मान्य आवाज़ चुनें', 'error');
-                return;
-            }
-
-            downloadAudioBtn.innerHTML = '<i class="fas fa-spinner loading"></i> प्रोसेसिंग...';
-            downloadAudioBtn.disabled = true;
-
-            // Create a new utterance
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.voice = voices[selectedVoiceIndex];
-            utterance.rate = parseFloat(rateSlider.value);
-            utterance.pitch = parseFloat(pitchSlider.value);
-            utterance.volume = parseFloat(volumeSlider.value);
-
-            // Initialize audio context
-            if (!audioContext) {
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            }
-
-            // Create a media stream destination
-            const destination = audioContext.createMediaStreamDestination();
-            mediaRecorder = new MediaRecorder(destination.stream);
-            audioChunks = [];
-
-            mediaRecorder.ondataavailable = (event) => {
-                audioChunks.push(event.data);
-            };
-
-            mediaRecorder.onstop = () => {
-                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                const audioUrl = URL.createObjectURL(audioBlob);
-                const a = document.createElement('a');
-                a.href = audioUrl;
-                a.download = 'prompt-minds-tts.wav';
-                a.click();
-                URL.revokeObjectURL(audioUrl);
+            // Enable/disable filename input based on checkbox
+            customFilenameCheckbox.addEventListener('change', function() {
+                filenameInput.disabled = !this.checked;
+            });
+            
+            // Fetch video info button click handler
+            fetchBtn.addEventListener('click', function() {
+                const videoUrl = videoUrlInput.value.trim();
                 
-                downloadAudioBtn.innerHTML = '<i class="fas fa-download"></i> डाउनलोड';
-                downloadAudioBtn.disabled = false;
-                showNotification('ऑडियो डाउनलोड तैयार है', 'success');
-            };
-
-            // Connect the speech synthesis to the audio context
-            const source = audioContext.createMediaStreamSource(new MediaStream());
-            source.connect(destination);
-
-            // Start recording
-            mediaRecorder.start();
-
-            // Speak the text
-            utterance.onend = () => {
-                setTimeout(() => {
-                    mediaRecorder.stop();
-                }, 500);
-            };
-
-            window.speechSynthesis.speak(utterance);
-        });
-
-        // Initialize button states
-        updateButtonStates();
-
-        // STT Functionality
-        const sttBox = document.querySelector('.stt-box');
-        const transcription = document.getElementById('transcription');
-        const recordButton = document.getElementById('record');
-        const copyButton = document.getElementById('copyText');
-        const clearButton = document.getElementById('clearText');
-        const recordText = document.getElementById('recordText');
-        const emotionDisplay = document.getElementById('emotion');
-        const confidenceDisplay = document.getElementById('confidence');
-
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (SpeechRecognition) {
-            const recognition = new SpeechRecognition();
-            recognition.continuous = true;
-            recognition.interimResults = true;
-            recognition.maxAlternatives = 3;
-
-            let isRecording = false;
-            let finalTranscript = '';
-
-            // Emotion detection based on speech characteristics
-            function detectEmotion(rate, pitch, confidence) {
-                if (rate > 1.5 && pitch > 1.2) return "Excited (उत्साहित)";
-                else if (rate < 0.8 && pitch < 0.8) return "Sad (उदास)";
-                else if (rate > 1.2 && pitch < 0.8) return "Angry (गुस्सा)";
-                else if (confidence < 0.5) return "Uncertain (अनिश्चित)";
-                else return "Neutral (सामान्य)";
-            }
-
-            // Record button event
-            recordButton.addEventListener('click', () => {
-                if (!isRecording) {
-                    const selectedLang = languagesSelect.value;
-                    recognition.lang = selectedLang !== 'all' ? selectedLang : 'hi-IN';
-                    recognition.start();
-                    isRecording = true;
-                    recordText.textContent = 'रिकॉर्डिंग बंद करें';
-                    recordButton.innerHTML = '<i class="fas fa-stop"></i> रिकॉर्डिंग बंद करें';
-                    finalTranscript = '';
-                    sttBox.classList.add('recording');
-                    showNotification('रिकॉर्डिंग शुरू हो गई है', 'info');
-                } else {
-                    recognition.stop();
-                    isRecording = false;
-                    recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                    recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                    sttBox.classList.remove('recording');
+                if (!videoUrl) {
+                    showError('Please enter a YouTube video URL');
+                    return;
                 }
-            });
-
-            // Recognition result event
-            recognition.onresult = (event) => {
-                let interimTranscript = '';
-                let highestConfidence = 0;
                 
-                for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const transcript = event.results[i][0].transcript;
-                    const confidence = event.results[i][0].confidence;
-                    
-                    if (confidence > highestConfidence) {
-                        highestConfidence = confidence;
+                if (!isValidYouTubeUrl(videoUrl)) {
+                    showError('Please enter a valid YouTube URL');
+                    return;
+                }
+                
+                // Show loading, hide results and errors
+                loadingDiv.style.display = 'block';
+                resultDiv.style.display = 'none';
+                errorDiv.style.display = 'none';
+                
+                // In a real implementation, you would make an API call to your backend here
+                // For this demo, we'll simulate a response after a short delay
+                setTimeout(function() {
+                    try {
+                        const videoInfo = simulateFetchVideoInfo(videoUrl);
+                        displayVideoInfo(videoInfo);
+                        loadingDiv.style.display = 'none';
+                        resultDiv.style.display = 'block';
+                    } catch (error) {
+                        loadingDiv.style.display = 'none';
+                        showError(error.message);
                     }
-                    
-                    if (event.results[i].isFinal) {
-                        finalTranscript += transcript + ' ';
-                        
-                        // Simulate some emotion detection (in a real app, you'd analyze speech patterns)
-                        const simulatedRate = 0.8 + Math.random() * 1.2;
-                        const simulatedPitch = 0.8 + Math.random() * 1.2;
-                        const emotion = detectEmotion(simulatedRate, simulatedPitch, confidence);
-                        
-                        emotionDisplay.textContent = emotion;
-                        confidenceDisplay.textContent = `Confidence: ${Math.round(confidence * 100)}%`;
-                        document.querySelector('.emotion-display').classList.add('active');
-                    } else {
-                        interimTranscript += transcript;
-                    }
+                }, 2000);
+            });
+            
+            // Helper function to validate YouTube URL
+            function isValidYouTubeUrl(url) {
+                const pattern = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+                return pattern.test(url);
+            }
+            
+            // Helper function to display error messages
+            function showError(message) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+            
+            // Simulate fetching video info (in a real app, this would be an API call)
+            function simulateFetchVideoInfo(url) {
+                // Extract video ID from URL (simplified)
+                const videoId = url.split('v=')[1]?.split('&')[0] || 'demo123';
+                
+                // Simulate different responses (success/error) for demo purposes
+                if (Math.random() < 0.1) { // 10% chance of error for demo
+                    throw new Error('Failed to fetch video information. The video may be private or unavailable.');
                 }
                 
-                transcription.value = finalTranscript + interimTranscript;
+                // Return mock data
+                return {
+                    id: videoId,
+                    title: 'Sample YouTube Video - ' + Math.random().toString(36).substring(7),
+                    thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
+                    duration: '12:34',
+                    views: (Math.random() * 10000000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+                    channel: 'Sample Channel',
+                    formats: [
+                        { type: 'video', quality: '1080p', format: 'mp4', size: '125MB', code: '137' },
+                        { type: 'video', quality: '720p', format: 'mp4', size: '85MB', code: '22' },
+                        { type: 'video', quality: '480p', format: 'mp4', size: '45MB', code: '135' },
+                        { type: 'video', quality: '360p', format: 'mp4', size: '25MB', code: '18' },
+                        { type: 'audio', quality: '128kbps', format: 'mp3', size: '5MB', code: '140' },
+                        { type: 'audio', quality: '256kbps', format: 'm4a', size: '8MB', code: '141' }
+                    ],
+                    subtitles: [
+                        { language: 'English', code: 'en' },
+                        { language: 'Spanish', code: 'es' }
+                    ]
+                };
+            }
+            
+            // Display video information
+            function displayVideoInfo(videoInfo) {
+                document.getElementById('video-title').textContent = videoInfo.title;
+                document.getElementById('thumbnail').src = videoInfo.thumbnail;
+                document.getElementById('video-duration').textContent = `Duration: ${videoInfo.duration}`;
+                document.getElementById('video-views').textContent = `Views: ${videoInfo.views}`;
+                document.getElementById('video-channel').textContent = `Channel: ${videoInfo.channel}`;
                 
-                // Update word count
-                const text = transcription.value.trim();
-                const wordCount = text ? text.split(/\s+/).length : 0;
-                sttWordCount.textContent = `शब्द: ${wordCount}`;
-            };
-
-            // Recognition end event
-            recognition.onend = () => {
-                isRecording = false;
-                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                sttBox.classList.remove('recording');
-                emotionDisplay.textContent = '';
-                confidenceDisplay.textContent = 'Confidence: 0%';
-                document.querySelector('.emotion-display').classList.remove('active');
-            };
-
-            // Recognition error event
-            recognition.onerror = (event) => {
-                console.error('Speech recognition error:', event.error);
-                showNotification('स्पीच रिकग्निशन में त्रुटि: ' + event.error, 'error');
-                isRecording = false;
-                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
-                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
-                sttBox.classList.remove('recording');
-            };
-        } else {
-            recordButton.disabled = true;
-            recordButton.innerHTML = '<i class="fas fa-microphone-slash"></i> असमर्थित';
-            showNotification('यह ब्राउज़र स्पीच रिकग्निशन को समर्थन नहीं करता', 'error');
-        }
-
-        // Copy text button
-        copyButton.addEventListener('click', () => {
-            const text = transcription.value;
-            if (text.trim()) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showNotification('टेक्स्ट कॉपी हो गया है', 'success');
-                }).catch(err => {
-                    console.error('Could not copy text: ', err);
-                    showNotification('टेक्स्ट कॉपी करने में त्रुटि', 'error');
+                // Clear previous format options
+                formatOptionsDiv.innerHTML = '<h3>Available Download Options:</h3>';
+                
+                // Add format options
+                videoInfo.formats.forEach(format => {
+                    const formatDiv = document.createElement('div');
+                    formatDiv.className = 'format-option';
+                    
+                    const formatLabel = document.createElement('div');
+                    formatLabel.innerHTML = `<strong>${format.quality}</strong> ${format.type.toUpperCase()} (${format.format.toUpperCase()}) - ${format.size}`;
+                    
+                    const downloadBtn = document.createElement('button');
+                    downloadBtn.className = 'download-btn';
+                    downloadBtn.textContent = 'Download';
+                    downloadBtn.addEventListener('click', function() {
+                        alert(`In a real implementation, this would download the ${format.quality} ${format.format} version.\nFormat code: ${format.code}`);
+                        // In a real app, this would trigger the download via your backend
+                    });
+                    
+                    formatDiv.appendChild(formatLabel);
+                    formatDiv.appendChild(downloadBtn);
+                    formatOptionsDiv.appendChild(formatDiv);
                 });
-            } else {
-                showNotification('कॉपी करने के लिए कोई टेक्स्ट नहीं है', 'error');
-            }
-        });
-
-        // Clear text button
-        clearButton.addEventListener('click', () => {
-            transcription.value = '';
-            sttWordCount.textContent = 'शब्द: 0';
-            showNotification('टेक्स्ट साफ हो गया है', 'success');
-        });
-
-        // Dark mode toggle
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
-            
-            if (isDarkMode) {
-                document.documentElement.style.setProperty('--dark-purple', '#f3eaff');
-                document.documentElement.style.setProperty('--light-lavender', '#2a1b5e');
-                document.documentElement.style.setProperty('--deep-purple', '#7b68ee');
-                document.documentElement.style.setProperty('--very-light-white', '#1a113f');
-                document.documentElement.style.setProperty('--almost-white', '#4a3b8c');
-            } else {
-                document.documentElement.style.setProperty('--dark-purple', '#2a1b5e');
-                document.documentElement.style.setProperty('--light-lavender', '#f3eaff');
-                document.documentElement.style.setProperty('--deep-purple', '#4a3b8c');
-                document.documentElement.style.setProperty('--very-light-white', '#ffffff');
-                document.documentElement.style.setProperty('--almost-white', '#f8f8ff');
-            }
-        });
-
-        // View toggle button
-        const viewToggle = document.getElementById('viewToggle');
-        viewToggle.addEventListener('click', () => {
-            const ttsBox = document.querySelector('.tts-box');
-            const sttBox = document.querySelector('.stt-box');
-            
-            if (ttsBox.style.display === 'none') {
-                ttsBox.style.display = 'block';
-                sttBox.style.display = 'block';
-                viewToggle.textContent = 'व्यू टॉगल करें';
-            } else {
-                ttsBox.style.display = 'none';
-                viewToggle.textContent = 'TTS दिखाएँ';
+                
+                // Add subtitles section if available
+                if (videoInfo.subtitles && videoInfo.subtitles.length > 0) {
+                    const subtitlesDiv = document.createElement('div');
+                    subtitlesDiv.className = 'format-option';
+                    subtitlesDiv.innerHTML = '<h3>Available Subtitles:</h3>';
+                    
+                    videoInfo.subtitles.forEach(sub => {
+                        const subDiv = document.createElement('div');
+                        subDiv.className = 'format-option';
+                        
+                        const subLabel = document.createElement('div');
+                        subLabel.textContent = `${sub.language} (${sub.code})`;
+                        
+                        const downloadBtn = document.createElement('button');
+                        downloadBtn.className = 'download-btn';
+                        downloadBtn.textContent = 'Download SRT';
+                        downloadBtn.addEventListener('click', function() {
+                            alert(`In a real implementation, this would download the ${sub.language} subtitles.`);
+                        });
+                        
+                        subDiv.appendChild(subLabel);
+                        subDiv.appendChild(downloadBtn);
+                        subtitlesDiv.appendChild(subDiv);
+                    });
+                    
+                    formatOptionsDiv.appendChild(subtitlesDiv);
+                }
             }
         });
     </script>
