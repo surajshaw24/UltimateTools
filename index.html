@@ -3,604 +3,1586 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProBG Remover | Professional Background Removal Tool</title>
+    <title>Prompt Minds Premium TTS & STT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         :root {
-            --primary-color: #4a6bff;
-            --secondary-color: #f5f7ff;
-            --accent-color: #ff6b6b;
-            --text-color: #333;
-            --light-text: #777;
-            --border-color: #e0e0e0;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
+            --dark-purple: #2a1b5e;
+            --light-lavender: #f3eaff;
+            --deep-purple: #4a3b8c;
+            --very-light-white: #ffffff;
+            --almost-white: #f8f8ff;
+            --accent-color: #7b68ee;
+            --error-color: #ff4d4d;
+            --success-color: #4caf50;
+            --premium-gold: #ffd700;
+            --premium-gradient: linear-gradient(135deg, #ffd700, #ff8c00);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         body {
-            background-color: #f9f9f9;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+            background: linear-gradient(135deg, var(--dark-purple), #1a113f);
+            color: var(--dark-purple);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 2rem;
+        .header {
+            background: var(--light-lavender);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-bottom: 3px solid var(--deep-purple);
+            position: relative;
+        }
+
+        .premium-banner {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--premium-gradient);
+            color: #000;
+            padding: 0.5rem 1.5rem;
+            border-bottom-left-radius: 15px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
         .logo {
             display: flex;
             align-items: center;
+        }
+
+        .logo-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--deep-purple), #7b68ee);
+            border-radius: 50%;
+            display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
+            align-items: center;
+            margin-right: 1rem;
+            box-shadow: 0 0 10px rgba(75, 59, 140, 0.5);
         }
 
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+        .logo-circle span {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--almost-white);
         }
 
-        .logo h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), #8a2be2);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .header h1 {
+            color: var(--dark-purple);
+            font-size: 2.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
         }
 
-        .tagline {
-            color: var(--light-text);
-            font-size: 1.1rem;
+        .toolbar {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        main {
-            flex: 1;
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
         }
 
-        .upload-container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            padding: 2rem;
-            margin-bottom: 2rem;
+        .nav-links a {
+            color: var(--dark-purple);
+            text-decoration: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
-        .drop-zone {
-            border: 2px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            text-align: center;
+        .nav-links a:hover {
+            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
+            color: var(--very-light-white);
+            box-shadow: 0 0 10px rgba(106, 90, 205, 0.5);
+        }
+
+        .toggle-button {
+            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
+            color: var(--almost-white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
             cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .toggle-button:hover {
+            background: var(--very-light-white);
+            color: var(--deep-purple);
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(106, 90, 205, 0.5);
+        }
+
+        .premium-button {
+            background: var(--premium-gradient);
+            color: #000;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .premium-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tts-stt-wrapper {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .tts-box, .stt-box {
+            flex: 1;
+            min-width: 0;
+            background: var(--light-lavender);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(75, 59, 140, 0.2);
             position: relative;
         }
 
-        .drop-zone:hover {
-            border-color: var(--primary-color);
-            background-color: var(--secondary-color);
+        .premium-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--premium-gradient);
+            color: #000;
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1;
         }
 
-        .drop-zone.active {
-            border-color: var(--primary-color);
-            background-color: var(--secondary-color);
+        .tts-box:hover, .stt-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(74, 59, 140, 0.3);
         }
 
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .drop-zone h2 {
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .drop-zone p {
-            color: var(--light-text);
+        .tts-box h2, .stt-box h2 {
+            color: var(--dark-purple);
             margin-bottom: 1.5rem;
-        }
-
-        #fileInput {
-            display: none;
-        }
-
-        .browse-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            margin-bottom: 1rem;
-        }
-
-        .browse-btn:hover {
-            background-color: #3a5bef;
-            transform: translateY(-2px);
-        }
-
-        .supported-formats {
-            color: var(--light-text);
-            font-size: 0.9rem;
-        }
-
-        .preview-container {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .image-preview {
-            flex: 1;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1rem;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .image-preview h3 {
-            margin-bottom: 1rem;
             text-align: center;
-            color: var(--text-color);
+            font-size: 1.8rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        .placeholder {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--light-text);
-            background-color: #fafafa;
-            border-radius: 6px;
-        }
-
-        .placeholder i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--border-color);
-        }
-
-        .image-preview img {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            margin: auto;
-            display: block;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .primary-btn, .secondary-btn {
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .primary-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-        }
-
-        .primary-btn:hover {
-            background-color: #3a5bef;
-            transform: translateY(-2px);
-        }
-
-        .primary-btn:disabled {
-            background-color: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .secondary-btn {
-            background-color: white;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-        }
-
-        .secondary-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .secondary-btn:disabled {
-            color: #cccccc;
-            border-color: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .loading-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
+        textarea {
             width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1.2rem;
+            border: 2px solid var(--deep-purple);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.15);
+            color: var(--dark-purple);
+            font-size: 1.2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
+            background: rgba(255,255,255,0.25);
+        }
+
+        select, input[type="range"] {
+            padding: 0.8rem;
+            border: 2px solid var(--deep-purple);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.15);
+            color: var(--dark-purple);
+            font-size: 1.1rem;
+            margin: 0.5rem 0;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        select:focus, input[type="range"]:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(123, 104, 238, 0.3);
+        }
+
+        .control-group {
+            margin: 1rem 0;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 1rem;
+            display: block;
+            color: var(--dark-purple);
+            font-size: 1.1rem;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: var(--dark-purple);
+            margin: 0.5rem 0;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: var(--transition);
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--deep-purple), #6a5acd);
+            color: var(--almost-white);
+            min-width: 150px;
         }
 
-        .loading-modal.active {
-            opacity: 1;
-            pointer-events: all;
+        button.premium-feature {
+            background: var(--premium-gradient);
+            color: #000;
         }
 
-        .loading-content {
-            background-color: white;
-            padding: 2rem 3rem;
-            border-radius: 8px;
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #cccccc !important;
+        }
+
+        button:hover:not(:disabled) {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(106, 90, 205, 0.6);
+            background: linear-gradient(135deg, #6a5acd, var(--deep-purple));
+        }
+
+        button.premium-feature:hover:not(:disabled) {
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .speaking {
+            background: rgba(255, 255, 204, 0.3) !important;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(123, 104, 238, 0.5);
+        }
+
+        .stt-box.recording {
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
+        }
+
+        .emotion-display {
+            margin-top: 1.5rem;
             text-align: center;
+            font-size: 1.3rem;
+            color: var(--dark-purple);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(123, 104, 238, 0.1));
+            padding: 1.2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--secondary-color);
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+        .emotion-display.active {
+            box-shadow: 0 0 20px rgba(123, 104, 238, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(123, 104, 238, 0.2));
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        footer {
+        .footer {
+            background: var(--light-lavender);
+            padding: 2rem 1rem;
+            margin-top: 2rem;
             text-align: center;
-            padding: 1.5rem;
-            color: var(--light-text);
-            font-size: 0.9rem;
-            margin-top: auto;
+            color: var(--dark-purple);
+            border-top: 3px solid var(--deep-purple);
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .footer-links a {
-            color: var(--light-text);
+            color: var(--dark-purple);
             text-decoration: none;
-            transition: var(--transition);
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
 
         .footer-links a:hover {
-            color: var(--primary-color);
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(106, 90, 205, 0.5);
         }
 
-        /* Responsive styles */
-        @media (max-width: 768px) {
-            .preview-container {
-                flex-direction: column;
-            }
-
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .primary-btn, .secondary-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Error message */
-        .error-message {
-            color: #ff6b6b;
-            text-align: center;
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
             margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: var(--dark-purple);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: scale(1.2);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Modal styles */
+        .modal {
             display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--light-lavender);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-purple);
+        }
+
+        .modal-title {
+            margin-bottom: 1.5rem;
+            color: var(--dark-purple);
+            text-align: center;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Premium features section */
+        .premium-features {
+            background: var(--light-lavender);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .premium-features h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--dark-purple);
+            font-size: 1.8rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(75, 59, 140, 0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(74, 59, 140, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--deep-purple);
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--dark-purple);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .tts-stt-wrapper {
+                flex-direction: column;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .toolbar {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .nav-links a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .toggle-button, .premium-button {
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .tts-box, .stt-box {
+                padding: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dark mode toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--deep-purple);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        /* Word counter */
+        .word-counter {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--deep-purple);
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--premium-gradient);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Advanced settings */
+        .advanced-settings {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border: 1px dashed var(--deep-purple);
+        }
+
+        .advanced-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .advanced-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .advanced-content.show {
+            max-height: 500px;
+        }
+
+        /* Voice preview */
+        .voice-preview {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border: 1px solid var(--deep-purple);
+        }
+
+        .voice-preview-text {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109'/>
+    <meta name='google-adsense-platform-domain' content='blogspot.com'/>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-cut"></i>
-                <h1>ProBG Remover</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="premium-banner">PREMIUM</div>
+        <div class="logo">
+            <div class="logo-circle">
+                <span>PM</span>
             </div>
-            <p class="tagline">Remove backgrounds from images in seconds with AI-powered technology</p>
-        </header>
+            <h1>Prompt Minds Premium TTS & STT</h1>
+        </div>
+        <div class="toolbar">
+            <ul class="nav-links">
+                <li><a href="#home">होम</a></li>
+                <li><a href="#about">हमारे बारे में</a></li>
+                <li><a href="#services">सेवाएँ</a></li>
+                <li><a href="#contact">संपर्क</a></li>
+            </ul>
+            <button class="toggle-button" id="viewToggle">व्यू टॉगल करें</button>
+            <button class="premium-button" id="upgradeButton"><i class="fas fa-crown"></i> अपग्रेड करें</button>
+        </div>
+    </header>
 
-        <main>
-            <div class="upload-container">
-                <div class="drop-zone" id="dropZone">
-                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                    <h2>Upload Your Image</h2>
-                    <p>Drag & drop your image here or click to browse</p>
-                    <input type="file" id="fileInput" accept="image/jpeg, image/png, image/webp">
-                    <button class="browse-btn" id="browseBtn">Select Image</button>
-                    <div class="supported-formats">
-                        <span>Supported formats: JPG, PNG, WEBP (Max 5MB)</span>
-                    </div>
-                    <div class="error-message" id="errorMessage"></div>
+    <!-- Main Content -->
+    <main class="container">
+        <div class="tts-stt-wrapper">
+            <!-- Text to Speech Section -->
+            <div class="tts-box">
+                <div class="premium-badge">ADVANCED</div>
+                <h2>Text to Speech</h2>
+                <div class="word-counter" id="ttsWordCount">शब्द: 0</div>
+                <textarea id="text" rows="5" placeholder="Enter text (उदा., नमस्ते for Hindi)"></textarea>
+                
+                <div class="control-group">
+                    <label for="languages">भाषा चुनें:</label>
+                    <select id="languages"></select>
                 </div>
-
-                <div class="preview-container">
-                    <div class="image-preview" id="originalPreview">
-                        <h3>Original</h3>
-                        <div class="placeholder">
-                            <i class="fas fa-image"></i>
-                            <p>No image selected</p>
-                        </div>
-                        <img id="originalImage" style="display: none;">
+                
+                <div class="control-group">
+                    <label for="voices">आवाज़ चुनें:</label>
+                    <select id="voices"></select>
+                    <div class="voice-preview">
+                        <p class="voice-preview-text">This is a preview of the selected voice</p>
+                        <button id="previewVoice" class="premium-feature"><i class="fas fa-play"></i> Preview Voice</button>
                     </div>
-
-                    <div class="image-preview" id="resultPreview">
-                        <h3>Result</h3>
-                        <div class="placeholder">
-                            <i class="fas fa-magic"></i>
-                            <p>Background removed image will appear here</p>
-                        </div>
-                        <img id="resultImage" style="display: none;">
+                </div>
+                
+                <p class="note">नोट: आवाज़ के नाम लिंग का संकेत दे सकते हैं (उदा., "Heera" महिला के लिए, "Ravi" पुरुष के लिए)</p>
+                
+                <div class="control-group">
+                    <label for="rate">स्पीच गति: <span id="rateValue">1</span></label>
+                    <input type="range" id="rate" min="0.1" max="10" step="0.1" value="1">
+                </div>
+                
+                <div class="control-group">
+                    <label for="pitch">पिच: <span id="pitchValue">1</span></label>
+                    <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+                </div>
+                
+                <div class="control-group">
+                    <label for="volume">आवाज़ की मात्रा: <span id="volumeValue">1</span></label>
+                    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+                </div>
+                
+                <div class="advanced-settings">
+                    <div class="advanced-toggle" id="ttsAdvancedToggle">
+                        <span><i class="fas fa-cog"></i> Advanced Settings</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
+                    <div class="advanced-content" id="ttsAdvancedContent">
+                        <div class="control-group">
+                            <label for="emphasis">शब्द जोर: <span id="emphasisValue">moderate</span></label>
+                            <input type="range" id="emphasis" min="0" max="2" step="0.1" value="1">
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="intonation">Intonation Pattern:</label>
+                            <select id="intonation">
+                                <option value="default">Default</option>
+                                <option value="question">Question</option>
+                                <option value="exclamation">Exclamation</option>
+                                <option value="statement">Statement</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>
+                                <input type="checkbox" id="breathingEffect"> Add breathing effect
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="speak"><i class="fas fa-volume-up"></i> बोलें</button>
+                    <button id="pauseResume"><i class="fas fa-pause"></i> रुकें</button>
+                    <button id="stop"><i class="fas fa-stop"></i> बंद करें</button>
+                    <button id="downloadAudio" class="premium-feature"><i class="fas fa-download"></i> High Quality MP3</button>
+                    <button id="savePreset" class="premium-feature"><i class="fas fa-save"></i> Save Preset</button>
+                </div>
+                
+                <div class="progress-container" id="ttsProgressContainer">
+                    <div class="progress-bar" id="ttsProgressBar"></div>
                 </div>
             </div>
 
-            <div class="controls">
-                <button id="removeBgBtn" class="primary-btn" disabled>
-                    <i class="fas fa-magic"></i> Remove Background
-                </button>
-                <button id="downloadBtn" class="secondary-btn" disabled>
-                    <i class="fas fa-download"></i> Download PNG
-                </button>
-                <button id="resetBtn" class="secondary-btn">
-                    <i class="fas fa-redo"></i> Reset
-                </button>
+            <!-- Speech to Text Section -->
+            <div class="stt-box">
+                <div class="premium-badge">ADVANCED</div>
+                <h2>Speech to Text</h2>
+                <div class="word-counter" id="sttWordCount">शब्द: 0</div>
+                <textarea id="transcription" rows="5" placeholder="आपकी स्पीच यहाँ दिखाई देगी..."></textarea>
+                
+                <div class="control-group">
+                    <label for="sttLanguage">Recognition Language:</label>
+                    <select id="sttLanguage">
+                        <option value="hi-IN">हिंदी (Hindi)</option>
+                        <option value="en-US">English (US)</option>
+                        <option value="en-GB">English (UK)</option>
+                        <option value="es-ES">Spanish</option>
+                        <option value="fr-FR">French</option>
+                        <option value="de-DE">German</option>
+                    </select>
+                </div>
+                
+                <div class="advanced-settings">
+                    <div class="advanced-toggle" id="sttAdvancedToggle">
+                        <span><i class="fas fa-cog"></i> Advanced Settings</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="advanced-content" id="sttAdvancedContent">
+                        <div class="control-group">
+                            <label>
+                                <input type="checkbox" id="punctuation" checked> Auto punctuation
+                            </label>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>
+                                <input type="checkbox" id="profanityFilter"> Profanity filter
+                            </label>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="recognitionMode">Recognition Mode:</label>
+                            <select id="recognitionMode">
+                                <option value="fast">Fast (less accurate)</option>
+                                <option value="balanced" selected>Balanced</option>
+                                <option value="precise">Precise (slower)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <button id="record"><i class="fas fa-microphone"></i> <span id="recordText">रिकॉर्डिंग शुरू करें</span></button>
+                    <button id="copyText"><i class="fas fa-copy"></i> कॉपी करें</button>
+                    <button id="clearText"><i class="fas fa-trash"></i> साफ करें</button>
+                    <button id="translateText" class="premium-feature"><i class="fas fa-language"></i> Translate</button>
+                    <button id="summarizeText" class="premium-feature"><i class="fas fa-file-alt"></i> Summarize</button>
+                </div>
+                
+                <div class="progress-container" id="sttProgressContainer">
+                    <div class="progress-bar" id="sttProgressBar"></div>
+                </div>
+                
+                <div class="emotion-display">
+                    <h3><span id="emotion"></span></h3>
+                    <p id="confidence">Confidence: 0%</p>
+                    <p id="sentiment">Sentiment: Neutral</p>
+                </div>
             </div>
-        </main>
+        </div>
+        
+        <!-- Premium Features Section -->
+        <div class="premium-features">
+            <h2><i class="fas fa-crown"></i> Premium Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-file-audio"></i></div>
+                    <h3 class="feature-title">High Quality Audio</h3>
+                    <p>Download your speech as high quality MP3 files with customizable bitrates.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-language"></i></div>
+                    <h3 class="feature-title">Real-time Translation</h3>
+                    <p>Translate your speech to multiple languages with accurate pronunciation.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h3 class="feature-title">AI Emotion Detection</h3>
+                    <p>Advanced emotion and sentiment analysis from speech patterns.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+                    <h3 class="feature-title">Advanced Controls</h3>
+                    <p>Fine-tune speech parameters with professional-grade settings.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cloud"></i></div>
+                    <h3 class="feature-title">Cloud Storage</h3>
+                    <p>Save your audio files and transcriptions in secure cloud storage.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="feature-title">Privacy Protection</h3>
+                    <p>Enterprise-grade security for all your speech data.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="premium-button" id="learnMoreButton"><i class="fas fa-info-circle"></i> Learn More About Premium</button>
+            </div>
+        </div>
+    </main>
 
-        <div class="loading-modal" id="loadingModal">
-            <div class="loading-content">
-                <div class="spinner"></div>
-                <p>Processing your image...</p>
-                <p class="processing-text" id="processingText">This may take a few seconds</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#home">होम</a>
+            <a href="#about">हमारे बारे में</a>
+            <a href="#services">सेवाएँ</a>
+            <a href="#contact">संपर्क</a>
+            <a href="#privacy">गोपनीयता नीति</a>
+            <a href="#terms">नियम और शर्तें</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2025 Prompt Minds Premium. सभी अधिकार सुरक्षित।</p>
+    </footer>
+
+    <!-- Dark mode toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Upgrade Modal -->
+    <div class="modal" id="upgradeModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title"><i class="fas fa-crown"></i> Upgrade to Premium</h2>
+            <p>Unlock all advanced features with our premium subscription:</p>
+            <ul style="margin: 1rem 0; padding-left: 1.5rem;">
+                <li>High quality audio downloads</li>
+                <li>Advanced speech customization</li>
+                <li>Real-time translation</li>
+                <li>Emotion and sentiment analysis</li>
+                <li>Cloud storage for your files</li>
+                <li>Priority support</li>
+            </ul>
+            
+            <div style="text-align: center; margin: 1.5rem 0;">
+                <h3>Choose Your Plan</h3>
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;">
+                    <div style="border: 1px solid var(--deep-purple); border-radius: 10px; padding: 1rem; width: 150px;">
+                        <h4>Monthly</h4>
+                        <p><strong>$9.99</strong>/month</p>
+                        <button class="premium-button" style="width: 100%;">Select</button>
+                    </div>
+                    <div style="border: 2px solid var(--premium-gold); border-radius: 10px; padding: 1rem; width: 150px; position: relative;">
+                        <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: var(--premium-gradient); padding: 0.2rem 0.5rem; border-radius: 10px; font-size: 0.8rem;">BEST VALUE</div>
+                        <h4>Yearly</h4>
+                        <p><strong>$5.99</strong>/month</p>
+                        <p style="font-size: 0.8rem;">$71.88 billed annually</p>
+                        <button class="premium-button" style="width: 100%;">Select</button>
+                    </div>
+                </div>
             </div>
+            
+            <p style="font-size: 0.9rem; text-align: center;">7-day free trial available. Cancel anytime.</p>
         </div>
     </div>
 
-    <footer>
-        <p>© 2023 ProBG Remover. All rights reserved.</p>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">API Documentation</a>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const dropZone = document.getElementById('dropZone');
-            const fileInput = document.getElementById('fileInput');
-            const browseBtn = document.getElementById('browseBtn');
-            const originalPreview = document.getElementById('originalPreview');
-            const resultPreview = document.getElementById('resultPreview');
-            const originalImage = document.getElementById('originalImage');
-            const resultImage = document.getElementById('resultImage');
-            const removeBgBtn = document.getElementById('removeBgBtn');
-            const downloadBtn = document.getElementById('downloadBtn');
-            const resetBtn = document.getElementById('resetBtn');
-            const loadingModal = document.getElementById('loadingModal');
-            const errorMessage = document.getElementById('errorMessage');
-
-            // Replace with your actual Remove.bg API key
-            const REMOVE_BG_API_KEY = 'YOUR_API_KEY_HERE'; // Get from https://www.remove.bg/api
-
-            // Event Listeners
-            browseBtn.addEventListener('click', () => fileInput.click());
-            fileInput.addEventListener('change', handleFileSelect);
-            dropZone.addEventListener('dragover', handleDragOver);
-            dropZone.addEventListener('dragleave', handleDragLeave);
-            dropZone.addEventListener('drop', handleDrop);
-            removeBgBtn.addEventListener('click', removeBackground);
-            downloadBtn.addEventListener('click', downloadResult);
-            resetBtn.addEventListener('click', resetAll);
-
-            // Variables
-            let selectedFile = null;
-            let processedImageUrl = null;
-
-            // Functions
-            function handleFileSelect(e) {
-                const file = e.target.files[0];
-                if (file && validateFile(file)) {
-                    processSelectedFile(file);
+        // Notification system using Toastify
+        function showNotification(message, type = 'info', duration = 3000) {
+            let backgroundColor;
+            switch(type) {
+                case 'success': backgroundColor = '#4caf50'; break;
+                case 'error': backgroundColor = '#ff4d4d'; break;
+                case 'info': backgroundColor = '#7b68ee'; break;
+                case 'warning': backgroundColor = '#ff9800'; break;
+                default: backgroundColor = '#7b68ee';
+            }
+            
+            Toastify({
+                text: message,
+                duration: duration,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    background: backgroundColor,
+                    borderRadius: "8px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)"
                 }
-            }
+            }).showToast();
+        }
 
-            function handleDragOver(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropZone.classList.add('active');
-            }
+        // TTS Global Variables
+        let voices = [];
+        let isSpeaking = false;
+        let isPaused = false;
+        let pauseIndex = 0;
+        let currentUtterance = null;
+        let audioContext;
+        let mediaRecorder;
+        let audioChunks = [];
+        let isPremiumUser = false; // Change to true for premium features
 
-            function handleDragLeave(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropZone.classList.remove('active');
-            }
+        // DOM Elements
+        const textArea = document.getElementById('text');
+        const speakButton = document.getElementById('speak');
+        const pauseResumeButton = document.getElementById('pauseResume');
+        const stopButton = document.getElementById('stop');
+        const voicesSelect = document.getElementById('voices');
+        const rateSlider = document.getElementById('rate');
+        const pitchSlider = document.getElementById('pitch');
+        const volumeSlider = document.getElementById('volume');
+        const rateValue = document.getElementById('rateValue');
+        const pitchValue = document.getElementById('pitchValue');
+        const volumeValue = document.getElementById('volumeValue');
+        const languagesSelect = document.getElementById('languages');
+        const downloadAudioBtn = document.getElementById('downloadAudio');
+        const ttsWordCount = document.getElementById('ttsWordCount');
+        const sttWordCount = document.getElementById('sttWordCount');
+        const previewVoiceBtn = document.getElementById('previewVoice');
+        const ttsProgressBar = document.getElementById('ttsProgressBar');
+        const ttsProgressContainer = document.getElementById('ttsProgressContainer');
+        const sttProgressBar = document.getElementById('sttProgressBar');
+        const sttProgressContainer = document.getElementById('sttProgressContainer');
+        const upgradeModal = document.getElementById('upgradeModal');
+        const closeModal = document.querySelector('.close-modal');
+        const upgradeButton = document.getElementById('upgradeButton');
+        const learnMoreButton = document.getElementById('learnMoreButton');
 
-            function handleDrop(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropZone.classList.remove('active');
-                
-                const file = e.dataTransfer.files[0];
-                if (file && validateFile(file)) {
-                    processSelectedFile(file);
+        // Language names in Hindi and English
+        const languageNames = {
+            'hi-IN': 'हिंदी (Hindi - India)',
+            'en-US': 'अंग्रेजी (English - US)',
+            'en-GB': 'अंग्रेजी (English - UK)',
+            'es-ES': 'स्पेनिश (Spanish - Spain)',
+            'fr-FR': 'फ्रेंच (French - France)',
+            'de-DE': 'जर्मन (German - Germany)',
+            'it-IT': 'इटालियन (Italian - Italy)',
+            'ja-JP': 'जापानी (Japanese - Japan)',
+            'zh-CN': 'चीनी (Chinese - Simplified)',
+            'ru-RU': 'रूसी (Russian - Russia)',
+            'all': 'सभी भाषाएँ (All Languages)'
+        };
+
+        // Initialize advanced settings toggles
+        document.getElementById('ttsAdvancedToggle').addEventListener('click', function() {
+            const content = document.getElementById('ttsAdvancedContent');
+            const icon = this.querySelector('i');
+            content.classList.toggle('show');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+
+        document.getElementById('sttAdvancedToggle').addEventListener('click', function() {
+            const content = document.getElementById('sttAdvancedContent');
+            const icon = this.querySelector('i');
+            content.classList.toggle('show');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        });
+
+        // Word counter for TTS
+        textArea.addEventListener('input', () => {
+            const text = textArea.value.trim();
+            const wordCount = text ? text.split(/\s+/).length : 0;
+            ttsWordCount.textContent = `शब्द: ${wordCount}`;
+        });
+
+        // Word counter for STT
+        document.getElementById('transcription').addEventListener('input', () => {
+            const text = document.getElementById('transcription').value.trim();
+            const wordCount = text ? text.split(/\s+/).length : 0;
+            sttWordCount.textContent = `शब्द: ${wordCount}`;
+        });
+
+        // Populate languages dropdown
+        function populateLanguages() {
+            voices = window.speechSynthesis.getVoices();
+            const uniqueLangs = [...new Set(voices.map(voice => voice.lang))].sort();
+            languagesSelect.innerHTML = ''; // Clear existing options
+
+            // Add Hindi and English first
+            const priorityLangs = ['hi-IN', 'en-US'];
+            priorityLangs.forEach(lang => {
+                if (uniqueLangs.includes(lang)) {
+                    const option = document.createElement('option');
+                    option.value = lang;
+                    option.textContent = languageNames[lang];
+                    languagesSelect.appendChild(option);
                 }
-            }
+            });
 
-            function validateFile(file) {
-                const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
-                const maxSize = 5 * 1024 * 1024; // 5MB
-                
-                errorMessage.style.display = 'none';
-                
-                if (!validTypes.includes(file.type)) {
-                    showError('Please upload a valid image file (JPEG, PNG, or WEBP).');
-                    return false;
+            // Add "All Languages" option
+            const allOption = document.createElement('option');
+            allOption.value = 'all';
+            allOption.textContent = languageNames['all'];
+            languagesSelect.appendChild(allOption);
+
+            // Add remaining languages
+            uniqueLangs.forEach(lang => {
+                if (!priorityLangs.includes(lang)) {
+                    const option = document.createElement('option');
+                    option.value = lang;
+                    option.textContent = languageNames[lang] || lang;
+                    languagesSelect.appendChild(option);
                 }
-                
-                if (file.size > maxSize) {
-                    showError('File size exceeds 5MB limit. Please choose a smaller file.');
-                    return false;
-                }
-                
-                return true;
+            });
+        }
+
+        // Populate voices dropdown based on selected language
+        function populateVoices() {
+            const selectedLang = languagesSelect.value;
+            const filteredVoices = selectedLang === 'all' ? voices : voices.filter(voice => voice.lang === selectedLang);
+            voicesSelect.innerHTML = '';
+            
+            if (filteredVoices.length === 0) {
+                const option = document.createElement('option');
+                option.value = '-1';
+                option.textContent = 'कोई आवाज़ उपलब्ध नहीं';
+                voicesSelect.appendChild(option);
+                voicesSelect.disabled = true;
+                previewVoiceBtn.disabled = true;
+            } else {
+                voicesSelect.disabled = false;
+                previewVoiceBtn.disabled = !isPremiumUser;
+                filteredVoices.forEach(voice => {
+                    const option = document.createElement('option');
+                    option.value = voices.indexOf(voice);
+                    option.textContent = `${voice.name} (${languageNames[voice.lang] || voice.lang})`;
+                    voicesSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Initialize speech synthesis
+        window.speechSynthesis.onvoiceschanged = () => {
+            populateLanguages();
+            populateVoices();
+        };
+
+        // Check if voices are already loaded
+        if (window.speechSynthesis.getVoices().length > 0) {
+            voices = window.speechSynthesis.getVoices();
+            populateLanguages();
+            populateVoices();
+        }
+
+        // Event listeners
+        languagesSelect.addEventListener('change', populateVoices);
+
+        rateSlider.addEventListener('input', () => rateValue.textContent = rateSlider.value);
+        pitchSlider.addEventListener('input', () => pitchValue.textContent = pitchSlider.value);
+        volumeSlider.addEventListener('input', () => volumeValue.textContent = volumeSlider.value);
+
+        // Speak text function
+        function speakText(startIndex = 0) {
+            const text = textArea.value;
+            if (!text.trim()) {
+                showNotification('कृपया बोलने के लिए कुछ टेक्स्ट दर्ज करें।', 'error');
+                return;
+            }
+            const selectedVoiceIndex = parseInt(voicesSelect.value);
+            if (selectedVoiceIndex < 0) {
+                showNotification('कृपया एक मान्य आवाज़ चुनें।', 'error');
+                return;
             }
 
-            function showError(message) {
-                errorMessage.textContent = message;
-                errorMessage.style.display = 'block';
-            }
+            const speakText = text.slice(startIndex);
+            const utterance = new SpeechSynthesisUtterance(speakText);
+            utterance.voice = voices[selectedVoiceIndex];
+            utterance.lang = voices[selectedVoiceIndex].lang;
+            utterance.rate = parseFloat(rateSlider.value);
+            utterance.pitch = parseFloat(pitchSlider.value);
+            utterance.volume = parseFloat(volumeSlider.value);
 
-            function processSelectedFile(file) {
-                selectedFile = file;
-                
-                // Display original image
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    originalImage.src = e.target.result;
-                    originalImage.style.display = 'block';
-                    originalPreview.querySelector('.placeholder').style.display = 'none';
+            // Initialize progress bar
+            ttsProgressBar.style.width = '0%';
+            ttsProgressContainer.style.display = 'block';
+
+            utterance.onboundary = (event) => {
+                if (event.name === 'word') {
+                    pauseIndex = event.charIndex;
                     
-                    // Enable remove background button
-                    removeBgBtn.disabled = false;
-                };
-                reader.readAsDataURL(file);
+                    // Update progress
+                    const progress = (event.charIndex / text.length) * 100;
+                    ttsProgressBar.style.width = `${progress}%`;
+                }
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                isPaused = false;
+                pauseIndex = 0;
+                updateButtonStates();
+                textArea.classList.remove('speaking');
+                ttsProgressBar.style.width = '100%';
+                setTimeout(() => {
+                    ttsProgressContainer.style.display = 'none';
+                }, 1000);
+            };
+
+            utterance.onerror = (event) => {
+                console.error('SpeechSynthesis error:', event);
+                showNotification('टेक्स्ट टू स्पीच में त्रुटि हुई।', 'error');
+                isSpeaking = false;
+                isPaused = false;
+                updateButtonStates();
+                textArea.classList.remove('speaking');
+                ttsProgressContainer.style.display = 'none';
+            };
+
+            window.speechSynthesis.speak(utterance);
+            currentUtterance = utterance;
+            isSpeaking = true;
+            isPaused = false;
+            textArea.classList.add('speaking');
+            updateButtonStates();
+        }
+
+        // Update button states based on speech status
+        function updateButtonStates() {
+            speakButton.disabled = isSpeaking && !isPaused;
+            pauseResumeButton.disabled = !isSpeaking && !isPaused;
+            stopButton.disabled = !isSpeaking && !isPaused;
+            pauseResumeButton.innerHTML = isPaused ? '<i class="fas fa-play"></i> फिर से शुरू करें' : '<i class="fas fa-pause"></i> रुकें';
+            
+            // Disable premium features if not premium user
+            document.querySelectorAll('.premium-feature').forEach(btn => {
+                btn.disabled = !isPremiumUser;
+            });
+        }
+
+        // Speak button event
+        speakButton.addEventListener('click', () => {
+            if (isPaused) {
+                speakText(pauseIndex);
+            } else if (!isSpeaking) {
+                speakText(0);
+            }
+        });
+
+        // Pause/Resume button event
+        pauseResumeButton.addEventListener('click', () => {
+            if (isSpeaking && !isPaused) {
+                window.speechSynthesis.pause();
+                isSpeaking = false;
+                isPaused = true;
+                updateButtonStates();
+            } else if (isPaused) {
+                speakText(pauseIndex);
+            }
+        });
+
+        // Stop button event
+        stopButton.addEventListener('click', () => {
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            isPaused = false;
+            pauseIndex = 0;
+            textArea.classList.remove('speaking');
+            ttsProgressContainer.style.display = 'none';
+            updateButtonStates();
+        });
+
+        // Preview voice button
+        previewVoiceBtn.addEventListener('click', () => {
+            if (!isPremiumUser) {
+                showUpgradeModal();
+                return;
+            }
+            
+            const selectedVoiceIndex = parseInt(voicesSelect.value);
+            if (selectedVoiceIndex < 0) return;
+            
+            const utterance = new SpeechSynthesisUtterance("This is a preview of the selected voice. You can hear how it sounds.");
+            utterance.voice = voices[selectedVoiceIndex];
+            utterance.rate = parseFloat(rateSlider.value);
+            utterance.pitch = parseFloat(pitchSlider.value);
+            utterance.volume = parseFloat(volumeSlider.value);
+            
+            previewVoiceBtn.innerHTML = '<i class="fas fa-spinner loading"></i> Playing...';
+            previewVoiceBtn.disabled = true;
+            
+            utterance.onend = () => {
+                previewVoiceBtn.innerHTML = '<i class="fas fa-play"></i> Preview Voice';
+                previewVoiceBtn.disabled = false;
+            };
+            
+            window.speechSynthesis.speak(utterance);
+        });
+
+        // Download audio button
+        downloadAudioBtn.addEventListener('click', () => {
+            if (!isPremiumUser) {
+                showUpgradeModal();
+                return;
+            }
+            
+            const text = textArea.value;
+            if (!text.trim()) {
+                showNotification('डाउनलोड करने के लिए कृपया टेक्स्ट दर्ज करें', 'error');
+                return;
             }
 
-            async function removeBackground() {
-                if (!selectedFile) return;
+            const selectedVoiceIndex = parseInt(voicesSelect.value);
+            if (selectedVoiceIndex < 0) {
+                showNotification('कृपया एक मान्य आवाज़ चुनें', 'error');
+                return;
+            }
+
+            downloadAudioBtn.innerHTML = '<i class="fas fa-spinner loading"></i> Processing...';
+            downloadAudioBtn.disabled = true;
+
+            // Create a new utterance
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.voice = voices[selectedVoiceIndex];
+            utterance.rate = parseFloat(rateSlider.value);
+            utterance.pitch = parseFloat(pitchSlider.value);
+            utterance.volume = parseFloat(volumeSlider.value);
+
+            // Initialize audio context
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            // Create a media stream destination
+            const destination = audioContext.createMediaStreamDestination();
+            mediaRecorder = new MediaRecorder(destination.stream);
+            audioChunks = [];
+
+            mediaRecorder.ondataavailable = (event) => {
+                audioChunks.push(event.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const audioUrl = URL.createObjectURL(audioBlob);
+                const a = document.createElement('a');
+                a.href = audioUrl;
+                a.download = 'prompt-minds-tts.wav';
+                a.click();
+                URL.revokeObjectURL(audioUrl);
                 
-                // Show loading modal
-                loadingModal.classList.add('active');
+                downloadAudioBtn.innerHTML = '<i class="fas fa-download"></i> High Quality MP3';
+                downloadAudioBtn.disabled = false;
+                showNotification('ऑडियो डाउनलोड तैयार है', 'success');
+            };
+
+            // Connect the speech synthesis to the audio context
+            const source = audioContext.createMediaStreamSource(new MediaStream());
+            source.connect(destination);
+
+            // Start recording
+            mediaRecorder.start();
+
+            // Speak the text
+            utterance.onend = () => {
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                }, 500);
+            };
+
+            window.speechSynthesis.speak(utterance);
+        });
+
+        // Initialize button states
+        updateButtonStates();
+
+        // STT Functionality
+        const sttBox = document.querySelector('.stt-box');
+        const transcription = document.getElementById('transcription');
+        const recordButton = document.getElementById('record');
+        const copyButton = document.getElementById('copyText');
+        const clearButton = document.getElementById('clearText');
+        const recordText = document.getElementById('recordText');
+        const emotionDisplay = document.getElementById('emotion');
+        const confidenceDisplay = document.getElementById('confidence');
+        const sentimentDisplay = document.getElementById('sentiment');
+        const translateButton = document.getElementById('translateText');
+        const summarizeButton = document.getElementById('summarizeText');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            const recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 3;
+
+            let isRecording = false;
+            let finalTranscript = '';
+
+            // Emotion detection based on speech characteristics
+            function detectEmotion(rate, pitch, confidence) {
+                if (rate > 1.5 && pitch > 1.2) return "Excited (उत्साहित)";
+                else if (rate < 0.8 && pitch < 0.8) return "Sad (उदास)";
+                else if (rate > 1.2 && pitch < 0.8) return "Angry (गुस्सा)";
+                else if (confidence < 0.5) return "Uncertain (अनिश्चित)";
+                else return "Neutral (सामान्य)";
+            }
+
+            // Sentiment analysis (simulated)
+            function analyzeSentiment(text) {
+                if (!text) return "Neutral";
                 
-                try {
-                    // Create FormData and append the file
-                    const formData = new FormData();
-                    formData.append('image_file', selectedFile);
+                const positiveWords = ['happy', 'good', 'great', 'excellent', 'wonderful', 'awesome', 'love', 'like'];
+                const negativeWords = ['sad', 'bad', 'terrible', 'awful', 'hate', 'angry', 'upset'];
+                
+                const words = text.toLowerCase().split(/\s+/);
+                let positiveCount = 0;
+                let negativeCount = 0;
+                
+                words.forEach(word => {
+                    if (positiveWords.includes(word)) positiveCount++;
+                    if (negativeWords.includes(word)) negativeCount++;
+                });
+                
+                if (positiveCount > negativeCount + 2) return "Positive";
+                if (negativeCount > positiveCount + 2) return "Negative";
+                return "Neutral";
+            }
+
+            // Record button event
+            recordButton.addEventListener('click', () => {
+                if (!isRecording) {
+                    const selectedLang = document.getElementById('sttLanguage').value;
+                    recognition.lang = selectedLang;
+                    recognition.start();
+                    isRecording = true;
+                    recordText.textContent = 'रिकॉर्डिंग बंद करें';
+                    recordButton.innerHTML = '<i class="fas fa-stop"></i> रिकॉर्डिंग बंद करें';
+                    finalTranscript = '';
+                    sttBox.classList.add('recording');
+                    sttProgressBar.style.width = '0%';
+                    sttProgressContainer.style.display = 'block';
+                    showNotification('रिकॉर्डिंग शुरू हो गई है', 'info');
+                } else {
+                    recognition.stop();
+                    isRecording = false;
+                    recordText.textContent = 'रिकॉर्डिंग शुरू करें';
+                    recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
+                    sttBox.classList.remove('recording');
+                    sttProgressContainer.style.display = 'none';
+                }
+            });
+
+            // Recognition result event
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let highestConfidence = 0;
+                
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    const confidence = event.results[i][0].confidence;
                     
-                    // Call Remove.bg API
-                    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
-                        method: 'POST',
-                        headers: {
-                            'X-Api-Key': REMOVE_BG_API_KEY
-                        },
-                        body: formData
-                    });
-                    
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.errors ? errorData.errors[0].title : 'Failed to remove background');
+                    if (confidence > highestConfidence) {
+                        highestConfidence = confidence;
                     }
                     
-                    // Get the processed image as blob
-                    const blob = await response.blob();
-                    processedImageUrl = URL.createObjectURL(blob);
-                    
-                    // Display result
-                    resultImage.src = processedImageUrl;
-                    resultImage.style.display = 'block';
-                    resultPreview.querySelector('.placeholder').style.display = 'none';
-                    
-                    // Enable download button
-                    downloadBtn.disabled = false;
-                    
-                } catch (error) {
-                    console.error('Error removing background:', error);
-                    showError('Error removing background: ' + error.message);
-                } finally {
-                    // Hide loading modal
-                    loadingModal.classList.remove('active');
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript + ' ';
+                        
+                        // Simulate some emotion detection (in a real app, you'd analyze speech patterns)
+                        const simulatedRate = 0.8 + Math.random() * 1.2;
+                        const simulatedPitch = 0.8 + Math.random() * 1.2;
+                        const emotion = detectEmotion(simulatedRate, simulatedPitch, confidence);
+                        const sentiment = analyzeSentiment(transcript);
+                        
+                        emotionDisplay.textContent = emotion;
+                        confidenceDisplay.textContent = `Confidence: ${Math.round(confidence * 100)}%`;
+                        sentimentDisplay.textContent = `Sentiment: ${sentiment}`;
+                        document.querySelector('.emotion-display').classList.add('active');
+                    } else {
+                        interimTranscript += transcript;
+                    }
                 }
-            }
+                
+                transcription.value = finalTranscript + interimTranscript;
+                
+                // Update progress bar based on speech length
+                const progress = Math.min(100, (transcription.value.length / 1000) * 100);
+                sttProgressBar.style.width = `${progress}%`;
+                
+                // Update word count
+                const text = transcription.value.trim();
+                const wordCount = text ? text.split(/\s+/).length : 0;
+                sttWordCount.textContent = `शब्द: ${wordCount}`;
+            };
 
-            function downloadResult() {
-                if (!processedImageUrl) return;
-                
-                const link = document.createElement('a');
-                link.href = processedImageUrl;
-                link.download = 'background-removed.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
+            // Recognition end event
+            recognition.onend = () => {
+                isRecording = false;
+                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
+                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
+                sttBox.classList.remove('recording');
+                sttProgressContainer.style.display = 'none';
+                emotionDisplay.textContent = '';
+                confidenceDisplay.textContent = 'Confidence: 0%';
+                sentimentDisplay.textContent = 'Sentiment: Neutral';
+                document.querySelector('.emotion-display').classList.remove('active');
+            };
 
-            function resetAll() {
-                // Reset file input
-                fileInput.value = '';
-                
-                // Reset previews
-                originalImage.src = '';
-                originalImage.style.display = 'none';
-                originalPreview.querySelector('.placeholder').style.display = 'flex';
-                
-                resultImage.src = '';
-                resultImage.style.display = 'none';
-                resultPreview.querySelector('.placeholder').style.display = 'flex';
-                
-                // Reset buttons
-                removeBgBtn.disabled = true;
-                downloadBtn.disabled = true;
-                
-                // Reset variables
-                selectedFile = null;
-                processedImageUrl = null;
-                
-                // Hide error message
-                errorMessage.style.display = 'none';
+            // Recognition error event
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                showNotification('स्पीच रिकग्निशन में त्रुटि: ' + event.error, 'error');
+                isRecording = false;
+                recordText.textContent = 'रिकॉर्डिंग शुरू करें';
+                recordButton.innerHTML = '<i class="fas fa-microphone"></i> रिकॉर्डिंग शुरू करें';
+                sttBox.classList.remove('recording');
+                sttProgressContainer.style.display = 'none';
+            };
+        } else {
+            recordButton.disabled = true;
+            recordButton.innerHTML = '<i class="fas fa-microphone-slash"></i> असमर्थित';
+            showNotification('यह ब्राउज़र स्पीच रिकग्निशन को समर्थन नहीं करता', 'error');
+        }
+
+        // Copy text button
+        copyButton.addEventListener('click', () => {
+            const text = transcription.value;
+            if (text.trim()) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showNotification('टेक्स्ट कॉपी हो गया है', 'success');
+                }).catch(err => {
+                    console.error('Could not copy text: ', err);
+                    showNotification('टेक्स्ट कॉपी करने में त्रुटि', 'error');
+                });
+            } else {
+                showNotification('कॉपी करने के लिए कोई टेक्स्ट नहीं है', 'error');
             }
+        });
+
+        // Clear text button
+        clearButton.addEventListener('click', () => {
+            transcription.value = '';
+            sttWordCount.textContent = 'शब्द: 0';
+            showNotification('टेक्स्ट साफ हो गया है', 'success');
+        });
+
+        // Translate text button
+        translateButton.addEventListener('click', () => {
+            if (!isPremiumUser) {
+                showUpgradeModal();
+                return;
+            }
+            
+            const text = transcription.value;
+            if (!text.trim()) {
+                showNotification('Translate करने के लिए कोई टेक्स्ट नहीं है', 'error');
+                return;
+            }
+            
+            showNotification('Translating text... (This is a premium feature demo)', 'info');
+            // In a real app, you would call a translation API here
+        });
+
+        // Summarize text button
+        summarizeButton.addEventListener('click', () => {
+            if (!isPremiumUser) {
+                showUpgradeModal();
+                return;
+            }
+            
+            const text = transcription.value;
+            if (!text.trim()) {
+                showNotification('Summarize करने के लिए कोई टेक्स्ट नहीं है', 'error');
+                return;
+            }
+            
+            showNotification('Summarizing text... (This is a premium feature demo)', 'info');
+            // In a real app, you would call a summarization API here
+        });
+
+        // Modal functionality
+        function showUpgradeModal() {
+            upgradeModal.style.display = 'flex';
+        }
+
+        function hideUpgradeModal() {
+            upgradeModal.style.display = 'none';
+        }
+
+        closeModal.addEventListener('click', hideUpgradeModal);
+        upgradeButton.addEventListener('click', showUpgradeModal);
+        learnMoreButton.addEventListener('click', showUpgradeModal);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target === upgradeModal) {
+                hideUpgradeModal();
+            }
+        });
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            
+            if (isDarkMode) {
+                document.documentElement.style.setProperty('--dark-purple', '#f3eaff');
+                document.documentElement.style.setProperty('--light-lavender', '#2a1b5e');
+                document.documentElement.style.setProperty('--deep-purple', '#7b68ee');
+                document.documentElement.style.setProperty('--very-light-white', '#1a113f');
+                document.documentElement.style.setProperty('--almost-white', '#4a3b8c');
+            } else {
+                document.documentElement.style.setProperty('--dark-purple', '#2a1b5e');
+                document.documentElement.style.setProperty('--light-lavender', '#f3eaff');
+                document.documentElement.style.setProperty('--deep-purple', '#4a3b8c');
+                document.documentElement.style.setProperty('--very-light-white', '#ffffff');
+                document.documentElement.style.setProperty('--almost-white', '#f8f8ff');
+            }
+        });
+
+        // View toggle button
+        const viewToggle = document.getElementById('viewToggle');
+        viewToggle.addEventListener('click', () => {
+            const ttsBox = document.querySelector('.tts-box');
+            const sttBox = document.querySelector('.stt-box');
+            
+            if (ttsBox.style.display === 'none') {
+                ttsBox.style.display = 'block';
+                sttBox.style.display = 'block';
+                viewToggle.textContent = 'व्यू टॉगल करें';
+            } else {
+                ttsBox.style.display = 'none';
+                viewToggle.textContent = 'TTS दिखाएँ';
+            }
+        });
+
+        // Initialize with some demo text
+        window.addEventListener('load', () => {
+            textArea.value = "नमस्ते, यह प्रॉम्प्ट माइंड्स टेक्स्ट टू स्पीच डेमो है। आप यहाँ किसी भी भाषा में टेक्स्ट दर्ज कर सकते हैं और इसे सुन सकते हैं।";
+            const wordCount = textArea.value.trim() ? textArea.value.trim().split(/\s+/).length : 0;
+            ttsWordCount.textContent = `शब्द: ${wordCount}`;
+            
+            // Show welcome notification
+            setTimeout(() => {
+                showNotification('Welcome to Prompt Minds Premium TTS & STT! Try speaking or typing text.', 'info', 5000);
+            }, 1000);
         });
     </script>
 </body>
