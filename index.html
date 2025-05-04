@@ -3,31 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrimePay | Secure Payment Gateway</title>
+    <title>PrimeLoan | Instant Loan Approval</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4a6bff;
+            --primary: #6c5ce7;
             --secondary: #f8f9fa;
-            --dark: #343a40;
+            --dark: #2d3436;
             --light: #ffffff;
-            --success: #28a745;
-            --danger: #dc3545;
-            --warning: #ffc107;
-            --info: #17a2b8;
+            --success: #00b894;
+            --danger: #d63031;
+            --warning: #fdcb6e;
+            --info: #0984e3;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         body {
-            background-color: #f5f7ff;
+            background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         }
         
         .container {
@@ -39,7 +44,7 @@
         /* Header Styles */
         header {
             background-color: var(--light);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -53,7 +58,7 @@
         }
         
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
@@ -63,7 +68,7 @@
         
         .logo i {
             margin-right: 10px;
-            font-size: 28px;
+            font-size: 30px;
         }
         
         .nav-links {
@@ -73,6 +78,7 @@
         
         .nav-links li {
             margin-left: 30px;
+            position: relative;
         }
         
         .nav-links a {
@@ -80,10 +86,16 @@
             color: var(--dark);
             font-weight: 500;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
         }
         
         .nav-links a:hover {
             color: var(--primary);
+        }
+        
+        .nav-links a i {
+            margin-right: 5px;
         }
         
         .mobile-menu-btn {
@@ -97,246 +109,112 @@
         
         /* Hero Section */
         .hero {
-            padding: 80px 0;
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
             text-align: center;
-            background: linear-gradient(135deg, #f5f7ff 0%, #e8ecff 100%);
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
             color: var(--dark);
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
         }
         
         .hero p {
             font-size: 1.1rem;
             color: #666;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-        
-        /* Payment Section */
-        .payment-section {
-            padding: 60px 0;
-        }
-        
-        .payment-container {
-            background-color: var(--light);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .payment-header {
-            background-color: var(--primary);
-            color: var(--light);
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .payment-header h2 {
-            font-size: 1.5rem;
-        }
-        
-        .payment-body {
-            padding: 30px;
-        }
-        
-        .payment-amount {
-            margin-bottom: 30px;
-        }
-        
-        .payment-amount label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .amount-input {
-            display: flex;
-            align-items: center;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .amount-input span {
-            padding: 12px 15px;
-            background-color: var(--secondary);
-            font-weight: 500;
-        }
-        
-        .amount-input input {
-            flex: 1;
-            padding: 12px 15px;
-            border: none;
-            outline: none;
-            font-size: 16px;
-        }
-        
-        .payment-methods {
-            margin-bottom: 30px;
-        }
-        
-        .payment-methods h3 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-            color: var(--dark);
-        }
-        
-        .method-tabs {
-            display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
-        }
-        
-        .method-tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: 500;
-            color: #666;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-        
-        .method-tab.active {
-            color: var(--primary);
-            border-bottom: 3px solid var(--primary);
-        }
-        
-        .method-content {
-            display: none;
-        }
-        
-        .method-content.active {
-            display: block;
-        }
-        
-        .wallet-options, .card-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 15px;
-        }
-        
-        .wallet-option, .card-option {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .wallet-option:hover, .card-option:hover {
-            border-color: var(--primary);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .wallet-option img, .card-option img {
-            width: 60px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-        
-        .wallet-option p, .card-option p {
-            font-size: 14px;
-            margin: 0;
-        }
-        
-        .card-form {
-            margin-top: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 0 -10px;
-        }
-        
-        .col {
-            flex: 1;
-            padding: 0 10px;
-            min-width: 150px;
+            margin-bottom: 40px;
+            max-width: 600px;
         }
         
         .btn {
             display: inline-block;
-            padding: 12px 25px;
+            padding: 15px 30px;
             background-color: var(--primary);
             color: var(--light);
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
-            text-align: center;
-            width: 100%;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
         }
         
         .btn:hover {
-            background-color: #3a5ae8;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.4);
         }
         
-        .btn-block {
-            display: block;
-            width: 100%;
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+            box-shadow: none;
         }
         
-        .secure-payment {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--light);
         }
         
-        .secure-payment i {
-            color: var(--success);
-            margin-right: 8px;
-            font-size: 18px;
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 60px 0;
+        /* Loan Calculator Section */
+        .loan-calculator {
+            padding: 80px 0;
             background-color: var(--light);
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
         
         .section-title h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--dark);
             margin-bottom: 15px;
         }
@@ -345,62 +223,336 @@
             color: #666;
             max-width: 700px;
             margin: 0 auto;
+            font-size: 1.1rem;
         }
         
-        .features-grid {
+        .calculator-container {
+            display: flex;
+            background-color: var(--light);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .calculator-form {
+            flex: 1;
+            padding: 40px;
+            background-color: var(--light);
+        }
+        
+        .calculator-result {
+            flex: 1;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, #8c7ae6 100%);
+            color: var(--light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background-color: var(--secondary);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+        }
+        
+        .range-slider {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .result-item {
+            margin-bottom: 25px;
+        }
+        
+        .result-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .result-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Loan Types Section */
+        .loan-types {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .types-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-top: 50px;
         }
         
-        .feature-card {
-            background-color: var(--secondary);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .type-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
         }
         
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
         
-        .feature-icon {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
+        .type-image {
+            height: 200px;
+            overflow: hidden;
         }
         
-        .feature-card h3 {
-            font-size: 1.3rem;
+        .type-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .type-card:hover .type-image img {
+            transform: scale(1.1);
+        }
+        
+        .type-content {
+            padding: 25px;
+        }
+        
+        .type-content h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--dark);
         }
         
-        .feature-card p {
+        .type-content p {
             color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .type-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+        
+        .type-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .type-features li i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        
+        /* Application Process Section */
+        .application-process {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #eee;
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--light);
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+        }
+        
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .testimonial-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-rating {
+            color: var(--warning);
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-text {
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #8c7ae6 100%);
+            color: var(--light);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        .btn-light {
+            background-color: var(--light);
+            color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-light:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         /* Footer */
         footer {
             background-color: var(--dark);
             color: var(--light);
-            padding: 60px 0 20px;
+            padding: 80px 0 20px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 60px;
         }
         
         .footer-column h3 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
         
         .footer-column h3::after {
@@ -409,7 +561,7 @@
             left: 0;
             bottom: 0;
             width: 40px;
-            height: 2px;
+            height: 3px;
             background-color: var(--primary);
         }
         
@@ -418,17 +570,35 @@
         }
         
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-links a {
             color: #bbb;
             text-decoration: none;
             transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+            font-size: 14px;
         }
         
         .footer-links a:hover {
             color: var(--light);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact p i {
+            margin-right: 10px;
+            color: var(--primary);
         }
         
         .social-links {
@@ -446,22 +616,58 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: var(--light);
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
             background-color: var(--primary);
+            transform: translateY(-3px);
         }
         
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #bbb;
             font-size: 14px;
         }
         
         /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .calculator-container {
+                flex-direction: column;
+            }
+            
+            .process-steps {
+                flex-wrap: wrap;
+            }
+            
+            .step {
+                flex: 0 0 50%;
+                max-width: 50%;
+                margin-bottom: 40px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-links {
                 position: fixed;
@@ -496,39 +702,57 @@
                 font-size: 1rem;
             }
             
-            .wallet-options, .card-options {
-                grid-template-columns: repeat(2, 1fr);
+            .btn {
+                padding: 12px 25px;
             }
             
-            .row {
-                flex-direction: column;
+            .section-title h2 {
+                font-size: 2rem;
             }
             
-            .col {
-                margin-bottom: 15px;
+            .calculator-form, .calculator-result {
+                padding: 30px;
+            }
+            
+            .process-steps::before {
+                display: none;
+            }
+            
+            .step {
+                flex: 0 0 100%;
+                max-width: 100%;
             }
         }
         
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .hero {
-                padding: 60px 0;
+                padding: 80px 0;
             }
             
-            .payment-body {
-                padding: 20px;
+            .hero h1 {
+                font-size: 1.8rem;
             }
             
-            .method-tabs {
-                flex-wrap: wrap;
+            .btn-group {
+                display: flex;
+                flex-direction: column;
             }
             
-            .method-tab {
-                padding: 8px 15px;
-                font-size: 14px;
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 15px;
             }
             
-            .wallet-options, .card-options {
-                grid-template-columns: 1fr;
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .result-value {
+                font-size: 1.5rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -539,15 +763,16 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <i class="fas fa-wallet"></i>
-                    PrimePay
+                    <i class="fas fa-hand-holding-usd"></i>
+                    PrimeLoan
                 </a>
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#calculator"><i class="fas fa-calculator"></i> Calculator</a></li>
+                    <li><a href="#types"><i class="fas fa-list"></i> Loan Types</a></li>
+                    <li><a href="#process"><i class="fas fa-tasks"></i> Process</a></li>
+                    <li><a href="#testimonials"><i class="fas fa-comments"></i> Testimonials</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
                 <button class="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
@@ -559,203 +784,291 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Secure & Easy Online Payments</h1>
-            <p>Experience seamless transactions with our advanced payment gateway supporting all major payment methods including UPI, wallets, cards, and more.</p>
-        </div>
-    </section>
-
-    <!-- Payment Section -->
-    <section class="payment-section">
-        <div class="container">
-            <div class="payment-container">
-                <div class="payment-header">
-                    <h2>Make a Payment</h2>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Get <span>Instant Loan</span> Approval Within Minutes</h1>
+                    <p>PrimeLoan offers the fastest loan approval process with competitive interest rates and flexible repayment options tailored to your needs.</p>
+                    <div class="btn-group">
+                        <a href="#calculator" class="btn">Apply Now</a>
+                        <a href="#types" class="btn btn-outline">Learn More</a>
+                    </div>
                 </div>
-                <div class="payment-body">
-                    <div class="payment-amount">
-                        <label for="amount">Enter Amount (INR)</label>
-                        <div class="amount-input">
-                            <span>₹</span>
-                            <input type="number" id="amount" placeholder="0.00" min="1">
-                        </div>
-                    </div>
-                    
-                    <div class="payment-methods">
-                        <h3>Choose Payment Method</h3>
-                        
-                        <div class="method-tabs">
-                            <div class="method-tab active" data-tab="upi">UPI Apps</div>
-                            <div class="method-tab" data-tab="wallet">Wallets</div>
-                            <div class="method-tab" data-tab="card">Cards</div>
-                        </div>
-                        
-                        <div class="method-content active" id="upi-content">
-                            <div class="wallet-options">
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=GPay" alt="Google Pay">
-                                    <p>Google Pay</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=PhonePe" alt="PhonePe">
-                                    <p>PhonePe</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=Paytm" alt="Paytm">
-                                    <p>Paytm</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=BHIM" alt="BHIM">
-                                    <p>BHIM UPI</p>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="upi-id">Enter UPI ID</label>
-                                <input type="text" id="upi-id" class="form-control" placeholder="yourname@upi">
-                            </div>
-                            
-                            <button class="btn">Pay Now</button>
-                        </div>
-                        
-                        <div class="method-content" id="wallet-content">
-                            <div class="wallet-options">
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=Paytm" alt="Paytm Wallet">
-                                    <p>Paytm Wallet</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=PhonePe" alt="PhonePe Wallet">
-                                    <p>PhonePe Wallet</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=AmazonPay" alt="Amazon Pay">
-                                    <p>Amazon Pay</p>
-                                </div>
-                                <div class="wallet-option">
-                                    <img src="https://via.placeholder.com/60x60?text=Mobikwik" alt="MobiKwik">
-                                    <p>MobiKwik</p>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="wallet-mobile">Registered Mobile Number</label>
-                                <input type="tel" id="wallet-mobile" class="form-control" placeholder="Enter mobile number">
-                            </div>
-                            
-                            <button class="btn">Pay Now</button>
-                        </div>
-                        
-                        <div class="method-content" id="card-content">
-                            <div class="card-options">
-                                <div class="card-option">
-                                    <img src="https://via.placeholder.com/60x40?text=Visa" alt="Visa">
-                                    <p>Visa</p>
-                                </div>
-                                <div class="card-option">
-                                    <img src="https://via.placeholder.com/60x40?text=Mastercard" alt="Mastercard">
-                                    <p>Mastercard</p>
-                                </div>
-                                <div class="card-option">
-                                    <img src="https://via.placeholder.com/60x40?text=Rupay" alt="RuPay">
-                                    <p>RuPay</p>
-                                </div>
-                                <div class="card-option">
-                                    <img src="https://via.placeholder.com/60x40?text=Amex" alt="American Express">
-                                    <p>Amex</p>
-                                </div>
-                            </div>
-                            
-                            <div class="card-form">
-                                <div class="form-group">
-                                    <label for="card-number">Card Number</label>
-                                    <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="card-name">Name on Card</label>
-                                    <input type="text" id="card-name" class="form-control" placeholder="John Doe">
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="card-expiry">Expiry Date</label>
-                                            <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY">
-                                        </div>
-                                    </div>
-                                    <div class="col">
-                                        <div class="form-group">
-                                            <label for="card-cvv">CVV</label>
-                                            <input type="text" id="card-cvv" class="form-control" placeholder="123">
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="btn">Pay Now</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="secure-payment">
-                        <i class="fas fa-lock"></i>
-                        <span>Your payment is secured with 256-bit SSL encryption</span>
-                    </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Happy customer with money">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Loan Calculator Section -->
+    <section class="loan-calculator" id="calculator">
         <div class="container">
             <div class="section-title">
-                <h2>Why Choose PrimePay?</h2>
-                <p>We provide the most secure and convenient payment experience for both businesses and customers.</p>
+                <h2>Loan Calculator</h2>
+                <p>Calculate your monthly payments and find the perfect loan option for your needs</p>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="loan-amount">Loan Amount (₹)</label>
+                        <input type="number" id="loan-amount" class="form-control" placeholder="e.g. 50000" min="1000" max="10000000">
+                        <input type="range" id="loan-amount-range" class="range-slider" min="1000" max="10000000" step="1000" value="50000">
+                        <div class="range-values">
+                            <span>₹1,000</span>
+                            <span>₹10,00,000</span>
+                        </div>
                     </div>
-                    <h3>Bank-Level Security</h3>
-                    <p>All transactions are protected with advanced encryption and fraud detection systems.</p>
+                    
+                    <div class="form-group">
+                        <label for="loan-tenure">Loan Tenure (Months)</label>
+                        <input type="number" id="loan-tenure" class="form-control" placeholder="e.g. 24" min="3" max="84">
+                        <input type="range" id="loan-tenure-range" class="range-slider" min="3" max="84" step="1" value="24">
+                        <div class="range-values">
+                            <span>3 Months</span>
+                            <span>84 Months</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" class="form-control" placeholder="e.g. 10.5" min="5" max="25" step="0.1">
+                        <input type="range" id="interest-rate-range" class="range-slider" min="5" max="25" step="0.1" value="10.5">
+                        <div class="range-values">
+                            <span>5%</span>
+                            <span>25%</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-block">Apply for Loan</button>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+                <div class="calculator-result">
+                    <div class="result-item">
+                        <h3>Monthly Payment</h3>
+                        <div class="result-value">₹2,500</div>
                     </div>
-                    <h3>Instant Processing</h3>
-                    <p>Payments are processed instantly with 99.9% uptime for uninterrupted service.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-money-bill-wave"></i>
+                    
+                    <div class="result-item">
+                        <h3>Total Interest</h3>
+                        <div class="result-value">₹10,000</div>
                     </div>
-                    <h3>Multiple Payment Options</h3>
-                    <p>Accept all major payment methods including UPI, wallets, cards, and net banking.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-headset"></i>
+                    
+                    <div class="result-item">
+                        <h3>Total Payment</h3>
+                        <div class="result-value">₹60,000</div>
                     </div>
-                    <h3>24/7 Support</h3>
-                    <p>Our dedicated support team is available round the clock to assist you.</p>
+                    
+                    <div class="result-item">
+                        <h3>Approval Time</h3>
+                        <div class="result-value">24 Hours</div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Loan Types Section -->
+    <section class="loan-types" id="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Loan Products</h2>
+                <p>We offer a variety of loan products to meet your financial needs</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-image">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Personal Loan">
+                    </div>
+                    <div class="type-content">
+                        <h3>Personal Loan</h3>
+                        <p>Get funds for any personal need with quick approval and flexible repayment options.</p>
+                        <ul class="type-features">
+                            <li><i class="fas fa-check-circle"></i> Up to ₹20,00,000</li>
+                            <li><i class="fas fa-check-circle"></i> Interest from 10.5% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> 12 to 60 months tenure</li>
+                            <li><i class="fas fa-check-circle"></i> Minimal documentation</li>
+                        </ul>
+                        <a href="#" class="btn btn-block">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-image">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Home Loan">
+                    </div>
+                    <div class="type-content">
+                        <h3>Home Loan</h3>
+                        <p>Realize your dream of owning a home with our competitive home loan rates.</p>
+                        <ul class="type-features">
+                            <li><i class="fas fa-check-circle"></i> Up to ₹1,00,00,000</li>
+                            <li><i class="fas fa-check-circle"></i> Interest from 8.4% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> Up to 30 years tenure</li>
+                            <li><i class="fas fa-check-circle"></i> Balance transfer facility</li>
+                        </ul>
+                        <a href="#" class="btn btn-block">Apply Now</a>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-image">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Business Loan">
+                    </div>
+                    <div class="type-content">
+                        <h3>Business Loan</h3>
+                        <p>Fuel your business growth with customized financing solutions.</p>
+                        <ul class="type-features">
+                            <li><i class="fas fa-check-circle"></i> Up to ₹50,00,000</li>
+                            <li><i class="fas fa-check-circle"></i> Interest from 12% p.a.</li>
+                            <li><i class="fas fa-check-circle"></i> 6 to 48 months tenure</li>
+                            <li><i class="fas fa-check-circle"></i> No collateral required</li>
+                        </ul>
+                        <a href="#" class="btn btn-block">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process Section -->
+    <section class="application-process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Simple Application Process</h2>
+                <p>Get your loan approved in just 4 easy steps</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <h3>Apply Online</h3>
+                    <p>Fill our simple application form in just 5 minutes</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-file-upload"></i>
+                    </div>
+                    <h3>Upload Documents</h3>
+                    <p>Upload required documents securely</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Get Approved</h3>
+                    <p>Receive instant approval decision</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Receive Money</h3>
+                    <p>Funds disbursed to your account</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+                <p>Hear from people who have experienced our services</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Riya Sharma">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Riya Sharma</h4>
+                            <p>Home Loan Customer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "PrimeLoan made my dream of owning a home come true. The process was so smooth and the interest rates were the best I found. Highly recommended!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Vikram Patel">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Vikram Patel</h4>
+                            <p>Business Loan Customer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "I needed quick funds to expand my business. PrimeLoan approved my application within hours and the money was in my account the next day. Excellent service!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Priya Reddy">
+                        </div>
+                        <div class="testimonial-info">
+                            <h4>Priya Reddy</h4>
+                            <p>Personal Loan Customer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The entire process was digital and hassle-free. I got a personal loan at a much lower interest rate than other banks. Will definitely use again!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of satisfied customers who have achieved their financial goals with PrimeLoan</p>
+            <a href="#calculator" class="btn btn-light">Apply for Loan Now</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>PrimePay</h3>
-                    <p>Providing secure and seamless payment solutions for businesses and individuals since 2020.</p>
+                    <h3>PrimeLoan</h3>
+                    <p>Your trusted partner for all financial needs. We provide quick, transparent and affordable loan solutions.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -767,39 +1080,38 @@
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#calculator"><i class="fas fa-chevron-right"></i> Loan Calculator</a></li>
+                        <li><a href="#types"><i class="fas fa-chevron-right"></i> Loan Types</a></li>
+                        <li><a href="#process"><i class="fas fa-chevron-right"></i> Application Process</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Payment Methods</h3>
+                    <h3>Loan Products</h3>
                     <ul class="footer-links">
-                        <li><a href="#">UPI Payments</a></li>
-                        <li><a href="#">Digital Wallets</a></li>
-                        <li><a href="#">Credit Cards</a></li>
-                        <li><a href="#">Debit Cards</a></li>
-                        <li><a href="#">Net Banking</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Personal Loans</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home Loans</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Business Loans</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Education Loans</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Car Loans</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Refund Policy</a></li>
-                    </ul>
+                    <h3>Contact Us</h3>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Financial Street, Mumbai, India</p>
+                        <p><i class="fas fa-phone-alt"></i> +91 9876543210</p>
+                        <p><i class="fas fa-envelope"></i> info@primeloan.com</p>
+                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
+                    </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 PrimePay. All Rights Reserved.</p>
+                <p>&copy; 2023 PrimeLoan. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a></p>
             </div>
         </div>
     </footer>
@@ -815,67 +1127,92 @@
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
         
-        // Payment Method Tabs
-        const methodTabs = document.querySelectorAll('.method-tab');
-        const methodContents = document.querySelectorAll('.method-content');
+        // Loan Calculator Functionality
+        const loanAmountInput = document.getElementById('loan-amount');
+        const loanAmountRange = document.getElementById('loan-amount-range');
+        const tenureInput = document.getElementById('loan-tenure');
+        const tenureRange = document.getElementById('loan-tenure-range');
+        const interestInput = document.getElementById('interest-rate');
+        const interestRange = document.getElementById('interest-rate-range');
         
-        methodTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
-                methodTabs.forEach(t => t.classList.remove('active'));
-                methodContents.forEach(c => c.classList.remove('active'));
+        // Sync range sliders with input fields
+        loanAmountInput.addEventListener('input', () => {
+            loanAmountRange.value = loanAmountInput.value;
+            calculateLoan();
+        });
+        
+        loanAmountRange.addEventListener('input', () => {
+            loanAmountInput.value = loanAmountRange.value;
+            calculateLoan();
+        });
+        
+        tenureInput.addEventListener('input', () => {
+            tenureRange.value = tenureInput.value;
+            calculateLoan();
+        });
+        
+        tenureRange.addEventListener('input', () => {
+            tenureInput.value = tenureRange.value;
+            calculateLoan();
+        });
+        
+        interestInput.addEventListener('input', () => {
+            interestRange.value = interestInput.value;
+            calculateLoan();
+        });
+        
+        interestRange.addEventListener('input', () => {
+            interestInput.value = interestRange.value;
+            calculateLoan();
+        });
+        
+        // Loan Calculation Function
+        function calculateLoan() {
+            const amount = parseFloat(loanAmountInput.value) || 0;
+            const tenure = parseFloat(tenureInput.value) || 1;
+            const rate = parseFloat(interestInput.value) || 0;
+            
+            // Monthly interest rate
+            const monthlyRate = rate / 100 / 12;
+            
+            // Calculate monthly payment
+            const monthlyPayment = (amount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -tenure));
+            
+            // Calculate total payment and interest
+            const totalPayment = monthlyPayment * tenure;
+            const totalInterest = totalPayment - amount;
+            
+            // Update results
+            document.querySelectorAll('.result-value')[0].textContent = '₹' + monthlyPayment.toFixed(2);
+            document.querySelectorAll('.result-value')[1].textContent = '₹' + totalInterest.toFixed(2);
+            document.querySelectorAll('.result-value')[2].textContent = '₹' + totalPayment.toFixed(2);
+        }
+        
+        // Initialize calculator
+        calculateLoan();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // Add active class to clicked tab and corresponding content
-                tab.classList.add('active');
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(`${tabId}-content`).classList.add('active');
-            });
-        });
-        
-        // Wallet/Card Option Selection
-        const walletOptions = document.querySelectorAll('.wallet-option, .card-option');
-        
-        walletOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                walletOptions.forEach(opt => opt.style.borderColor = '#ddd');
-                option.style.borderColor = '#4a6bff';
-            });
-        });
-        
-        // Format Card Number Input
-        const cardNumberInput = document.getElementById('card-number');
-        
-        cardNumberInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\s+/g, '');
-            if (value.length > 16) {
-                value = value.substring(0, 16);
-            }
-            
-            let formattedValue = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formattedValue += ' ';
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
                 }
-                formattedValue += value[i];
-            }
-            
-            e.target.value = formattedValue;
-        });
-        
-        // Format Expiry Date Input
-        const expiryInput = document.getElementById('card-expiry');
-        
-        expiryInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 4) {
-                value = value.substring(0, 4);
-            }
-            
-            if (value.length > 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2);
-            }
-            
-            e.target.value = value;
+            });
         });
     </script>
 </body>
