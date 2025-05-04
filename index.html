@@ -3,810 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechIndia - India's No. 1 Technology Portal</title>
+    <title>ProBG Remover | Professional Background Removal Tool</title>
     <style>
         :root {
-            --primary: #FF9933;
-            --secondary: #138808;
-            --accent: #000080;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --font-primary: 'Poppins', sans-serif;
-            --font-secondary: 'Noto Sans', sans-serif;
+            --primary-color: #4a6bff;
+            --secondary-color: #f5f7ff;
+            --accent-color: #ff6b6b;
+            --text-color: #333;
+            --light-text: #777;
+            --border-color: #e0e0e0;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            font-family: var(--font-primary);
-            background-color: #f5f5f5;
-            color: var(--dark);
+            background-color: #f9f9f9;
+            color: var(--text-color);
             line-height: 1.6;
         }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        
+
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-        }
-        
-        .header-container {
+            padding: 2rem;
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
         }
-        
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
         }
-        
-        .logo img {
-            height: 40px;
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
         }
-        
+
         .logo h1 {
-            font-size: 1.8rem;
+            font-size: 2.5rem;
             font-weight: 700;
+            background: linear-gradient(45deg, var(--primary-color), #8a2be2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
+
+        .tagline {
+            color: var(--light-text);
+            font-size: 1.1rem;
         }
-        
-        nav ul li {
-            margin-left: 1.5rem;
+
+        main {
+            flex: 1;
         }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+
+        .upload-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
         }
-        
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
+
+        .drop-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
             cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 80vh;
-            display: flex;
-            align-items: center;
+            transition: var(--transition);
+            margin-bottom: 2rem;
             position: relative;
         }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
+
+        .drop-zone:hover {
+            border-color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .drop-zone.active {
+            border-color: var(--primary-color);
+            background-color: var(--secondary-color);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .drop-zone h2 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .drop-zone p {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .browse-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .browse-btn:hover {
+            background-color: #3a5bef;
+            transform: translateY(-2px);
+        }
+
+        .supported-formats {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        .preview-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .image-preview {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .image-preview h3 {
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .placeholder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            background-color: #fafafa;
+            border-radius: 6px;
+        }
+
+        .placeholder i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--border-color);
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            margin: auto;
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .primary-btn, .secondary-btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .primary-btn:hover {
+            background-color: #3a5bef;
+            transform: translateY(-2px);
+        }
+
+        .primary-btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .secondary-btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .secondary-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn:disabled {
+            color: #cccccc;
+            border-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-modal {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            max-width: 600px;
-        }
-        
-        .hero-content h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            background-color: #e68a00;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid white;
-            margin-left: 1rem;
-        }
-        
-        .btn-outline:hover {
-            background-color: white;
-            color: var(--primary);
-        }
-        
-        /* Featured Section */
-        .featured {
-            padding: 4rem 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--accent);
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-        
-        .featured-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .featured-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .featured-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-        
-        .featured-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .featured-content {
-            padding: 1.5rem;
-        }
-        
-        .featured-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .featured-content p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .meta {
+            background-color: rgba(0, 0, 0, 0.5);
             display: flex;
-            justify-content: space-between;
-            color: #888;
-            font-size: 0.9rem;
-        }
-        
-        .tag {
-            display: inline-block;
-            background-color: var(--light);
-            color: var(--primary);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-        
-        /* Trending Section */
-        .trending {
-            background-color: var(--light);
-            padding: 4rem 0;
-        }
-        
-        .trending-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-        
-        .main-article {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .main-article img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
-        
-        .main-article-content {
-            padding: 2rem;
-        }
-        
-        .main-article-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        
-        .main-article-content p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-        
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .sidebar-card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        .sidebar-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--primary);
-        }
-        
-        .trending-list {
-            list-style: none;
-        }
-        
-        .trending-list li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .trending-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .trending-list a {
-            color: var(--dark);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
-        }
-        
-        .trending-list a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-        
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-        
-        .newsletter h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .newsletter p {
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            font-size: 1.1rem;
-        }
-        
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: none;
-            border-radius: 4px 0 0 4px;
-            font-size: 1rem;
-        }
-        
-        .newsletter-form button {
-            background-color: var(--secondary);
-            color: white;
-            border: none;
-            padding: 0 1.5rem;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .newsletter-form button:hover {
-            background-color: #0e7a0a;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 4rem 0 2rem;
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-col h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-        
-        .footer-col h4::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--primary);
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-col ul li a {
-            color: #ddd;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
         }
-        
-        .social-links a:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
+
+        .loading-modal.active {
+            opacity: 1;
+            pointer-events: all;
         }
-        
-        .copyright {
+
+        .loading-content {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 8px;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #aaa;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary-color);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--light-text);
             font-size: 0.9rem;
+            margin-top: auto;
         }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .trending-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-content h2 {
-                font-size: 2.5rem;
-            }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
         }
-        
+
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Responsive styles */
         @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: var(--accent);
+            .preview-container {
                 flex-direction: column;
-                padding: 1rem 0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             }
-            
-            nav ul.show {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                text-align: center;
-            }
-            
-            nav ul li a {
-                display: block;
-                padding: 1rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-content h2 {
-                font-size: 2rem;
-            }
-            
-            .hero-content p {
-                font-size: 1rem;
-            }
-            
-            .newsletter-form {
+
+            .controls {
                 flex-direction: column;
-                gap: 1rem;
+                align-items: center;
             }
-            
-            .newsletter-form input,
-            .newsletter-form button {
+
+            .primary-btn, .secondary-btn {
                 width: 100%;
-                border-radius: 4px;
+                justify-content: center;
             }
         }
-        
-        @media (max-width: 576px) {
-            .hero {
-                height: 60vh;
-            }
-            
-            .hero-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .btn {
-                display: block;
-                width: 100%;
-                margin-bottom: 1rem;
-            }
-            
-            .btn-outline {
-                margin-left: 0;
-            }
-        }
-        
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate {
-            animation: fadeIn 1s ease forwards;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
+
+        /* Error message */
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="container header-container">
+    <div class="container">
+        <header>
             <div class="logo">
-                <img src="https://via.placeholder.com/40x40" alt="TechIndia Logo">
-                <h1>TechIndia</h1>
+                <i class="fas fa-cut"></i>
+                <h1>ProBG Remover</h1>
             </div>
-            <button class="mobile-menu-btn">☰</button>
-            <nav>
-                <ul id="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Latest</a></li>
-                    <li><a href="#">Gadgets</a></li>
-                    <li><a href="#">Reviews</a></li>
-                    <li><a href="#">How-To</a></li>
-                    <li><a href="#">Tech News</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+            <p class="tagline">Remove backgrounds from images in seconds with AI-powered technology</p>
+        </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content animate">
-                <h2>India's Premier Technology Portal</h2>
-                <p>Get the latest tech news, gadget reviews and how-to guides from India's most trusted source</p>
-                <div>
-                    <a href="#" class="btn">Join Now</a>
-                    <a href="#" class="btn btn-outline">Learn More</a>
+        <main>
+            <div class="upload-container">
+                <div class="drop-zone" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h2>Upload Your Image</h2>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <input type="file" id="fileInput" accept="image/jpeg, image/png, image/webp">
+                    <button class="browse-btn" id="browseBtn">Select Image</button>
+                    <div class="supported-formats">
+                        <span>Supported formats: JPG, PNG, WEBP (Max 5MB)</span>
+                    </div>
+                    <div class="error-message" id="errorMessage"></div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Featured Articles -->
-    <section class="featured">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>Featured Articles</h2>
-            </div>
-            <div class="featured-grid">
-                <div class="featured-card animate delay-1">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Article">
-                    <div class="featured-content">
-                        <h3>5G in India: What Will Change?</h3>
-                        <p>5G technology is set to revolutionize India. Learn how it will transform our lives...</p>
-                        <div class="meta">
-                            <span>Rahul Sharma</span>
-                            <span>2 days ago</span>
+                <div class="preview-container">
+                    <div class="image-preview" id="originalPreview">
+                        <h3>Original</h3>
+                        <div class="placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>No image selected</p>
                         </div>
-                        <span class="tag">Networking</span>
+                        <img id="originalImage" style="display: none;">
                     </div>
-                </div>
-                
-                <div class="featured-card animate delay-2">
-                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Article">
-                    <div class="featured-content">
-                        <h3>Top 10 Smartphones of 2023</h3>
-                        <p>Check out our complete list of this year's best smartphones and make the right choice...</p>
-                        <div class="meta">
-                            <span>Priya Patel</span>
-                            <span>1 week ago</span>
+
+                    <div class="image-preview" id="resultPreview">
+                        <h3>Result</h3>
+                        <div class="placeholder">
+                            <i class="fas fa-magic"></i>
+                            <p>Background removed image will appear here</p>
                         </div>
-                        <span class="tag">Gadgets</span>
+                        <img id="resultImage" style="display: none;">
                     </div>
                 </div>
-                
-                <div class="featured-card animate delay-3">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Article">
-                    <div class="featured-content">
-                        <h3>The Future of AI: India's Potential</h3>
-                        <p>How India can become a global leader in Artificial Intelligence - insights from our experts...</p>
-                        <div class="meta">
-                            <span>Dr. Amit Joshi</span>
-                            <span>3 days ago</span>
-                        </div>
-                        <span class="tag">AI</span>
-                    </div>
-                </div>
+            </div>
+
+            <div class="controls">
+                <button id="removeBgBtn" class="primary-btn" disabled>
+                    <i class="fas fa-magic"></i> Remove Background
+                </button>
+                <button id="downloadBtn" class="secondary-btn" disabled>
+                    <i class="fas fa-download"></i> Download PNG
+                </button>
+                <button id="resetBtn" class="secondary-btn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </main>
+
+        <div class="loading-modal" id="loadingModal">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Processing your image...</p>
+                <p class="processing-text" id="processingText">This may take a few seconds</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Trending Section -->
-    <section class="trending">
-        <div class="container">
-            <div class="section-title animate">
-                <h2>Trending News</h2>
-            </div>
-            <div class="trending-grid">
-                <div class="main-article animate delay-1">
-                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Main Article">
-                    <div class="main-article-content">
-                        <h3>Made in India Chips: India's Semiconductor Dream</h3>
-                        <p>The Indian government has announced a ₹76,000 crore package for semiconductor manufacturing. This move is a big step towards making India a global semiconductor hub. Experts believe this will not only boost the electronics industry but also create millions of jobs...</p>
-                        <a href="#" class="btn">Read More</a>
-                    </div>
-                </div>
-                
-                <div class="sidebar">
-                    <div class="sidebar-card animate delay-2">
-                        <h4>Most Read</h4>
-                        <ul class="trending-list">
-                            <li><a href="#">WhatsApp's New Features That Will Change Your Messaging Experience</a></li>
-                            <li><a href="#">Apple Opens First Retail Store in India</a></li>
-                            <li><a href="#">Google Pixel 7a Review: Is This the Best Mid-Range Phone?</a></li>
-                            <li><a href="#">Everything You Want to Know About Windows 12</a></li>
-                            <li><a href="#">Indian Startup Creates World's Cheapest Tablet</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="sidebar-card animate delay-3">
-                        <h4>Categories</h4>
-                        <ul class="trending-list">
-                            <li><a href="#">Smartphones</a></li>
-                            <li><a href="#">Laptops</a></li>
-                            <li><a href="#">Software</a></li>
-                            <li><a href="#">Gaming</a></li>
-                            <li><a href="#">Startups</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="animate">
-                <h3>Subscribe to Our Newsletter</h3>
-                <p>Get the latest tech news, gadget updates and special offers directly in your inbox</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email Address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>TechIndia</h4>
-                    <p>India's best technology portal bringing you the latest tech news, gadget reviews and how-to guides.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f">f</i></a>
-                        <a href="#"><i class="fab fa-twitter">t</i></a>
-                        <a href="#"><i class="fab fa-instagram">i</i></a>
-                        <a href="#"><i class="fab fa-youtube">y</i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Links</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li><a href="#">Smartphones</a></li>
-                        <li><a href="#">Laptops</a></li>
-                        <li><a href="#">Tablets</a></li>
-                        <li><a href="#">Smartwatches</a></li>
-                        <li><a href="#">Accessories</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li>TechIndia Headquarters, Bengaluru</li>
-                        <li>Email: contact@techindia.com</li>
-                        <li>Phone: +91 9876543210</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 TechIndia. All Rights Reserved. Made in India with ❤️</p>
-            </div>
+        <p>© 2023 ProBG Remover. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">API Documentation</a>
         </div>
     </footer>
 
     <script>
-        // Mobile Menu Toggle
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-        
-        // Scroll Animation
-        const animateElements = document.querySelectorAll('.animate');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.style.transform = 'translateY(0)';
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const browseBtn = document.getElementById('browseBtn');
+            const originalPreview = document.getElementById('originalPreview');
+            const resultPreview = document.getElementById('resultPreview');
+            const originalImage = document.getElementById('originalImage');
+            const resultImage = document.getElementById('resultImage');
+            const removeBgBtn = document.getElementById('removeBgBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const loadingModal = document.getElementById('loadingModal');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Replace with your actual Remove.bg API key
+            const REMOVE_BG_API_KEY = 'YOUR_API_KEY_HERE'; // Get from https://www.remove.bg/api
+
+            // Event Listeners
+            browseBtn.addEventListener('click', () => fileInput.click());
+            fileInput.addEventListener('change', handleFileSelect);
+            dropZone.addEventListener('dragover', handleDragOver);
+            dropZone.addEventListener('dragleave', handleDragLeave);
+            dropZone.addEventListener('drop', handleDrop);
+            removeBgBtn.addEventListener('click', removeBackground);
+            downloadBtn.addEventListener('click', downloadResult);
+            resetBtn.addEventListener('click', resetAll);
+
+            // Variables
+            let selectedFile = null;
+            let processedImageUrl = null;
+
+            // Functions
+            function handleFileSelect(e) {
+                const file = e.target.files[0];
+                if (file && validateFile(file)) {
+                    processSelectedFile(file);
                 }
-            });
-        }, {
-            threshold: 0.1
-        });
-        
-        animateElements.forEach(el => {
-            el.style.opacity = 0;
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
+            }
+
+            function handleDragOver(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.add('active');
+            }
+
+            function handleDragLeave(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('active');
+            }
+
+            function handleDrop(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropZone.classList.remove('active');
+                
+                const file = e.dataTransfer.files[0];
+                if (file && validateFile(file)) {
+                    processSelectedFile(file);
+                }
+            }
+
+            function validateFile(file) {
+                const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+                const maxSize = 5 * 1024 * 1024; // 5MB
+                
+                errorMessage.style.display = 'none';
+                
+                if (!validTypes.includes(file.type)) {
+                    showError('Please upload a valid image file (JPEG, PNG, or WEBP).');
+                    return false;
+                }
+                
+                if (file.size > maxSize) {
+                    showError('File size exceeds 5MB limit. Please choose a smaller file.');
+                    return false;
+                }
+                
+                return true;
+            }
+
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+
+            function processSelectedFile(file) {
+                selectedFile = file;
+                
+                // Display original image
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage.src = e.target.result;
+                    originalImage.style.display = 'block';
+                    originalPreview.querySelector('.placeholder').style.display = 'none';
+                    
+                    // Enable remove background button
+                    removeBgBtn.disabled = false;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            async function removeBackground() {
+                if (!selectedFile) return;
+                
+                // Show loading modal
+                loadingModal.classList.add('active');
+                
+                try {
+                    // Create FormData and append the file
+                    const formData = new FormData();
+                    formData.append('image_file', selectedFile);
+                    
+                    // Call Remove.bg API
+                    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
+                        method: 'POST',
+                        headers: {
+                            'X-Api-Key': REMOVE_BG_API_KEY
+                        },
+                        body: formData
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.errors ? errorData.errors[0].title : 'Failed to remove background');
+                    }
+                    
+                    // Get the processed image as blob
+                    const blob = await response.blob();
+                    processedImageUrl = URL.createObjectURL(blob);
+                    
+                    // Display result
+                    resultImage.src = processedImageUrl;
+                    resultImage.style.display = 'block';
+                    resultPreview.querySelector('.placeholder').style.display = 'none';
+                    
+                    // Enable download button
+                    downloadBtn.disabled = false;
+                    
+                } catch (error) {
+                    console.error('Error removing background:', error);
+                    showError('Error removing background: ' + error.message);
+                } finally {
+                    // Hide loading modal
+                    loadingModal.classList.remove('active');
+                }
+            }
+
+            function downloadResult() {
+                if (!processedImageUrl) return;
+                
+                const link = document.createElement('a');
+                link.href = processedImageUrl;
+                link.download = 'background-removed.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            function resetAll() {
+                // Reset file input
+                fileInput.value = '';
+                
+                // Reset previews
+                originalImage.src = '';
+                originalImage.style.display = 'none';
+                originalPreview.querySelector('.placeholder').style.display = 'flex';
+                
+                resultImage.src = '';
+                resultImage.style.display = 'none';
+                resultPreview.querySelector('.placeholder').style.display = 'flex';
+                
+                // Reset buttons
+                removeBgBtn.disabled = true;
+                downloadBtn.disabled = true;
+                
+                // Reset variables
+                selectedFile = null;
+                processedImageUrl = null;
+                
+                // Hide error message
+                errorMessage.style.display = 'none';
+            }
         });
     </script>
 </body>
