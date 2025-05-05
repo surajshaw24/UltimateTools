@@ -3,98 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Website Template</title>
+    <title>ProHome Services | Electricians, Masons, Painters</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset and Base Styles */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: var(--dark);
+            background-color: #f5f7ff;
         }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
+        
         /* Header Styles */
         header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            transition: all 0.3s ease;
         }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(67, 97, 238, 0.95);
+            backdrop-filter: blur(10px);
         }
-
-        .header-content {
+        
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-
+        
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             display: flex;
             align-items: center;
         }
-
+        
         .logo i {
             margin-right: 10px;
-            font-size: 2rem;
+            color: var(--accent);
         }
-
-        /* Navigation */
-        nav ul {
+        
+        .nav-links {
             display: flex;
             list-style: none;
         }
-
-        nav ul li {
+        
+        .nav-links li {
             margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
         }
-
-        nav ul li a {
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
+        
+        .nav-links a:hover {
+            color: var(--accent);
         }
-
-        nav ul li a:hover {
-            color: #ffdd59;
-        }
-
-        nav ul li a::after {
+        
+        .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 0;
             height: 2px;
-            background-color: #ffdd59;
-            transition: width 0.3s;
+            background: var(--accent);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
         }
-
-        nav ul li a:hover::after {
+        
+        .nav-links a:hover::after {
             width: 100%;
         }
-
+        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -103,822 +118,998 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
+        
         /* Hero Section */
         .hero {
-            height: 80vh;
-            background: url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
-            position: relative;
+            padding: 0 2rem;
+            color: white;
         }
-
-        .hero::before {
+        
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(247, 37, 133, 0.6);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background: var(--accent);
+            bottom: -10px;
+            left: 15%;
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: -1;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        
+        .service-card:hover::before {
+            opacity: 0.9;
+        }
+        
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
             color: white;
-            max-width: 600px;
         }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
         }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
         }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: #6e8efb;
-            color: white;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
         }
-
-        .btn:hover {
-            background: #5a7bf5;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        
+        .service-content {
+            padding: 1.5rem;
         }
-
-        /* Features Section */
-        .features {
-            padding: 5rem 0;
-            background-color: white;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
+        
+        .service-icon {
             font-size: 2.5rem;
-            color: #333;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card .btn {
+            padding: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Emergency Banner */
+        .emergency-banner {
+            background: linear-gradient(135deg, var(--danger), #d90429);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .emergency-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+        }
+        
+        .emergency-banner h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .emergency-banner .btn {
+            background: white;
+            color: var(--danger);
+            font-weight: 700;
+            animation: pulseBtn 2s infinite;
+        }
+        
+        @keyframes pulseBtn {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* How It Works */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 1rem;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .step span {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #f5f7ff, #e8ecff);
+            padding: 6rem 2rem;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            margin: 0 1rem;
+            opacity: 0;
+            transition: all 0.5s ease;
+            position: absolute;
+            width: 100%;
+        }
+        
+        .testimonial.active {
+            opacity: 1;
+            position: relative;
+        }
+        
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 3px solid var(--primary);
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .testimonial h4 {
+            color: var(--primary);
+        }
+        
+        .testimonial-rating {
+            color: var(--warning);
             margin-bottom: 1rem;
         }
-
-        .section-title p {
-            color: #777;
-            max-width: 700px;
-            margin: 0 auto;
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
         }
-
-        .features-grid {
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .slider-dot.active {
+            background: var(--primary);
+            transform: scale(1.2);
+        }
+        
+        /* Contact Section */
+        .contact {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-
-        .feature-card {
-            background: #f8f9fa;
+        
+        .contact-info {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             padding: 2rem;
             border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
         }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card i {
-            font-size: 2.5rem;
-            color: #6e8efb;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 5rem 0;
-            background-color: #f8f9fa;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            height: 250px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-item .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-
-        .gallery-item .overlay i {
-            color: white;
-            font-size: 2rem;
-        }
-
-        /* Upload Section */
-        .upload-section {
-            padding: 5rem 0;
-            background-color: white;
-            text-align: center;
-        }
-
-        .upload-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2rem;
-            border: 2px dashed #ccc;
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .upload-container:hover {
-            border-color: #6e8efb;
-            background-color: #f8f9fa;
-        }
-
-        .upload-icon {
-            font-size: 3rem;
-            color: #6e8efb;
-            margin-bottom: 1rem;
-        }
-
-        .upload-text {
-            margin-bottom: 1.5rem;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
             margin-bottom: 1.5rem;
             position: relative;
-            padding-bottom: 10px;
         }
-
-        .footer-column h3::after {
+        
+        .contact-info h3::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
             width: 50px;
-            height: 2px;
-            background-color: #6e8efb;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-column ul li a {
-            transition: color 0.3s;
-        }
-
-        .footer-column ul li a:hover {
-            color: #6e8efb;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .login-signup-links {
-            display: flex;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .login-signup-links a {
-            margin: 0 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .login-signup-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
+            height: 3px;
+            background: var(--accent);
+            bottom: -10px;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
         }
-
-        .modal-content {
-            background-color: white;
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-item i {
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            color: var(--accent);
+        }
+        
+        .contact-form {
+            background: white;
             padding: 2rem;
             border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            animation: modalFadeIn 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .modal h2 {
-            margin-bottom: 1.5rem;
-            text-align: center;
-            color: #333;
-        }
-
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
-
+        
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #555;
+            font-weight: 500;
         }
-
-        .form-group input {
+        
+        .form-control {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.8rem 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
-            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
         }
-
-        .form-group input:focus {
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
             outline: none;
-            border-color: #6e8efb;
         }
-
-        .modal-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: #6e8efb;
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
             color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            padding: 4rem 2rem 2rem;
         }
-
-        .modal-btn:hover {
-            background: #5a7bf5;
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
-
-        .form-footer {
-            text-align: center;
-            margin-top: 1.5rem;
-            color: #777;
+        
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
-
-        .form-footer a {
-            color: #6e8efb;
-        }
-
-        .switch-form {
-            margin-top: 1rem;
-            text-align: center;
-            color: #777;
-        }
-
-        .switch-form a {
-            color: #6e8efb;
-            cursor: pointer;
-        }
-
-        /* Upload Animation */
-        .upload-animation {
-            display: none;
-            position: fixed;
-            top: 0;
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            bottom: -8px;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
+        }
+        
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
             align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
         }
-
-        .upload-popup {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
             text-align: center;
-            animation: popIn 0.5s;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
         }
-
-        @keyframes popIn {
-            0% {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
+        
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
-
-        .upload-popup i {
-            font-size: 3rem;
-            color: #4CAF50;
-            margin-bottom: 1rem;
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .upload-popup h3 {
-            margin-bottom: 1rem;
-        }
-
+        
         /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
             }
-
-            nav ul {
-                margin-top: 1.5rem;
+            
+            .steps {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--primary);
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
             }
-
-            nav ul li {
-                margin: 0.5rem 0;
+            
+            .nav-links.active {
+                left: 0;
             }
-
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
-
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
             .hero p {
                 font-size: 1rem;
             }
-
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
+            
+            .section-title h2 {
+                font-size: 2rem;
             }
-
-            .mobile-menu {
-                display: none;
-            }
-
-            .mobile-menu.active {
-                display: block;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1.4rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
+            
+            .emergency-banner h3 {
+                font-size: 1.5rem;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-crown"></i>
-                    <span>Premium</span>
-                </div>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <nav class="mobile-menu" id="mobileMenu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#category">Category</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#payment">Payment</a></li>
-                        <li><a href="#upload">Upload</a></li>
-                    </ul>
-                </nav>
+    <!-- Header -->
+    <header id="header">
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-tools"></i>
+                <span>ProHome Services</span>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Premium Quality Digital Services</h1>
-                <p>Experience the best in class digital solutions tailored to your needs with our premium services.</p>
-                <a href="#service" class="btn">Explore Services</a>
-            </div>
+        <div class="hero-content animate-on-scroll">
+            <h1>Professional Home Services At Your Doorstep</h1>
+            <p>From electrical repairs to complete home renovations, our certified professionals deliver quality work with a satisfaction guarantee.</p>
+            <a href="#services" class="btn">Our Services</a>
+            <a href="#contact" class="btn btn-outline">Book Now</a>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Premium Features</h2>
-                <p>Discover the exceptional features that make our service stand out from the competition.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>Secure Payments</h3>
-                    <p>All transactions are encrypted and secure with our premium protection system.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-rocket"></i>
-                    <h3>Fast Delivery</h3>
-                    <p>Get your products and services delivered with our lightning-fast delivery network.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Our premium support team is available round the clock to assist you.</p>
-                </div>
-            </div>
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="section-title">
+            <h2>Our Professional Services</h2>
         </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery" id="category">
-        <div class="container">
-            <div class="section-title">
-                <h2>Premium Gallery</h2>
-                <p>Browse through our collection of premium quality images and products.</p>
+        <div class="services-grid">
+            <!-- Light Electrician -->
+            <div class="service-card animate-on-scroll">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1605980776566-0486c3ac7617?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Light Electrician">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Light Electrician</h3>
+                    <p>Expert installation, repair, and maintenance of all lighting systems in your home or office.</p>
+                    <a href="#contact" class="btn">Book Service</a>
+                </div>
             </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 1">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+            
+            <!-- Home Mason -->
+            <div class="service-card animate-on-scroll" style="transition-delay: 0.2s">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Home Mason">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 2">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-house-user"></i>
                     </div>
+                    <h3>Home Mason</h3>
+                    <p>Brickwork, concrete work, plastering, and all types of masonry services for your home.</p>
+                    <a href="#contact" class="btn">Book Service</a>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 3">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+            </div>
+            
+            <!-- Warning Electrician -->
+            <div class="service-card animate-on-scroll" style="transition-delay: 0.4s">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" alt="Warning Electrician">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1540206395-68808572332f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 4">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
+                    <h3>Emergency Electrician</h3>
+                    <p>24/7 emergency electrical services for urgent repairs and dangerous situations.</p>
+                    <a href="#contact" class="btn">Call Now</a>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 5">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
-                    </div>
+            </div>
+            
+            <!-- House Painter -->
+            <div class="service-card animate-on-scroll" style="transition-delay: 0.6s">
+                <div class="service-img">
+                    <img src="https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="House Painter">
                 </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Gallery Image 6">
-                    <div class="overlay">
-                        <i class="fas fa-search-plus"></i>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-roller"></i>
                     </div>
+                    <h3>House Painter</h3>
+                    <p>Interior and exterior painting services with premium quality paints and finishes.</p>
+                    <a href="#contact" class="btn">Book Service</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Upload Section -->
-    <section class="upload-section" id="upload">
-        <div class="container">
-            <div class="section-title">
-                <h2>Upload Your Content</h2>
-                <p>Share your premium quality content with our community.</p>
+    <!-- Emergency Banner -->
+    <div class="section">
+        <div class="emergency-banner animate-on-scroll">
+            <h3>Electrical Emergency? Need Immediate Help?</h3>
+            <p>Our warning electricians are available 24/7 to handle any urgent electrical issues</p>
+            <a href="tel:+1234567890" class="btn">
+                <i class="fas fa-phone"></i> Call Now: 123-456-7890
+            </a>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>How It Works</h2>
+        </div>
+        <div class="steps animate-on-scroll">
+            <div class="step">
+                <i class="fas fa-phone-alt"></i>
+                <span>Call/Book</span>
             </div>
-            <div class="upload-container" id="uploadTrigger">
-                <div class="upload-icon">
-                    <i class="fas fa-cloud-upload-alt"></i>
+            <div class="step">
+                <i class="fas fa-calendar-check"></i>
+                <span>Schedule</span>
+            </div>
+            <div class="step">
+                <i class="fas fa-user-tie"></i>
+                <span>Expert Arrives</span>
+            </div>
+            <div class="step">
+                <i class="fas fa-check-circle"></i>
+                <span>Job Done</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>What Our Clients Say</h2>
+        </div>
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                 </div>
-                <div class="upload-text">
-                    <p>Drag & drop your files here or click to browse</p>
+                <p>"The electrician arrived on time and fixed all our lighting issues professionally. Highly recommend their services!"</p>
+                <h4>Sarah Johnson</h4>
+            </div>
+            <div class="testimonial">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                 </div>
-                <button class="btn">Select Files</button>
+                <p>"Our house painting was done perfectly and ahead of schedule. The team was clean and professional."</p>
+                <h4>Michael Brown</h4>
+            </div>
+            <div class="testimonial">
+                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p>"When we had an electrical emergency at midnight, their warning electrician came within 30 minutes. Lifesavers!"</p>
+                <h4>Jennifer Lee</h4>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact">
+            <div class="contact-info animate-on-scroll">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4>Address</h4>
+                        <p>123 Service Lane, City, State 12345</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>General: (123) 456-7890</p>
+                        <p>Emergency: (123) 456-7891</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>info@prohomeservices.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4>Working Hours</h4>
+                        <p>Mon-Fri: 8:00 AM - 6:00 PM</p>
+                        <p>Sat: 9:00 AM - 4:00 PM</p>
+                        <p>Emergency: 24/7</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form animate-on-scroll" style="transition-delay: 0.2s">
+                <form id="serviceForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Needed</label>
+                        <select id="service" class="form-control" required>
+                            <option value="">Select a service</option>
+                            <option value="electrician">Light Electrician</option>
+                            <option value="mason">Home Mason</option>
+                            <option value="emergency">Emergency Electrician</option>
+                            <option value="painter">House Painter</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Request</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>We provide premium digital services with exceptional quality and customer satisfaction.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#category">Category</a></li>
-                        <li><a href="#service">Service</a></li>
-                        <li><a href="#payment">Payment</a></li>
-                        <li><a href="#upload">Upload</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Premium Street, Digital City</li>
-                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
-                        <li><i class="fas fa-envelope"></i> info@premiumtemplate.com</li>
-                    </ul>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>ProHome Services</h3>
+                <p>Providing top-quality home services with certified professionals and guaranteed satisfaction.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Premium Template. All Rights Reserved.</p>
-                <div class="login-signup-links">
-                    <a href="#" id="loginLink">Login</a>
-                    <a href="#" id="signupLink">Sign Up</a>
-                </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Light Electrician</a></li>
+                    <li><a href="#">Home Mason</a></li>
+                    <li><a href="#">Emergency Electrician</a></li>
+                    <li><a href="#">House Painter</a></li>
+                </ul>
             </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter for tips and special offers.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your Email" class="form-control" style="margin-bottom: 10px;">
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 ProHome Services. All Rights Reserved.</p>
         </div>
     </footer>
-
-    <!-- Login Modal -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeLoginModal">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" required>
-                </div>
-                <button type="submit" class="modal-btn">Login</button>
-                <div class="form-footer">
-                    <p>Don't have an account? <a href="#" id="switchToSignup">Sign up</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div class="modal" id="signupModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeSignupModal">&times;</span>
-            <h2>Sign Up</h2>
-            <form id="signupForm">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupConfirmPassword">Confirm Password</label>
-                    <input type="password" id="signupConfirmPassword" required>
-                </div>
-                <button type="submit" class="modal-btn">Sign Up</button>
-                <div class="form-footer">
-                    <p>Already have an account? <a href="#" id="switchToLogin">Login</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Upload Popup Animation -->
-    <div class="upload-animation" id="uploadAnimation">
-        <div class="upload-popup">
-            <i class="fas fa-check-circle"></i>
-            <h3>Upload Successful!</h3>
-            <p>Your file has been uploaded successfully.</p>
-            <button class="btn" id="closeUploadPopup">OK</button>
-        </div>
-    </div>
 
     <script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
+        const navLinks = document.getElementById('navLinks');
+        
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-
-        // Modal Functionality
-        const loginModal = document.getElementById('loginModal');
-        const signupModal = document.getElementById('signupModal');
-        const loginLink = document.getElementById('loginLink');
-        const signupLink = document.getElementById('signupLink');
-        const closeLoginModal = document.getElementById('closeLoginModal');
-        const closeSignupModal = document.getElementById('closeSignupModal');
-        const switchToSignup = document.getElementById('switchToSignup');
-        const switchToLogin = document.getElementById('switchToLogin');
-
-        loginLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.style.display = 'flex';
-        });
-
-        signupLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            signupModal.style.display = 'flex';
-        });
-
-        closeLoginModal.addEventListener('click', () => {
-            loginModal.style.display = 'none';
-        });
-
-        closeSignupModal.addEventListener('click', () => {
-            signupModal.style.display = 'none';
-        });
-
-        switchToSignup.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.style.display = 'none';
-            signupModal.style.display = 'flex';
-        });
-
-        switchToLogin.addEventListener('click', (e) => {
-            e.preventDefault();
-            signupModal.style.display = 'none';
-            loginModal.style.display = 'flex';
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-            if (e.target === signupModal) {
-                signupModal.style.display = 'none';
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
-
-        // Form Submission
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Login functionality would be implemented here');
-            loginModal.style.display = 'none';
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.slider-dot');
+        let currentSlide = 0;
+        
+        function showSlide(index) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            testimonials[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
         });
-
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Signup functionality would be implemented here');
-            signupModal.style.display = 'none';
-        });
-
-        // Upload Animation
-        const uploadTrigger = document.getElementById('uploadTrigger');
-        const uploadAnimation = document.getElementById('uploadAnimation');
-        const closeUploadPopup = document.getElementById('closeUploadPopup');
-
-        uploadTrigger.addEventListener('click', () => {
-            uploadAnimation.style.display = 'flex';
-        });
-
-        closeUploadPopup.addEventListener('click', () => {
-            uploadAnimation.style.display = 'none';
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+        
+        // Auto slide change
+        setInterval(() => {
+            let nextSlide = (currentSlide + 1) % testimonials.length;
+            showSlide(nextSlide);
+        }, 5000);
+        
+        // Scroll Animation
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                    }
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animated');
                 }
             });
+        }
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Trigger once on page load
+        animateOnScroll();
+        
+        // Form Submission
+        const serviceForm = document.getElementById('serviceForm');
+        
+        serviceForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your request! We will contact you shortly.');
+            serviceForm.reset();
         });
     </script>
 </body>
