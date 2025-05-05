@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Animated Slideshow</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>MediaShare Pro | Premium Content Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary: #4361ee;
@@ -12,495 +13,1554 @@
             --accent: #4895ef;
             --dark: #1b263b;
             --light: #f8f9fa;
-            --text-dark: #2b2d42;
-            --text-light: #8d99ae;
+            --success: #4cc9f0;
+            --danger: #f72585;
+            --warning: #f8961e;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-
+        
         body {
             background-color: #f5f7fa;
-            color: var(--text-dark);
-            overflow-x: hidden;
+            color: var(--dark);
         }
-
-        .slider-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        .slider {
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
             display: flex;
-            width: 400%;
-            height: 100%;
-            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .slide {
-            position: relative;
-            width: 100%;
-            height: 100%;
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
             display: flex;
             align-items: center;
-            padding: 0 10%;
-            overflow: hidden;
         }
-
-        .slide-bg {
-            position: absolute;
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a i {
+            margin-right: 8px;
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            margin-right: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-            transform: scale(1.2);
-            transition: transform 8s cubic-bezier(0.77, 0, 0.175, 1);
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
         }
-
-        .slide.active .slide-bg {
-            transform: scale(1);
-        }
-
-        .slide-content {
-            max-width: 600px;
-            color: white;
-            transform: translateX(-100px);
-            opacity: 0;
-            transition: all 1s cubic-bezier(0.77, 0, 0.175, 1);
-            transition-delay: 0.3s;
-        }
-
-        .slide.active .slide-content {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        .slide-subtitle {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            color: rgba(255, 255, 255, 0.8);
+        
+        .login-content {
+            background-color: white;
+            margin: 100px auto;
+            max-width: 450px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
             position: relative;
-            display: inline-block;
         }
-
-        .slide-subtitle::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -60px;
-            width: 50px;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .slide-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .slide-text {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .slide-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: white;
-            color: var(--primary);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transform: translateY(30px);
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-            transition-delay: 0.6s;
-        }
-
-        .slide.active .slide-btn {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .slide-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background-color: var(--accent);
+        
+        .login-header {
+            padding: 25px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
+            border-radius: 10px 10px 0 0;
         }
-
-        .slider-nav {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+        
+        .login-header h3 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .login-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .social-login {
             display: flex;
+            justify-content: center;
             gap: 15px;
+            margin-bottom: 25px;
         }
-
-        .slider-nav-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            outline: none;
-            padding: 0;
-        }
-
-        .slider-nav-btn.active {
-            background-color: white;
-            transform: scale(1.3);
-        }
-
-        .slider-arrows {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 5%;
-            z-index: 10;
-            transform: translateY(-50%);
-        }
-
-        .slider-arrow {
+        
+        .social-btn {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.5rem;
+            font-size: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: none;
-            outline: none;
         }
-
-        .slider-arrow:hover {
-            background-color: rgba(255, 255, 255, 0.4);
-            transform: scale(1.1);
+        
+        .social-btn.google {
+            background-color: #DB4437;
         }
-
-        .slide-number {
+        
+        .social-btn.facebook {
+            background-color: #4267B2;
+        }
+        
+        .social-btn.twitter {
+            background-color: #1DA1F2;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .divider span {
+            padding: 0 15px;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .forgot-password a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .login-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .close-login {
             position: absolute;
-            bottom: 30px;
-            right: 50px;
+            top: 15px;
+            right: 15px;
             color: white;
-            font-size: 1.5rem;
-            font-weight: 300;
-            z-index: 10;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
-
-        .slide-number-current {
-            font-size: 2.5rem;
+        
+        .close-login:hover {
+            color: var(--danger);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(63, 55, 201, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
             font-weight: 700;
         }
-
-        .slide-number-total {
-            opacity: 0.5;
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
         }
-
-        /* Animation for slide elements */
-        @keyframes fadeInUp {
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .category-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .category-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .category-card:hover .category-img img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 20px;
+        }
+        
+        .category-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .category-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        /* Media Gallery */
+        .media-gallery {
+            padding: 60px 0;
+            background-color: #f0f2f5;
+        }
+        
+        .gallery-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .filter-options select {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-size: 14px;
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .media-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .media-thumbnail {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .media-thumbnail img, .media-thumbnail video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .media-item:hover .media-thumbnail img, 
+        .media-item:hover .media-thumbnail video {
+            transform: scale(1.05);
+        }
+        
+        .media-info {
+            padding: 15px;
+        }
+        
+        .media-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+        
+        .media-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .media-type {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+        }
+        
+        .media-actions {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .media-item:hover .media-actions {
+            opacity: 1;
+        }
+        
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Upload Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
-        @keyframes zoomOut {
-            from {
-                transform: scale(1.2);
-            }
-            to {
-                transform: scale(1);
-            }
+        
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        /* Responsive styles */
+        
+        .modal-header h3 {
+            font-size: 22px;
+            color: var(--dark);
+        }
+        
+        .close-modal {
+            font-size: 24px;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: var(--danger);
+        }
+        
+        .modal-body {
+            padding: 20px;
+        }
+        
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent);
+            background-color: rgba(72, 149, 239, 0.05);
+        }
+        
+        .upload-area i {
+            font-size: 50px;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        .upload-area p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .upload-area span {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(72, 149, 239, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .modal-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+        
+        /* Share Modal */
+        .share-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .share-option {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
+        }
+        
+        .share-option:hover {
+            background-color: #f5f7fa;
+            transform: translateY(-3px);
+        }
+        
+        .share-option i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .share-option p {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .link-copy {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .link-copy input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 14px;
+        }
+        
+        .link-copy button {
+            padding: 0 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .link-copy button:hover {
+            background-color: var(--secondary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-column p {
+            color: #bbb;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Styles */
         @media (max-width: 992px) {
-            .slide-title {
-                font-size: 2.8rem;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
-
+        
         @media (max-width: 768px) {
-            .slide {
-                padding: 0 5%;
+            .header-content {
+                flex-direction: column;
+                text-align: center;
             }
-
-            .slide-title {
-                font-size: 2.2rem;
+            
+            nav ul {
+                margin: 20px 0;
+                justify-content: center;
             }
-
-            .slide-text {
-                font-size: 1rem;
+            
+            nav ul li {
+                margin: 0 15px;
             }
-
-            .slide-btn {
-                padding: 12px 25px;
+            
+            .user-actions {
+                margin-top: 20px;
             }
-
-            .slider-arrows {
-                padding: 0 3%;
+            
+            .hero h1 {
+                font-size: 36px;
             }
-
-            .slider-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                margin-bottom: 10px;
+            }
+            
+            .gallery-controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .share-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .login-content {
+                width: 90%;
+                margin: 50px auto;
             }
         }
-
+        
         @media (max-width: 576px) {
-            .slide-title {
-                font-size: 1.8rem;
+            .category-grid, .media-grid {
+                grid-template-columns: 1fr;
             }
-
-            .slide-subtitle {
-                font-size: 1rem;
+            
+            .footer-content {
+                grid-template-columns: 1fr;
             }
-
-            .slide-number {
-                right: 30px;
-                bottom: 20px;
-                font-size: 1.2rem;
+            
+            .share-options {
+                grid-template-columns: 1fr;
             }
-
-            .slide-number-current {
-                font-size: 2rem;
+            
+            .modal-content {
+                margin: 20px auto;
+                width: 95%;
+            }
+            
+            .social-login {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-btn {
+                width: 100%;
+                border-radius: 5px;
+                height: 45px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="slider-container">
-        <!-- Slides -->
-        <div class="slider">
-            <!-- Slide 1 -->
-            <div class="slide active">
-                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                <div class="slide-content">
-                    <span class="slide-subtitle">Explore The World</span>
-                    <h2 class="slide-title">Discover Stunning Natural Landscapes</h2>
-                    <p class="slide-text">Immerse yourself in breathtaking views from around the globe. Our curated collection showcases the most beautiful natural wonders you've ever seen.</p>
-                    <a href="#" class="slide-btn">View Gallery</a>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>MediaShare Pro</span>
                 </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="slide">
-                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                <div class="slide-content">
-                    <span class="slide-subtitle">Adventure Awaits</span>
-                    <h2 class="slide-title">Experience Thrilling Outdoor Activities</h2>
-                    <p class="slide-text">From mountain climbing to deep sea diving, we capture the essence of adventure in every frame. Get inspired for your next journey.</p>
-                    <a href="#" class="slide-btn">Start Exploring</a>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="slide">
-                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                <div class="slide-content">
-                    <span class="slide-subtitle">Luxury Retreats</span>
-                    <h2 class="slide-title">Find Your Perfect Getaway</h2>
-                    <p class="slide-text">Discover the most exclusive destinations and luxury accommodations that will make your vacation unforgettable.</p>
-                    <a href="#" class="slide-btn">Book Now</a>
-                </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="slide">
-                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');"></div>
-                <div class="slide-content">
-                    <span class="slide-subtitle">Cultural Journeys</span>
-                    <h2 class="slide-title">Explore Rich Cultural Heritage</h2>
-                    <p class="slide-text">Experience the diversity of world cultures through our immersive photography and storytelling.</p>
-                    <a href="#" class="slide-btn">Learn More</a>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-images"></i> Photos</a></li>
+                        <li><a href="#"><i class="fas fa-video"></i> Videos</a></li>
+                        <li><a href="#"><i class="fas fa-folder"></i> Categories</a></li>
+                        <li><a href="#"><i class="fas fa-share-alt"></i> Shared</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <button class="btn btn-outline" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button class="btn btn-primary" id="uploadBtn"><i class="fas fa-cloud-upload-alt"></i> Upload</button>
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- Navigation -->
-        <div class="slider-nav">
-            <button class="slider-nav-btn active" data-slide="0"></button>
-            <button class="slider-nav-btn" data-slide="1"></button>
-            <button class="slider-nav-btn" data-slide="2"></button>
-            <button class="slider-nav-btn" data-slide="3"></button>
-        </div>
-
-        <!-- Arrows -->
-        <div class="slider-arrows">
-            <button class="slider-arrow prev"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-arrow next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-
-        <!-- Slide counter -->
-        <div class="slide-number">
-            <span class="slide-number-current">1</span>
-            <span class="slide-number-total">/4</span>
+    <!-- Login Modal -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-content">
+            <span class="close-login" onclick="closeModal('loginModal')">&times;</span>
+            <div class="login-header">
+                <h3>Welcome Back</h3>
+                <p>Login to access your premium content</p>
+            </div>
+            <div class="login-body">
+                <div class="social-login">
+                    <div class="social-btn google" onclick="socialLogin('google')">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="social-btn facebook" onclick="socialLogin('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="social-btn twitter" onclick="socialLogin('twitter')">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                </div>
+                
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <div class="remember-forgot">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <div class="forgot-password">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+                
+                <div class="login-footer">
+                    Don't have an account? <a href="#">Sign up now</a>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Premium Media Sharing Platform</h1>
+            <p>Store, organize and share your photos and videos with ease. Access your media from anywhere and share with anyone across multiple platforms.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary"><i class="fas fa-cloud-upload-alt"></i> Upload Now</button>
+                <button class="btn btn-outline"><i class="fas fa-play"></i> Watch Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Browse Categories</h2>
+            </div>
+            <div class="category-grid">
+                <!-- Category 1 -->
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nature">
+                    </div>
+                    <div class="category-info">
+                        <h3>Nature</h3>
+                        <p>Beautiful landscapes, wildlife, and natural wonders from around the world.</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-image"></i> 1,245 Photos</span>
+                            <span><i class="fas fa-video"></i> 87 Videos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 2 -->
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Travel">
+                    </div>
+                    <div class="category-info">
+                        <h3>Travel</h3>
+                        <p>Explore amazing destinations and travel experiences worldwide.</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-image"></i> 892 Photos</span>
+                            <span><i class="fas fa-video"></i> 112 Videos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 3 -->
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="People">
+                    </div>
+                    <div class="category-info">
+                        <h3>People</h3>
+                        <p>Portraits, candid moments, and human interest stories.</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-image"></i> 1,532 Photos</span>
+                            <span><i class="fas fa-video"></i> 203 Videos</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Category 4 -->
+                <div class="category-card">
+                    <div class="category-img">
+                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Technology">
+                    </div>
+                    <div class="category-info">
+                        <h3>Technology</h3>
+                        <p>The latest gadgets, innovations and tech-related media.</p>
+                        <div class="category-stats">
+                            <span><i class="fas fa-image"></i> 765 Photos</span>
+                            <span><i class="fas fa-video"></i> 45 Videos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery Section -->
+    <section class="media-gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Uploads</h2>
+            </div>
+            
+            <div class="gallery-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search photos and videos...">
+                </div>
+                <div class="filter-options">
+                    <select>
+                        <option>All Categories</option>
+                        <option>Nature</option>
+                        <option>Travel</option>
+                        <option>People</option>
+                        <option>Technology</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="media-grid">
+                <!-- Media Item 1 (Photo) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mountain Landscape">
+                    </div>
+                    <div class="media-info">
+                        <h3>Mountain Sunset</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15 Jan 2023</span>
+                            <span><i class="fas fa-folder"></i> Nature</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Photo</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Media Item 2 (Video) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <video poster="https://images.unsplash.com/photo-1470114716159-e389f8712fda?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                            <source src="#" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="media-info">
+                        <h3>Beach Waves</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10 Jan 2023</span>
+                            <span><i class="fas fa-folder"></i> Travel</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Video</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Media Item 3 (Photo) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Workspace">
+                    </div>
+                    <div class="media-info">
+                        <h3>Modern Workspace</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 05 Jan 2023</span>
+                            <span><i class="fas fa-folder"></i> Technology</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Photo</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Media Item 4 (Video) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <video poster="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
+                            <source src="#" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="media-info">
+                        <h3>Forest Walk</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 02 Jan 2023</span>
+                            <span><i class="fas fa-folder"></i> Nature</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Video</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Media Item 5 (Photo) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Portrait">
+                    </div>
+                    <div class="media-info">
+                        <h3>Portrait Session</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 28 Dec 2022</span>
+                            <span><i class="fas fa-folder"></i> People</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Photo</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+                
+                <!-- Media Item 6 (Photo) -->
+                <div class="media-item">
+                    <div class="media-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Galaxy">
+                    </div>
+                    <div class="media-info">
+                        <h3>Night Sky</h3>
+                        <div class="media-meta">
+                            <span><i class="far fa-calendar-alt"></i> 25 Dec 2022</span>
+                            <span><i class="fas fa-folder"></i> Nature</span>
+                        </div>
+                    </div>
+                    <span class="media-type">Photo</span>
+                    <div class="media-actions">
+                        <div class="action-btn" title="Download"><i class="fas fa-download"></i></div>
+                        <div class="action-btn" title="Share" onclick="openShareModal()"><i class="fas fa-share-alt"></i></div>
+                        <div class="action-btn" title="Favorite"><i class="far fa-heart"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Upload Media</h3>
+                <span class="close-modal" onclick="closeModal('uploadModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Drag & Drop your files here</p>
+                    <span>or</span>
+                    <button class="btn btn-primary" style="margin-top: 15px;">Browse Files</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaTitle">Title</label>
+                    <input type="text" id="mediaTitle" placeholder="Enter a title for your media">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaDescription">Description</label>
+                    <textarea id="mediaDescription" placeholder="Add a description (optional)"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaCategory">Category</label>
+                    <select id="mediaCategory">
+                        <option value="">Select a category</option>
+                        <option value="nature">Nature</option>
+                        <option value="travel">Travel</option>
+                        <option value="people">People</option>
+                        <option value="technology">Technology</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mediaTags">Tags</label>
+                    <input type="text" id="mediaTags" placeholder="Add tags separated by commas (e.g. sunset, beach, summer)">
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"> Make this media private
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('uploadModal')">Cancel</button>
+                <button class="btn btn-primary">Upload Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Share Media</h3>
+                <span class="close-modal" onclick="closeModal('shareModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="share-options">
+                    <div class="share-option" onclick="shareVia('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                        <p>WhatsApp</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('facebook')">
+                        <i class="fab fa-facebook"></i>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('twitter')">
+                        <i class="fab fa-twitter"></i>
+                        <p>Twitter</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('instagram')">
+                        <i class="fab fa-instagram"></i>
+                        <p>Instagram</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('email')">
+                        <i class="fas fa-envelope"></i>
+                        <p>Email</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('drive')">
+                        <i class="fab fa-google-drive"></i>
+                        <p>Google Drive</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('link')">
+                        <i class="fas fa-link"></i>
+                        <p>Copy Link</p>
+                    </div>
+                    <div class="share-option" onclick="shareVia('embed')">
+                        <i class="fas fa-code"></i>
+                        <p>Embed Code</p>
+                    </div>
+                </div>
+                
+                <div class="link-copy">
+                    <input type="text" value="https://mediashare.pro/mountain-sunset" id="shareLink" readonly>
+                    <button onclick="copyToClipboard('shareLink')"><i class="fas fa-copy"></i></button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal('shareModal')">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About MediaShare</h3>
+                    <p>MediaShare Pro is a premium platform for storing, organizing and sharing your photos and videos with advanced features and security.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Nature</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">People</a></li>
+                        <li><a href="#">Technology</a></li>
+                        <li><a href="#">All Categories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediaShare Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const slider = document.querySelector('.slider');
-            const slides = document.querySelectorAll('.slide');
-            const navButtons = document.querySelectorAll('.slider-nav-btn');
-            const prevBtn = document.querySelector('.prev');
-            const nextBtn = document.querySelector('.next');
-            const slideNumberCurrent = document.querySelector('.slide-number-current');
-            const slideNumberTotal = document.querySelector('.slide-number-total');
+        // Modal Functions
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'block';
+        }
+        
+        function openLoginModal() {
+            document.getElementById('loginModal').style.display = 'block';
+        }
+        
+        function openShareModal() {
+            document.getElementById('shareModal').style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Share Functions
+        function shareVia(platform) {
+            let url = 'https://mediashare.pro/mountain-sunset';
+            let title = 'Check out this amazing media on MediaShare Pro';
             
-            let currentSlide = 0;
-            const totalSlides = slides.length;
-            let isAnimating = false;
-            let autoSlideInterval;
-            
-            // Set total slides number
-            slideNumberTotal.textContent = `/${totalSlides}`;
-            
-            // Initialize auto slide
-            startAutoSlide();
-            
-            // Update slide position
-            function updateSlider() {
-                if (isAnimating) return;
-                
-                isAnimating = true;
-                
-                // Update slider transform
-                slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-                
-                // Update active classes
-                slides.forEach((slide, index) => {
-                    slide.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Update nav buttons
-                navButtons.forEach((btn, index) => {
-                    btn.classList.toggle('active', index === currentSlide);
-                });
-                
-                // Update slide number
-                slideNumberCurrent.textContent = currentSlide + 1;
-                
-                // Reset animation flag after transition ends
-                slider.addEventListener('transitionend', () => {
-                    isAnimating = false;
-                }, { once: true });
+            switch(platform) {
+                case 'whatsapp':
+                    window.open(`https://wa.me/?text=${encodeURIComponent(title + ' ' + url)}`, '_blank');
+                    break;
+                case 'facebook':
+                    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'email':
+                    window.open(`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`, '_blank');
+                    break;
+                case 'drive':
+                    alert('Google Drive sharing would be implemented with Google API');
+                    break;
+                case 'link':
+                    copyToClipboard('shareLink');
+                    break;
+                case 'embed':
+                    alert('Embed code: <iframe src="' + url + '/embed" width="600" height="400"></iframe>');
+                    break;
+                default:
+                    alert('Sharing via ' + platform);
             }
+        }
+        
+        function socialLogin(platform) {
+            alert('Logging in with ' + platform.charAt(0).toUpperCase() + platform.slice(1));
+            // In a real implementation, this would redirect to the social login
+        }
+        
+        function copyToClipboard(elementId) {
+            let copyText = document.getElementById(elementId);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            alert('Copied to clipboard: ' + copyText.value);
+        }
+        
+        // Event Listeners
+        document.getElementById('uploadBtn').addEventListener('click', openUploadModal);
+        document.getElementById('loginBtn').addEventListener('click', openLoginModal);
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
             
-            // Go to specific slide
-            function goToSlide(index) {
-                if (index < 0) index = totalSlides - 1;
-                if (index >= totalSlides) index = 0;
-                
-                currentSlide = index;
-                updateSlider();
-                resetAutoSlide();
-            }
-            
-            // Next slide
-            function nextSlide() {
-                goToSlide(currentSlide + 1);
-            }
-            
-            // Previous slide
-            function prevSlide() {
-                goToSlide(currentSlide - 1);
-            }
-            
-            // Auto slide
-            function startAutoSlide() {
-                autoSlideInterval = setInterval(nextSlide, 6000);
-            }
-            
-            function resetAutoSlide() {
-                clearInterval(autoSlideInterval);
-                startAutoSlide();
-            }
-            
-            // Event listeners
-            navButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const slideIndex = parseInt(this.getAttribute('data-slide'));
-                    goToSlide(slideIndex);
-                });
-            });
-            
-            prevBtn.addEventListener('click', prevSlide);
-            nextBtn.addEventListener('click', nextSlide);
-            
-            // Keyboard navigation
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowLeft') prevSlide();
-                if (e.key === 'ArrowRight') nextSlide();
-            });
-            
-            // Pause auto slide on hover
-            slider.addEventListener('mouseenter', () => {
-                clearInterval(autoSlideInterval);
-            });
-            
-            slider.addEventListener('mouseleave', () => {
-                startAutoSlide();
-            });
-            
-            // Touch events for mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            slider.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-                clearInterval(autoSlideInterval);
-            }, { passive: true });
-            
-            slider.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-                startAutoSlide();
-            }, { passive: true });
-            
-            function handleSwipe() {
-                const difference = touchStartX - touchEndX;
-                if (difference > 50) nextSlide(); // Swipe left
-                if (difference < -50) prevSlide(); // Swipe right
-            }
+            // In a real implementation, you would validate and send to server
+            alert('Login attempt with email: ' + email);
+            closeModal('loginModal');
         });
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal' || event.target.className === 'login-modal') {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // Drag and drop functionality
+        const dropArea = document.getElementById('dropArea');
+        
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.style.borderColor = '#4361ee';
+            dropArea.style.backgroundColor = 'rgba(67, 97, 238, 0.1)';
+        }
+        
+        function unhighlight() {
+            dropArea.style.borderColor = '#ddd';
+            dropArea.style.backgroundColor = '';
+        }
+        
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+        
+        function handleFiles(files) {
+            ([...files]).forEach(uploadFile);
+        }
+        
+        function uploadFile(file) {
+            alert('File ready for upload: ' + file.name);
+            // Here you would implement the actual file upload
+        }
     </script>
 </body>
 </html>
