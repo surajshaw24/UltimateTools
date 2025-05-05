@@ -1,40 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProHome Services | Electricians, Masons, Painters</title>
+    <title>Ghar Wala Service | बिजली मिस्त्री, घर मिस्त्री, पेंटर</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Poppins & Hindi Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #f72585;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --warning: #f8961e;
-            --danger: #ef233c;
+            --primary: #6C63FF;
+            --secondary: #4D44DB;
+            --accent: #FF6584;
+            --light: #F8F9FA;
+            --dark: #2D3748;
+            --success: #4ADE80;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+            --hindi-font: 'Hind Siliguri', sans-serif;
         }
-        
+
+        /* Dark Mode Colors */
+        .dark-mode {
+            --light: #1E293B;
+            --dark: #F8FAFC;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
+            background-color: var(--light);
             color: var(--dark);
-            background-color: #f5f7ff;
+            transition: background 0.3s ease;
         }
-        
+
+        .hindi {
+            font-family: var(--hindi-font);
+        }
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -46,13 +57,13 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
-        
+
         header.scrolled {
             padding: 0.5rem 0;
-            background: rgba(67, 97, 238, 0.95);
+            background: rgba(108, 99, 255, 0.95);
             backdrop-filter: blur(10px);
         }
-        
+
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -61,28 +72,28 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
             display: flex;
             align-items: center;
         }
-        
+
         .logo i {
             margin-right: 10px;
             color: var(--accent);
         }
-        
+
         .nav-links {
             display: flex;
             list-style: none;
         }
-        
+
         .nav-links li {
             margin-left: 2rem;
         }
-        
+
         .nav-links a {
             color: white;
             text-decoration: none;
@@ -90,11 +101,11 @@
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         .nav-links a:hover {
             color: var(--accent);
         }
-        
+
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -105,11 +116,11 @@
             left: 0;
             transition: width 0.3s ease;
         }
-        
+
         .nav-links a:hover::after {
             width: 100%;
         }
-        
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -118,7 +129,17 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-        
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -130,25 +151,25 @@
             padding: 0 2rem;
             color: white;
         }
-        
+
         .hero-content {
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
         }
-        
+
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
-        
+
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
             max-width: 600px;
         }
-        
+
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
@@ -162,42 +183,42 @@
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
         }
-        
+
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(247, 37, 133, 0.6);
         }
-        
+
         .btn-outline {
             background: transparent;
             border: 2px solid white;
             margin-left: 1rem;
         }
-        
+
         .btn-outline:hover {
             background: white;
             color: var(--primary);
         }
-        
+
         /* Services Section */
         .section {
             padding: 6rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 4rem;
         }
-        
+
         .section-title h2 {
             font-size: 2.5rem;
             color: var(--primary);
             position: relative;
             display: inline-block;
         }
-        
+
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -208,13 +229,13 @@
             left: 15%;
             border-radius: 2px;
         }
-        
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
-        
+
         .service-card {
             background: white;
             border-radius: 10px;
@@ -224,12 +245,17 @@
             position: relative;
             z-index: 1;
         }
-        
+
+        .dark-mode .service-card {
+            background: #334155;
+            color: white;
+        }
+
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
-        
+
         .service-card::before {
             content: '';
             position: absolute;
@@ -242,61 +268,65 @@
             transition: all 0.3s ease;
             z-index: -1;
         }
-        
+
         .service-card:hover::before {
             opacity: 0.9;
         }
-        
+
         .service-card:hover .service-icon,
         .service-card:hover h3,
         .service-card:hover p {
             color: white;
         }
-        
+
         .service-img {
             height: 200px;
             overflow: hidden;
         }
-        
+
         .service-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.5s ease;
         }
-        
+
         .service-card:hover .service-img img {
             transform: scale(1.1);
         }
-        
+
         .service-content {
             padding: 1.5rem;
         }
-        
+
         .service-icon {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .service-card p {
             margin-bottom: 1.5rem;
             color: #666;
             transition: all 0.3s ease;
         }
-        
+
+        .dark-mode .service-card p {
+            color: #CBD5E1;
+        }
+
         .service-card .btn {
             padding: 0.5rem 1.5rem;
             font-size: 0.9rem;
         }
-        
+
         /* Emergency Banner */
         .emergency-banner {
             background: linear-gradient(135deg, var(--danger), #d90429);
@@ -308,7 +338,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .emergency-banner::before {
             content: '';
             position: absolute;
@@ -319,7 +349,7 @@
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
             animation: pulse 4s infinite;
         }
-        
+
         @keyframes pulse {
             0% {
                 transform: scale(0.8);
@@ -334,20 +364,20 @@
                 opacity: 0.5;
             }
         }
-        
+
         .emergency-banner h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
             position: relative;
         }
-        
+
         .emergency-banner .btn {
             background: white;
             color: var(--danger);
             font-weight: 700;
             animation: pulseBtn 2s infinite;
         }
-        
+
         @keyframes pulseBtn {
             0% {
                 transform: scale(1);
@@ -359,322 +389,33 @@
                 transform: scale(1);
             }
         }
-        
-        /* How It Works */
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 3rem;
-            position: relative;
+
+        /* Language Toggle */
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 0.3rem;
+            display: inline-flex;
+            margin-left: 1rem;
         }
-        
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--primary);
-            z-index: 1;
-        }
-        
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            background: white;
-            padding: 1rem;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .step i {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .step span {
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            background: linear-gradient(135deg, #f5f7ff, #e8ecff);
-            padding: 6rem 2rem;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            margin: 0 1rem;
-            opacity: 0;
-            transition: all 0.5s ease;
-            position: absolute;
-            width: 100%;
-        }
-        
-        .testimonial.active {
-            opacity: 1;
-            position: relative;
-        }
-        
-        .testimonial img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin: 0 auto 1rem;
-            border: 3px solid var(--primary);
-        }
-        
-        .testimonial p {
-            font-style: italic;
-            margin-bottom: 1rem;
-            color: #555;
-        }
-        
-        .testimonial h4 {
-            color: var(--primary);
-        }
-        
-        .testimonial-rating {
-            color: var(--warning);
-            margin-bottom: 1rem;
-        }
-        
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            background: #ccc;
-            border-radius: 50%;
-            margin: 0 5px;
+
+        .language-toggle button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .slider-dot.active {
-            background: var(--primary);
-            transform: scale(1.2);
-        }
-        
-        /* Contact Section */
-        .contact {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .contact-info {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .contact-info h3::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            bottom: -10px;
-            left: 0;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-item i {
-            font-size: 1.2rem;
-            margin-right: 1rem;
-            color: var(--accent);
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
             font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
             transition: all 0.3s ease;
         }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
-            outline: none;
+
+        .language-toggle button.active {
+            background: white;
+            color: var(--primary);
         }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        
-        .footer-col h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background: var(--accent);
-            bottom: -8px;
-            left: 0;
-        }
-        
-        .footer-col p {
-            margin-bottom: 1rem;
-            color: #bbb;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: #bbb;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-        
-        /* Animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
+
         /* Responsive Styles */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .steps {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 2rem;
-            }
-            
-            .steps::before {
-                display: none;
-            }
-        }
-        
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -710,12 +451,8 @@
                 margin-top: 1rem;
                 display: block;
             }
-            
-            .section {
-                padding: 4rem 1rem;
-            }
         }
-        
+
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 2rem;
@@ -740,85 +477,91 @@
     <header id="header">
         <div class="navbar">
             <div class="logo">
-                <i class="fas fa-tools"></i>
-                <span>ProHome Services</span>
+                <i class="fas fa-home"></i>
+                <span>Ghar Wala Service</span>
             </div>
+            <div class="language-toggle">
+                <button class="active" id="hindiBtn">हिंदी</button>
+                <button id="englishBtn">English</button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home">होम</a></li>
+                <li><a href="#services">सर्विसेज</a></li>
+                <li><a href="#about">हमारे बारे में</a></li>
+                <li><a href="#contact">संपर्क करें</a></li>
             </ul>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-content animate-on-scroll">
-            <h1>Professional Home Services At Your Doorstep</h1>
-            <p>From electrical repairs to complete home renovations, our certified professionals deliver quality work with a satisfaction guarantee.</p>
-            <a href="#services" class="btn">Our Services</a>
-            <a href="#contact" class="btn btn-outline">Book Now</a>
+        <div class="hero-content">
+            <h1 class="hindi">घर की हर समस्या का समाधान</h1>
+            <p class="hindi">बिजली, प्लंबिंग, पेंटिंग, और मरम्मत के लिए विशेषज्ञ मिस्त्री उपलब्ध</p>
+            <a href="#services" class="btn hindi">सर्विसेज देखें</a>
+            <a href="#contact" class="btn btn-outline hindi">अभी बुक करें</a>
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="section" id="services">
         <div class="section-title">
-            <h2>Our Professional Services</h2>
+            <h2 class="hindi">हमारी सेवाएं</h2>
         </div>
         <div class="services-grid">
             <!-- Light Electrician -->
-            <div class="service-card animate-on-scroll">
+            <div class="service-card">
                 <div class="service-img">
                     <img src="https://images.unsplash.com/photo-1605980776566-0486c3ac7617?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Light Electrician">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
-                        <i class="fas fa-lightbulb"></i>
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    <h3>Light Electrician</h3>
-                    <p>Expert installation, repair, and maintenance of all lighting systems in your home or office.</p>
-                    <a href="#contact" class="btn">Book Service</a>
+                    <h3 class="hindi">बिजली मिस्त्री</h3>
+                    <p class="hindi">वायरिंग, स्विच, बल्ब, और सभी इलेक्ट्रिकल समस्याओं का समाधान</p>
+                    <a href="#contact" class="btn hindi">कॉल करें</a>
                 </div>
             </div>
             
             <!-- Home Mason -->
-            <div class="service-card animate-on-scroll" style="transition-delay: 0.2s">
+            <div class="service-card">
                 <div class="service-img">
                     <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Home Mason">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
-                        <i class="fas fa-house-user"></i>
+                        <i class="fas fa-hammer"></i>
                     </div>
-                    <h3>Home Mason</h3>
-                    <p>Brickwork, concrete work, plastering, and all types of masonry services for your home.</p>
-                    <a href="#contact" class="btn">Book Service</a>
+                    <h3 class="hindi">घर मिस्त्री</h3>
+                    <p class="hindi">दीवार, फर्श, प्लास्टर, और सभी मरम्मत कार्य</p>
+                    <a href="#contact" class="btn hindi">बुक करें</a>
                 </div>
             </div>
             
             <!-- Warning Electrician -->
-            <div class="service-card animate-on-scroll" style="transition-delay: 0.4s">
+            <div class="service-card">
                 <div class="service-img">
                     <img src="https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1468&q=80" alt="Warning Electrician">
                 </div>
                 <div class="service-content">
                     <div class="service-icon">
-                        <i class="fas fa-bolt"></i>
+                        <i class="fas fa-exclamation-triangle"></i>
                     </div>
-                    <h3>Emergency Electrician</h3>
-                    <p>24/7 emergency electrical services for urgent repairs and dangerous situations.</p>
-                    <a href="#contact" class="btn">Call Now</a>
+                    <h3 class="hindi">इमरजेंसी बिजली मिस्त्री</h3>
+                    <p class="hindi">24x7 आपातकालीन सेवा, तुरंत समाधान</p>
+                    <a href="tel:+919876543210" class="btn hindi">अभी कॉल करें</a>
                 </div>
             </div>
             
             <!-- House Painter -->
-            <div class="service-card animate-on-scroll" style="transition-delay: 0.6s">
+            <div class="service-card">
                 <div class="service-img">
                     <img src="https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="House Painter">
                 </div>
@@ -826,9 +569,9 @@
                     <div class="service-icon">
                         <i class="fas fa-paint-roller"></i>
                     </div>
-                    <h3>House Painter</h3>
-                    <p>Interior and exterior painting services with premium quality paints and finishes.</p>
-                    <a href="#contact" class="btn">Book Service</a>
+                    <h3 class="hindi">पेंटर मिस्त्री</h3>
+                    <p class="hindi">दीवार पेंटिंग, वॉटरप्रूफिंग, और डिजाइनिंग</p>
+                    <a href="#contact" class="btn hindi">अनुमान लें</a>
                 </div>
             </div>
         </div>
@@ -836,207 +579,44 @@
 
     <!-- Emergency Banner -->
     <div class="section">
-        <div class="emergency-banner animate-on-scroll">
-            <h3>Electrical Emergency? Need Immediate Help?</h3>
-            <p>Our warning electricians are available 24/7 to handle any urgent electrical issues</p>
-            <a href="tel:+1234567890" class="btn">
-                <i class="fas fa-phone"></i> Call Now: 123-456-7890
+        <div class="emergency-banner">
+            <h3 class="hindi">बिजली की समस्या? तुरंत मदद चाहिए?</h3>
+            <p class="hindi">हमारे इमरजेंसी मिस्त्री 24 घंटे उपलब्ध हैं</p>
+            <a href="tel:+919876543210" class="btn hindi">
+                <i class="fas fa-phone"></i> अभी कॉल करें: 9876543210
             </a>
         </div>
     </div>
-
-    <!-- How It Works -->
-    <section class="section" id="about">
-        <div class="section-title">
-            <h2>How It Works</h2>
-        </div>
-        <div class="steps animate-on-scroll">
-            <div class="step">
-                <i class="fas fa-phone-alt"></i>
-                <span>Call/Book</span>
-            </div>
-            <div class="step">
-                <i class="fas fa-calendar-check"></i>
-                <span>Schedule</span>
-            </div>
-            <div class="step">
-                <i class="fas fa-user-tie"></i>
-                <span>Expert Arrives</span>
-            </div>
-            <div class="step">
-                <i class="fas fa-check-circle"></i>
-                <span>Job Done</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="section-title">
-            <h2>What Our Clients Say</h2>
-        </div>
-        <div class="testimonial-slider">
-            <div class="testimonial active">
-                <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client">
-                <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p>"The electrician arrived on time and fixed all our lighting issues professionally. Highly recommend their services!"</p>
-                <h4>Sarah Johnson</h4>
-            </div>
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client">
-                <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <p>"Our house painting was done perfectly and ahead of schedule. The team was clean and professional."</p>
-                <h4>Michael Brown</h4>
-            </div>
-            <div class="testimonial">
-                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client">
-                <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                </div>
-                <p>"When we had an electrical emergency at midnight, their warning electrician came within 30 minutes. Lifesavers!"</p>
-                <h4>Jennifer Lee</h4>
-            </div>
-        </div>
-        <div class="slider-controls">
-            <div class="slider-dot active" data-slide="0"></div>
-            <div class="slider-dot" data-slide="1"></div>
-            <div class="slider-dot" data-slide="2"></div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="section-title">
-            <h2>Contact Us</h2>
-        </div>
-        <div class="contact">
-            <div class="contact-info animate-on-scroll">
-                <h3>Get In Touch</h3>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h4>Address</h4>
-                        <p>123 Service Lane, City, State 12345</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <h4>Phone</h4>
-                        <p>General: (123) 456-7890</p>
-                        <p>Emergency: (123) 456-7891</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email</h4>
-                        <p>info@prohomeservices.com</p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <h4>Working Hours</h4>
-                        <p>Mon-Fri: 8:00 AM - 6:00 PM</p>
-                        <p>Sat: 9:00 AM - 4:00 PM</p>
-                        <p>Emergency: 24/7</p>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form animate-on-scroll" style="transition-delay: 0.2s">
-                <form id="serviceForm">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Needed</label>
-                        <select id="service" class="form-control" required>
-                            <option value="">Select a service</option>
-                            <option value="electrician">Light Electrician</option>
-                            <option value="mason">Home Mason</option>
-                            <option value="emergency">Emergency Electrician</option>
-                            <option value="painter">House Painter</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" class="form-control"></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Request</button>
-                </form>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
-                <h3>ProHome Services</h3>
-                <p>Providing top-quality home services with certified professionals and guaranteed satisfaction.</p>
+                <h3 class="hindi">घर वाला सर्विस</h3>
+                <p class="hindi">आपके घर की हर समस्या का विश्वसनीय समाधान</p>
                 <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="footer-col">
-                <h3>Services</h3>
+                <h3 class="hindi">सेवाएं</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Light Electrician</a></li>
-                    <li><a href="#">Home Mason</a></li>
-                    <li><a href="#">Emergency Electrician</a></li>
-                    <li><a href="#">House Painter</a></li>
+                    <li><a href="#" class="hindi">बिजली मिस्त्री</a></li>
+                    <li><a href="#" class="hindi">घर मिस्त्री</a></li>
+                    <li><a href="#" class="hindi">इमरजेंसी सर्विस</a></li>
+                    <li><a href="#" class="hindi">पेंटर मिस्त्री</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Newsletter</h3>
-                <p>Subscribe to our newsletter for tips and special offers.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your Email" class="form-control" style="margin-bottom: 10px;">
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
+                <h3 class="hindi">संपर्क</h3>
+                <p class="hindi"><i class="fas fa-phone"></i> 9876543210</p>
+                <p class="hindi"><i class="fas fa-map-marker-alt"></i> दिल्ली, भारत</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2023 ProHome Services. All Rights Reserved.</p>
+        <div class="footer-bottom hindi">
+            <p>© 2023 घर वाला सर्विस. सर्वाधिकार सुरक्षित</p>
         </div>
     </footer>
 
@@ -1051,6 +631,33 @@
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
         
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Language Toggle
+        const hindiBtn = document.getElementById('hindiBtn');
+        const englishBtn = document.getElementById('englishBtn');
+        
+        hindiBtn.addEventListener('click', () => {
+            hindiBtn.classList.add('active');
+            englishBtn.classList.remove('active');
+            // In a real app, you would replace text with Hindi translations
+        });
+        
+        englishBtn.addEventListener('click', () => {
+            englishBtn.classList.add('active');
+            hindiBtn.classList.remove('active');
+            // In a real app, you would replace text with English translations
+        });
+        
         // Header Scroll Effect
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
@@ -1059,57 +666,6 @@
             } else {
                 header.classList.remove('scrolled');
             }
-        });
-        
-        // Testimonial Slider
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.slider-dot');
-        let currentSlide = 0;
-        
-        function showSlide(index) {
-            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            testimonials[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-        
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => showSlide(index));
-        });
-        
-        // Auto slide change
-        setInterval(() => {
-            let nextSlide = (currentSlide + 1) % testimonials.length;
-            showSlide(nextSlide);
-        }, 5000);
-        
-        // Scroll Animation
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.2;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animated');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', animateOnScroll);
-        // Trigger once on page load
-        animateOnScroll();
-        
-        // Form Submission
-        const serviceForm = document.getElementById('serviceForm');
-        
-        serviceForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your request! We will contact you shortly.');
-            serviceForm.reset();
         });
     </script>
 </body>
