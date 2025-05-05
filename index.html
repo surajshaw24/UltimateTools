@@ -1,607 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobile-Friendly Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Premium Home Construction Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2c3e50;
-      --secondary: #3498db;
-      --accent: #e74c3c;
-      --light: #ecf0f1;
-      --dark: #2c3e50;
-      --text: #333;
-      --text-light: #7f8c8d;
-    }
-    
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f7fa;
+      color: #333;
+    }
+    header {
+      background-color: #1e2a38;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 32px;
+    }
+    section {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      font-size: 26px;
+      margin-bottom: 20px;
+      color: #1e2a38;
+    }
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      list-style: none;
       padding: 0;
     }
-    
-    body {
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: var(--text);
-      background-color: var(--light);
-      overflow-x: hidden;
-    }
-    
-    /* ==================== */
-    /* MOBILE-FRIENDLY HEADER */
-    /* ==================== */
-    header {
-      background-color: var(--primary);
-      color: white;
-      padding: 1rem;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-    
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      text-decoration: none;
-    }
-    
-    .logo span {
-      color: var(--accent);
-    }
-    
-    /* Mobile Menu Button */
-    .menu-toggle {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      display: none;
-    }
-    
-    /* Navigation */
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-    
-    .nav-links li {
-      margin-left: 1.5rem;
-    }
-    
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-      position: relative;
-    }
-    
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-    
-    .nav-links a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: var(--accent);
-      transition: width 0.3s;
-    }
-    
-    .nav-links a:hover:after {
-      width: 100%;
-    }
-    
-    /* ==================== */
-    /* HERO SECTION */
-    /* ==================== */
-    .hero {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 7rem 1rem 4rem;
-      text-align: center;
-      margin-top: 60px;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    
-    .hero p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-    }
-    
-    .cta-button {
-      display: inline-block;
-      background-color: var(--accent);
-      color: white;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s;
-      box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
-    }
-    
-    .cta-button:hover {
-      background-color: #c0392b;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
-    }
-    
-    /* ==================== */
-    /* MAIN CONTENT */
-    /* ==================== */
-    .container {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    section {
-      background: white;
+    .service-list li {
+      background-color: #f0f2f5;
+      padding: 16px;
       border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-      margin-bottom: 2rem;
+      transition: background 0.3s ease;
     }
-    
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-      color: var(--primary);
-      position: relative;
-      padding-bottom: 0.5rem;
+    .service-list li:hover {
+      background-color: #d9e2ec;
     }
-    
-    section h2:after {
-      content: '';
-      position: absolute;
-      width: 50px;
-      height: 3px;
-      background-color: var(--accent);
-      bottom: 0;
-      left: 0;
-    }
-    
-    /* Features Grid */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    .feature-card {
-      background: white;
-      border-radius: 8px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .feature-icon {
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    
-    .feature-card h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    /* Testimonials */
-    .testimonials {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    
-    .testimonial {
-      background: white;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    }
-    
-    .testimonial-content {
-      font-style: italic;
-      margin-bottom: 1rem;
-    }
-    
-    .testimonial-author {
-      display: flex;
-      align-items: center;
-    }
-    
-    .author-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 1rem;
-    }
-    
-    .author-info h4 {
-      font-size: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    .author-info p {
-      font-size: 0.8rem;
-      color: var(--text-light);
-    }
-    
-    /* ==================== */
-    /* FOOTER */
-    /* ==================== */
     footer {
-      background-color: var(--dark);
-      color: white;
-      padding: 3rem 1rem 1.5rem;
-      margin-top: 3rem;
-    }
-    
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    
-    .footer-col h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    .footer-col h3:after {
-      content: '';
-      position: absolute;
-      width: 40px;
-      height: 2px;
-      background-color: var(--accent);
-      bottom: 0;
-      left: 0;
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-    
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .footer-links a:hover {
-      color: var(--accent);
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1.5rem;
-    }
-    
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      color: white;
-      transition: all 0.3s;
-    }
-    
-    .social-links a:hover {
-      background-color: var(--accent);
-      transform: translateY(-3px);
-    }
-    
-    .copyright {
       text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.9rem;
-    }
-    
-    /* ==================== */
-    /* MOBILE RESPONSIVE STYLES */
-    /* ==================== */
-    @media (max-width: 768px) {
-      /* Mobile Menu */
-      .menu-toggle {
-        display: block;
-      }
-      
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        left: -100%;
-        width: 80%;
-        height: calc(100vh - 60px);
-        background-color: var(--primary);
-        flex-direction: column;
-        align-items: center;
-        padding: 2rem 0;
-        transition: left 0.3s ease;
-      }
-      
-      .nav-links.active {
-        left: 0;
-      }
-      
-      .nav-links li {
-        margin: 1rem 0;
-      }
-      
-      /* Hero Section */
-      .hero {
-        padding: 6rem 1rem 3rem;
-      }
-      
-      .hero h1 {
-        font-size: 2rem;
-      }
-      
-      /* Features */
-      .features {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      
-      section {
-        padding: 1.5rem;
-      }
-      
-      .footer-container {
-        grid-template-columns: 1fr;
-      }
+      padding: 20px;
+      background-color: #1e2a38;
+      color: white;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
-  <!-- Header with Mobile Menu -->
+
   <header>
-    <div class="header-container">
-      <a href="#" class="logo">Mobile<span>Site</span></a>
-      
-      <button class="menu-toggle" id="menuToggle">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
+    <h1>DreamBuild Homes</h1>
+    <p>Your Complete Home Construction Partner</p>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Your Perfect Mobile Experience</h1>
-      <p>Designed to work flawlessly on any device, from smartphones to desktops. Experience the difference of a truly responsive website.</p>
-      <a href="#features" class="cta-button">Explore Features</a>
-    </div>
+  <section>
+    <h2>Our Top 15 Services</h2>
+    <ul class="service-list">
+      <li>Architectural Design</li>
+      <li>Structural Engineering</li>
+      <li>Foundation & RCC Work</li>
+      <li>Brickwork & Masonry</li>
+      <li>Roofing Solutions</li>
+      <li>Plumbing Services</li>
+      <li>Electrical Installations</li>
+      <li>Flooring & Tiling</li>
+      <li>Painting & Wall Finishing</li>
+      <li>Windows & Doors Fitting</li>
+      <li>Modular Kitchen Setup</li>
+      <li>Bathroom & Sanitary Works</li>
+      <li>Interior Designing</li>
+      <li>Exterior Elevation Work</li>
+      <li>Compound Wall & Landscaping</li>
+    </ul>
   </section>
 
-  <!-- Main Content -->
-  <div class="container">
-    <!-- Features Section -->
-    <section id="features">
-      <h2>Key Features</h2>
-      <p>Discover what makes our mobile-friendly design stand out from the rest.</p>
-      
-      <div class="features">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <h3>Responsive Design</h3>
-          <p>Looks perfect on any screen size, from smartphones to large desktop monitors.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <h3>Fast Loading</h3>
-          <p>Optimized for performance with quick load times even on mobile networks.</p>
-        </div>
-        
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-touch"></i>
-          </div>
-          <h3>Touch Friendly</h3>
-          <p>Large tap targets and intuitive gestures for effortless mobile navigation.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-      <h2>About Us</h2>
-      <p>We specialize in creating beautiful, functional websites that work perfectly across all devices. Our mobile-first approach ensures your visitors get the best experience no matter how they access your site.</p>
-      <p>With over 10 years of experience in responsive web design, we understand what it takes to create websites that look great and perform even better on smartphones, tablets, and desktops.</p>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials">
-      <h2>What Our Clients Say</h2>
-      <p>Don't just take our word for it - hear from our satisfied customers.</p>
-      
-      <div class="testimonials">
-        <div class="testimonial">
-          <div class="testimonial-content">
-            "The mobile version of our site now works better than the desktop version! Our bounce rate decreased by 40% after the redesign."
-          </div>
-          <div class="testimonial-author">
-            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson" class="author-avatar">
-            <div class="author-info">
-              <h4>Sarah Johnson</h4>
-              <p>CEO, TechSolutions</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="testimonial">
-          <div class="testimonial-content">
-            "Incredible attention to detail on the mobile experience. Our conversion rates on mobile devices have doubled since launch."
-          </div>
-          <div class="testimonial-author">
-            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen" class="author-avatar">
-            <div class="author-info">
-              <h4>Michael Chen</h4>
-              <p>Marketing Director</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>MobileSite</h3>
-        <p>Creating beautiful, responsive websites that work perfectly on any device.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#testimonials">Testimonials</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-col">
-        <h3>Contact Us</h3>
-        <ul class="footer-links">
-          <li><i class="fas fa-map-marker-alt"></i> 123 Mobile St, Digital City</li>
-          <li><i class="fas fa-phone"></i> (123) 456-7890</li>
-          <li><i class="fas fa-envelope"></i> info@mobilesite.com</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="copyright">
-      &copy; 2023 MobileSite. All Rights Reserved.
-    </div>
+  <footer>
+    &copy; 2025 DreamBuild Homes. All Rights Reserved.
   </footer>
 
-  <script>
-    // Mobile Menu Toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      
-      // Change icon
-      const icon = menuToggle.querySelector('i');
-      if (navLinks.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
-    });
-    
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.querySelector('i').classList.remove('fa-times');
-        menuToggle.querySelector('i').classList.add('fa-bars');
-      });
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  </script>
 </body>
 </html>
