@@ -1,96 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Premium Home Construction Services</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f7fa;
-      color: #333;
-    }
-    header {
-      background-color: #1e2a38;
-      color: white;
-      padding: 20px 40px;
-      text-align: center;
-    }
-    h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-    section {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    h2 {
-      font-size: 26px;
-      margin-bottom: 20px;
-      color: #1e2a38;
-    }
-    .service-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      list-style: none;
-      padding: 0;
-    }
-    .service-list li {
-      background-color: #f0f2f5;
-      padding: 16px;
-      border-radius: 8px;
-      transition: background 0.3s ease;
-    }
-    .service-list li:hover {
-      background-color: #d9e2ec;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background-color: #1e2a38;
-      color: white;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamBuild Homes - Your Complete Home Construction Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f9f9f9;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        nav a:hover {
+            color: var(--secondary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            cursor: pointer;
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 5rem 2rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .service-card:hover::before {
+            opacity: 0.9;
+        }
+        
+        .service-card:hover .service-icon,
+        .service-card:hover h3,
+        .service-card:hover p {
+            color: white;
+        }
+        
+        .service-content {
+            padding: 2rem;
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-logo i {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+        
+        .footer-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: #bdc3c7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-buttons button {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-home"></i>
+                <h1>Dream<span>Build</span> Homes</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="cta-button">Get a Quote</button>
+        </div>
+    </header>
 
-  <header>
-    <h1>DreamBuild Homes</h1>
-    <p>Your Complete Home Construction Partner</p>
-  </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="fade-in">Your Complete Home Construction Partner</h2>
+            <p class="fade-in delay-1">From foundation to finishing touches, we bring your dream home to life with precision, quality, and care.</p>
+            <div class="hero-buttons fade-in delay-2">
+                <button class="cta-button">Our Services</button>
+                <button class="secondary-button">Contact Us</button>
+            </div>
+        </div>
+    </section>
 
-  <section>
-    <h2>Our Top 15 Services</h2>
-    <ul class="service-list">
-      <li>Architectural Design</li>
-      <li>Structural Engineering</li>
-      <li>Foundation & RCC Work</li>
-      <li>Brickwork & Masonry</li>
-      <li>Roofing Solutions</li>
-      <li>Plumbing Services</li>
-      <li>Electrical Installations</li>
-      <li>Flooring & Tiling</li>
-      <li>Painting & Wall Finishing</li>
-      <li>Windows & Doors Fitting</li>
-      <li>Modular Kitchen Setup</li>
-      <li>Bathroom & Sanitary Works</li>
-      <li>Interior Designing</li>
-      <li>Exterior Elevation Work</li>
-      <li>Compound Wall & Landscaping</li>
-    </ul>
-  </section>
+    <!-- Services Section -->
+    <section class="services">
+        <div class="section-title">
+            <h2>Our Top 15 Services</h2>
+            <p>Comprehensive solutions for your dream home construction and renovation needs</p>
+        </div>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card fade-in">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Architectural Design</h3>
+                    <p>Custom home designs tailored to your lifestyle and preferences with innovative solutions.</p>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card fade-in delay-1">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3>Structural Engineering</h3>
+                    <p>Expert structural analysis and design ensuring safety, durability and code compliance.</p>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card fade-in delay-2">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Foundation & RCC Work</h3>
+                    <p>Strong and stable foundations using reinforced concrete construction techniques.</p>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card fade-in delay-3">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-border-style"></i>
+                    </div>
+                    <h3>Brickwork & Masonry</h3>
+                    <p>Precision brickwork and stone masonry for durable and aesthetically pleasing walls.</p>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card fade-in delay-4">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-vector-square"></i>
+                    </div>
+                    <h3>Roofing Solutions</h3>
+                    <p>Weatherproof and energy-efficient roofing systems with various material options.</p>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card fade-in">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <h3>Plumbing Services</h3>
+                    <p>Complete plumbing installations with quality fixtures and efficient water systems.</p>
+                </div>
+            </div>
+            
+            <!-- Service 7 -->
+            <div class="service-card fade-in delay-1">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Electrical Installations</h3>
+                    <p>Safe and code-compliant electrical wiring with modern fixtures and smart solutions.</p>
+                </div>
+            </div>
+            
+            <!-- Service 8 -->
+            <div class="service-card fade-in delay-2">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-border-all"></i>
+                    </div>
+                    <h3>Flooring & Tiling</h3>
+                    <p>Beautiful and durable flooring options including tiles, marble, wood and more.</p>
+                </div>
+            </div>
+            
+            <!-- Service 9 -->
+            <div class="service-card fade-in delay-3">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3>Painting & Wall Finishing</h3>
+                    <p>Premium quality paints and wall finishes for a flawless and long-lasting look.</p>
+                </div>
+            </div>
+            
+            <!-- Service 10 -->
+            <div class="service-card fade-in delay-4">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Windows & Doors Fitting</h3>
+                    <p>Energy-efficient windows and doors with perfect fitting and security features.</p>
+                </div>
+            </div>
+            
+            <!-- Service 11 -->
+            <div class="service-card fade-in">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Modular Kitchen Setup</h3>
+                    <p>Custom-designed modular kitchens with optimal space utilization and modern appliances.</p>
+                </div>
+            </div>
+            
+            <!-- Service 12 -->
+            <div class="service-card fade-in delay-1">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-bath"></i>
+                    </div>
+                    <h3>Bathroom & Sanitary Works</h3>
+                    <p>Luxurious bathroom setups with premium sanitaryware and elegant tiling.</p>
+                </div>
+            </div>
+            
+            <!-- Service 13 -->
+            <div class="service-card fade-in delay-2">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Interior Designing</h3>
+                    <p>Harmonious interior spaces with furniture, lighting and decor that reflect your style.</p>
+                </div>
+            </div>
+            
+            <!-- Service 14 -->
+            <div class="service-card fade-in delay-3">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Exterior Elevation Work</h3>
+                    <p>Stunning exterior facades with architectural details that enhance curb appeal.</p>
+                </div>
+            </div>
+            
+            <!-- Service 15 -->
+            <div class="service-card fade-in delay-4">
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3>Compound Wall & Landscaping</h3>
+                    <p>Beautiful boundary walls and garden landscapes that complement your property.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 DreamBuild Homes. All Rights Reserved.
-  </footer>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="footer-logo">
+                    <i class="fas fa-home"></i>
+                    <h2>Dream<span>Build</span> Homes</h2>
+                </div>
+                <p>Your trusted partner for complete home construction solutions. We transform your vision into reality with quality craftsmanship and attention to detail.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Testimonials</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h3>Our Services</h3>
+                <ul>
+                    <li><a href="#">Architectural Design</a></li>
+                    <li><a href="#">Construction</a></li>
+                    <li><a href="#">Interior Design</a></li>
+                    <li><a href="#">Renovation</a></li>
+                    <li><a href="#">Landscaping</a></li>
+                    <li><a href="#">Consultation</a></li>
+                    <li><a href="#">Maintenance</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div>
+                            <p>123 Construction Avenue</p>
+                            <p>Building City, BC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div>
+                            <p>+1 (555) 123-4567</p>
+                            <p>+1 (555) 987-6543</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div>
+                            <p>info@dreambuildhomes.com</p>
+                            <p>support@dreambuildhomes.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 DreamBuild Homes. All Rights Reserved.</p>
+        </div>
+    </footer>
 
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                fadeObserver.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
