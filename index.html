@@ -31,43 +31,100 @@
       line-height: 1.6;
     }
     
-    /* Header Styles */
+    /* Premium Header Styles */
     header {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
-      padding: 30px 40px;
-      text-align: center;
+      padding: 0;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    
+    .header-top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .contact-info {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .contact-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-icons a {
+      color: white;
+      transition: all 0.3s;
+    }
+    
+    .social-icons a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
     }
     
     .header-content {
+      padding: 60px 40px;
+      text-align: center;
       position: relative;
       z-index: 2;
     }
     
     h1 {
       margin: 0;
-      font-size: 42px;
+      font-size: 48px;
       font-weight: 700;
       letter-spacing: 1px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       animation: fadeInDown 1s ease;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-block;
+    }
+    
+    h1:after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background: var(--accent);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
     }
     
     header p {
-      font-size: 18px;
+      font-size: 20px;
       opacity: 0.9;
       animation: fadeInUp 1s ease;
+      max-width: 700px;
+      margin: 0 auto;
     }
     
-    /* Navigation */
+    /* Premium Navigation with Pop Animation */
     nav {
-      background-color: white;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 100;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
     
     .nav-container {
@@ -81,8 +138,15 @@
     
     .logo {
       font-weight: 700;
-      font-size: 22px;
+      font-size: 24px;
       color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
     }
     
     .nav-links {
@@ -91,348 +155,118 @@
     }
     
     .nav-links li {
-      margin-left: 30px;
+      margin-left: 25px;
+      position: relative;
     }
     
     .nav-links a {
       text-decoration: none;
       color: var(--text);
       font-weight: 500;
-      transition: color 0.3s;
+      transition: all 0.3s;
       position: relative;
+      padding: 10px 0;
+      display: inline-block;
+    }
+    
+    /* Pop Animation Effect */
+    .nav-links a:before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--accent);
+      transition: all 0.3s ease;
+      border-radius: 3px 3px 0 0;
     }
     
     .nav-links a:hover {
       color: var(--accent);
     }
     
-    .nav-links a:after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: var(--accent);
-      transition: width 0.3s;
-    }
-    
-    .nav-links a:hover:after {
+    .nav-links a:hover:before {
       width: 100%;
     }
     
-    /* Hero Slideshow */
-    .slideshow-container {
+    /* Active Link Effect */
+    .nav-links a.active {
+      color: var(--accent);
+    }
+    
+    .nav-links a.active:before {
+      width: 100%;
+    }
+    
+    /* Dropdown Menu */
+    .dropdown {
       position: relative;
-      max-width: 1200px;
-      margin: 30px auto;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      height: 500px;
     }
     
-    .slide {
+    .dropdown-content {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0 8px 8px;
       opacity: 0;
-      transition: opacity 1.5s ease-in-out;
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 1;
     }
     
-    .slide.active {
+    .dropdown:hover .dropdown-content {
       opacity: 1;
-    }
-    
-    .slide-content {
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: white;
-      padding: 30px;
-      width: 100%;
-      transform: translateY(50px);
-      opacity: 0;
-      transition: all 0.8s ease;
-    }
-    
-    .slide.active .slide-content {
+      visibility: visible;
       transform: translateY(0);
-      opacity: 1;
-      transition-delay: 0.5s;
     }
     
-    .slide h3 {
-      font-size: 28px;
-      margin-bottom: 10px;
+    .dropdown-content a {
+      padding: 12px 20px;
+      display: block;
+      color: var(--text);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.2s;
     }
     
-    .slide p {
-      font-size: 16px;
-      margin-bottom: 20px;
-      max-width: 600px;
+    .dropdown-content a:hover {
+      background: rgba(255, 125, 59, 0.1);
+      padding-left: 25px;
+      color: var(--accent);
     }
     
-    .slide-btn {
-      display: inline-block;
-      background-color: var(--accent);
+    /* CTA Button */
+    .cta-button {
+      background: var(--accent);
       color: white;
       padding: 12px 25px;
       border-radius: 30px;
-      text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.3s;
+      margin-left: 20px;
+      box-shadow: 0 4px 15px rgba(255, 125, 59, 0.3);
     }
     
-    .slide-btn:hover {
-      background-color: #ff6a1f;
+    .cta-button:hover {
+      background: #ff6a1f;
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(255, 125, 59, 0.4);
+      box-shadow: 0 8px 20px rgba(255, 125, 59, 0.4);
     }
     
-    .slide-nav {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      z-index: 10;
-    }
-    
-    .slide-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: rgba(255,255,255,0.5);
-      margin: 0 5px;
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
       cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .slide-dot.active {
-      background-color: white;
-    }
-    
-    /* Main Content */
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    
-    section {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      padding: 40px;
-      margin-bottom: 40px;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    
-    section:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    }
-    
-    h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
+      font-size: 24px;
       color: var(--primary);
-      position: relative;
-      padding-bottom: 10px;
     }
     
-    h2:after {
-      content: '';
-      position: absolute;
-      width: 60px;
-      height: 3px;
-      background-color: var(--accent);
-      bottom: 0;
-      left: 0;
-    }
-    
-    /* Services Grid */
-    .service-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      list-style: none;
-      padding: 0;
-    }
-    
-    .service-list li {
-      background-color: white;
-      padding: 25px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-      border-left: 4px solid var(--accent);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .service-list li:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .service-list li:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255,125,59,0.1), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .service-list li:hover:before {
-      opacity: 1;
-    }
-    
-    /* Image Gallery */
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    
-    .gallery-item {
-      position: relative;
-      border-radius: 8px;
-      overflow: hidden;
-      height: 200px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: all 0.3s;
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-    
-    .gallery-item:hover {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-    
-    .gallery-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-      color: white;
-      padding: 15px;
-      transform: translateY(100%);
-      transition: transform 0.3s;
-    }
-    
-    .gallery-item:hover .gallery-overlay {
-      transform: translateY(0);
-    }
-    
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      padding: 60px 0 30px;
-      margin-top: 60px;
-    }
-    
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 40px;
-      padding: 0 20px;
-    }
-    
-    .footer-col h3 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-    
-    .footer-col h3:after {
-      content: '';
-      position: absolute;
-      width: 40px;
-      height: 2px;
-      background-color: var(--accent);
-      bottom: 0;
-      left: 0;
-    }
-    
-    .footer-col p {
-      opacity: 0.8;
-      margin-bottom: 15px;
-    }
-    
-    .social-links {
-      display: flex;
-      gap: 15px;
-    }
-    
-    .social-links a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      background-color: rgba(255,255,255,0.1);
-      border-radius: 50%;
-      color: white;
-      transition: all 0.3s;
-    }
-    
-    .social-links a:hover {
-      background-color: var(--accent);
-      transform: translateY(-3px);
-    }
-    
-    .footer-links {
-      list-style: none;
-    }
-    
-    .footer-links li {
-      margin-bottom: 12px;
-    }
-    
-    .footer-links a {
-      color: white;
-      opacity: 0.8;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-    
-    .footer-links a:hover {
-      opacity: 1;
-      color: var(--accent);
-      padding-left: 5px;
-    }
-    
-    .copyright {
-      text-align: center;
-      padding-top: 30px;
-      margin-top: 30px;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      opacity: 0.7;
-      font-size: 14px;
-    }
+    /* Rest of your existing CSS... */
     
     /* Animations */
     @keyframes fadeInDown {
@@ -457,52 +291,94 @@
       }
     }
     
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-container {
-        flex-direction: column;
+    @keyframes pop {
+      0% {
+        transform: scale(1);
       }
-      
-      .nav-links {
-        margin-top: 15px;
+      50% {
+        transform: scale(1.1);
       }
-      
-      .nav-links li {
-        margin: 0 10px;
-      }
-      
-      .slideshow-container {
-        height: 400px;
-      }
-      
-      h1 {
-        font-size: 32px;
-      }
-      
-      section {
-        padding: 30px;
+      100% {
+        transform: scale(1);
       }
     }
     
-    @media (max-width: 480px) {
-      header {
-        padding: 25px 20px;
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .header-top-bar {
+        padding: 10px 20px;
       }
       
-      .slideshow-container {
-        height: 300px;
+      .contact-info {
+        display: none;
       }
       
-      .slide-content {
-        padding: 20px;
+      .header-content {
+        padding: 40px 20px;
       }
       
-      .slide h3 {
-        font-size: 22px;
+      h1 {
+        font-size: 36px;
       }
       
-      .service-list {
-        grid-template-columns: 1fr;
+      header p {
+        font-size: 16px;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 100;
+      }
+      
+      .nav-links.active {
+        right: 0;
+      }
+      
+      .nav-links li {
+        margin: 0 0 15px 0;
+        width: 100%;
+      }
+      
+      .nav-links a {
+        padding: 10px 0;
+        display: block;
+      }
+      
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        margin-top: 10px;
+      }
+      
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      
+      .menu-toggle {
+        display: block;
+        z-index: 101;
+      }
+      
+      .cta-button {
+        margin-left: 0;
+        margin-top: 20px;
+        width: 100%;
+        text-align: center;
       }
     }
   </style>
@@ -510,249 +386,94 @@
 <body>
 
   <header>
+    <div class="header-top-bar">
+      <div class="contact-info">
+        <span><i class="fas fa-phone"></i> (123) 456-7890</span>
+        <span><i class="fas fa-envelope"></i> info@dreambuild.com</span>
+      </div>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    
     <div class="header-content">
       <h1>DreamBuild Homes</h1>
-      <p>Your Complete Home Construction Partner</p>
+      <p>Your Complete Home Construction Partner - Building Dreams Since 2005</p>
     </div>
   </header>
 
   <nav>
     <div class="nav-container">
-      <div class="logo">DreamBuild</div>
+      <div class="logo">
+        <img src="https://via.placeholder.com/40x40" alt="DreamBuild Logo">
+        <span>DreamBuild</span>
+      </div>
+      
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="#" class="active">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Architectural Design</a>
+            <a href="#">Construction</a>
+            <a href="#">Interior Design</a>
+            <a href="#">Renovation</a>
+          </div>
+        </li>
         <li><a href="#">Projects</a></li>
         <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#" class="cta-button">Get a Quote</a></li>
       </ul>
+      
+      <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </div>
     </div>
   </nav>
 
-  <div class="slideshow-container">
-    <!-- Slide 1 -->
-    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
-      <div class="slide-content">
-        <h3>Modern Architectural Designs</h3>
-        <p>We create stunning contemporary homes tailored to your lifestyle and preferences.</p>
-        <a href="https://www.architecture.com/" class="slide-btn" target="_blank">View Designs</a>
-      </div>
-    </div>
-    
-    <!-- Slide 2 -->
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
-      <div class="slide-content">
-        <h3>Premium Construction Materials</h3>
-        <p>Using only the highest quality materials to ensure durability and longevity.</p>
-        <a href="https://www.buildwithrise.com/stories/best-building-materials-for-home-construction" class="slide-btn" target="_blank">Learn More</a>
-      </div>
-    </div>
-    
-    <!-- Slide 3 -->
-    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')">
-      <div class="slide-content">
-        <h3>Luxury Interior Solutions</h3>
-        <p>Transform your space with our bespoke interior design services.</p>
-        <a href="https://www.architecturaldigest.com/luxury-interiors" class="slide-btn" target="_blank">Explore Interiors</a>
-      </div>
-    </div>
-    
-    <div class="slide-nav">
-      <div class="slide-dot active" onclick="currentSlide(0)"></div>
-      <div class="slide-dot" onclick="currentSlide(1)"></div>
-      <div class="slide-dot" onclick="currentSlide(2)"></div>
-    </div>
-  </div>
-
-  <div class="container">
-    <section>
-      <h2>Our Premium Services</h2>
-      <ul class="service-list">
-        <li>
-          <h3>Architectural Design</h3>
-          <p>Custom home designs tailored to your vision and lifestyle needs.</p>
-          <a href="https://www.houzz.com/professionals/architects" target="_blank" style="color: var(--accent); text-decoration: none;">View Portfolio →</a>
-        </li>
-        <li>
-          <h3>Structural Engineering</h3>
-          <p>Expert engineering solutions for safe and durable structures.</p>
-          <a href="https://www.asce.org/" target="_blank" style="color: var(--accent); text-decoration: none;">Learn More →</a>
-        </li>
-        <li>
-          <h3>Foundation & RCC Work</h3>
-          <p>Strong foundations using reinforced cement concrete technology.</p>
-          <a href="https://theconstructor.org/concrete/rc-construction/244/" target="_blank" style="color: var(--accent); text-decoration: none;">Details →</a>
-        </li>
-        <li>
-          <h3>Brickwork & Masonry</h3>
-          <p>Precision brickwork for beautiful and structurally sound walls.</p>
-          <a href="https://www.masonrymagazine.com/" target="_blank" style="color: var(--accent); text-decoration: none;">View Examples →</a>
-        </li>
-        <li>
-          <h3>Roofing Solutions</h3>
-          <p>Durable and weather-resistant roofing options for all climates.</p>
-          <a href="https://www.roofingcontractor.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Options →</a>
-        </li>
-        <li>
-          <h3>Plumbing Services</h3>
-          <p>Modern plumbing systems with high-quality fixtures and fittings.</p>
-          <a href="https://www.phcppros.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Learn More →</a>
-        </li>
-        <li>
-          <h3>Electrical Installations</h3>
-          <p>Safe and efficient electrical systems for modern homes.</p>
-          <a href="https://www.ecmag.com/" target="_blank" style="color: var(--accent); text-decoration: none;">Safety Info →</a>
-        </li>
-        <li>
-          <h3>Flooring & Tiling</h3>
-          <p>Premium flooring options including hardwood, tile, and more.</p>
-          <a href="https://www.flooringinc.com/" target="_blank" style="color: var(--accent); text-decoration: none;">View Options →</a>
-        </li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Our Recent Projects</h2>
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Modern Home">
-          <div class="gallery-overlay">
-            <h3>Modern Villa</h3>
-            <a href="https://www.archdaily.com/" target="_blank" style="color: white;">View Project →</a>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Interior">
-          <div class="gallery-overlay">
-            <h3>Luxury Interior</h3>
-            <a href="https://www.elledecor.com/" target="_blank" style="color: white;">View Project →</a>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Contemporary Design">
-          <div class="gallery-overlay">
-            <h3>Contemporary Home</h3>
-            <a href="https://www.contemporist.com/" target="_blank" style="color: white;">View Project →</a>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Kitchen Design">
-          <div class="gallery-overlay">
-            <h3>Gourmet Kitchen</h3>
-            <a href="https://www.houzz.com/photos/kitchen" target="_blank" style="color: white;">View Project →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <div class="footer-container">
-      <div class="footer-col">
-        <h3>DreamBuild Homes</h3>
-        <p>Creating exceptional living spaces since 2005. We specialize in premium home construction with attention to detail and quality craftsmanship.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Testimonials</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Services</h3>
-        <ul class="footer-links">
-          <li><a href="#">Architectural Design</a></li>
-          <li><a href="#">Construction</a></li>
-          <li><a href="#">Interior Design</a></li>
-          <li><a href="#">Renovation</a></li>
-          <li><a href="#">Landscaping</a></li>
-          <li><a href="#">Consultation</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h3>Contact Us</h3>
-        <p><i class="fas fa-map-marker-alt"></i> 123 Construction Ave, Build City</p>
-        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-        <p><i class="fas fa-envelope"></i> info@dreambuild.com</p>
-        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</p>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; 2025 DreamBuild Homes. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #ff7d3b;"></i> by DreamBuild Team
-    </div>
-  </footer>
+  <!-- Rest of your HTML content... -->
 
   <script>
-    // Slideshow functionality
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slide-dot');
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
     
-    function showSlides() {
-      // Hide all slides
-      slides.forEach(slide => {
-        slide.classList.remove('active');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 992) {
+          navLinks.classList.remove('active');
+          menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
       });
-      
-      // Remove active class from all dots
-      dots.forEach(dot => {
-        dot.classList.remove('active');
+    });
+    
+    // Add active class to current page link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.getAttribute('href') === currentPage) {
+        link.classList.add('active');
+      }
+    });
+    
+    // Pop animation for menu items on hover
+    document.querySelectorAll('.nav-links li').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        item.style.animation = 'pop 0.3s ease';
       });
-      
-      // Increment slide index
-      slideIndex++;
-      if (slideIndex > slides.length) {slideIndex = 1}
-      
-      // Show current slide and activate corresponding dot
-      slides[slideIndex-1].classList.add('active');
-      dots[slideIndex-1].classList.add('active');
-      
-      // Change slide every 5 seconds
-      setTimeout(showSlides, 5000);
-    }
-    
-    // Manual slide control
-    function currentSlide(n) {
-      slideIndex = n;
-      showSlides();
-    }
-    
-    // Start slideshow
-    showSlides();
-    
-    // Animation on scroll
-    document.addEventListener('DOMContentLoaded', function() {
-      const sections = document.querySelectorAll('section');
-      
-      const observerOptions = {
-        threshold: 0.1
-      };
-      
-      const observer = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-          }
-        });
-      }, observerOptions);
-      
-      sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+      item.addEventListener('animationend', () => {
+        item.style.animation = '';
       });
     });
   </script>
