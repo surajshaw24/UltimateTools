@@ -1999,13 +1999,11 @@
                 // In a real implementation, we'd show a tooltip here
                 console.log(`Tooltip: ${tooltip.dataset.tooltip}`);
             });
-        });
         
          // Disable right-click and inspect element
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
-        
         document.addEventListener('keydown', function(e) {
             if (
                 (e.ctrlKey && e.key === 'c') || 
