@@ -2000,6 +2000,23 @@
                 console.log(`Tooltip: ${tooltip.dataset.tooltip}`);
             });
         });
+ });
+         // Disable right-click and inspect element
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (
+                (e.ctrlKey && e.key === 'c') || 
+                (e.ctrlKey && e.key === 'u') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                e.key === 'F12'
+            ) {
+                e.preventDefault();
+            }
+        });
+    });
     </script>
 </body>
 </html>
