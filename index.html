@@ -1991,7 +1991,25 @@
                 }
             });
         });
-
+document.addEventListener('DOMContentLoaded', function() {
+    // Your existing tool card and tooltip code here
+    
+    // Disable right-click and inspect element (add this part)
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    });
+    
+    document.addEventListener('keydown', function(e) {
+        if (
+            (e.ctrlKey && e.key === 'c') || 
+            (e.ctrlKey && e.key === 'u') || 
+            (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+            e.key === 'F12'
+        ) {
+            e.preventDefault();
+        }
+    });
+});
         // Initialize tooltips (would use a library like tippy.js in production)
         const tooltips = document.querySelectorAll('[data-tooltip]');
         tooltips.forEach(tooltip => {
@@ -2000,26 +2018,6 @@
                 console.log(`Tooltip: ${tooltip.dataset.tooltip}`);
             });
         });
-        
-       // Optional: Light protection against accidental right-click/inspect
-    // Note: This doesn't prevent determined users from accessing dev tools
-    if (window.location.hostname !== 'localhost') {  // Only enable in production
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (
-                (e.ctrlKey && e.key === 'c') || 
-                (e.ctrlKey && e.key === 'u') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                e.key === 'F12'
-            ) {
-                e.preventDefault();
-            }
-        });
-    }
-});
     </script>
 </body>
 </html>
