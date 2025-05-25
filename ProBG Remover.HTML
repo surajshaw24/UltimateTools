@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProBG Remover | Professional Background Removal Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-cut"></i>
+                <h1>ProBG Remover</h1>
+            </div>
+            <p class="tagline">Remove backgrounds from images in seconds</p>
+        </header>
+
+        <main>
+            <div class="upload-container">
+                <div class="drop-zone" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <h2>Upload Your Image</h2>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <input type="file" id="fileInput" accept="image/*">
+                    <button class="browse-btn">Select Image</button>
+                    <div class="supported-formats">
+                        <span>Supported formats: JPG, PNG, WEBP</span>
+                    </div>
+                </div>
+
+                <div class="preview-container">
+                    <div class="image-preview" id="originalPreview">
+                        <h3>Original</h3>
+                        <div class="placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>No image selected</p>
+                        </div>
+                        <img id="originalImage" style="display: none;">
+                    </div>
+
+                    <div class="image-preview" id="resultPreview">
+                        <h3>Result</h3>
+                        <div class="placeholder">
+                            <i class="fas fa-magic"></i>
+                            <p>Result will appear here</p>
+                        </div>
+                        <img id="resultImage" style="display: none;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="removeBgBtn" class="primary-btn" disabled>
+                    <i class="fas fa-magic"></i> Remove Background
+                </button>
+                <button id="downloadBtn" class="secondary-btn" disabled>
+                    <i class="fas fa-download"></i> Download PNG
+                </button>
+                <button id="resetBtn" class="secondary-btn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </main>
+
+        <div class="loading-modal" id="loadingModal">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Processing your image...</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 ProBG Remover. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">API Documentation</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
